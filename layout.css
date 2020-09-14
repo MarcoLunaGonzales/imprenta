@@ -1,0 +1,127 @@
+.clear { clear: both; }
+
+body {
+	background: white;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #646464;
+	text-align: center;
+	margin:0px;
+	padding:0px;
+}
+
+#wrapper {
+	text-align: left;
+	width: 950px;
+	margin: 0 auto;
+}
+
+
+
+
+
+#containerHolder {
+	padding: 1px;
+	border-top-color: #08944a;
+	background-color: #879fcf;
+}
+
+
+#container {
+	background: #fff url(../img/content.gif) repeat-y left top;
+	border: 1px solid #ddd;
+	width: 946px;
+}
+
+
+
+h2 {
+	width: 900px;
+	float: left;
+	color: #646464;
+	font-size: 16px;
+	line-height: 16px;
+	font-weight: bold;
+	margin: 20px 0 0 20px;
+	padding: 0 0 10px 0;
+	border-bottom: 1px solid #ddd;
+}
+
+h2 a {
+	color: #646464;
+	text-decoration: none;
+}
+
+h2 a.active {
+	color: #dd4047;
+}
+
+h2 a:hover { text-decoration: underline; }
+
+
+#main {
+	width: 870px;
+	float: left;
+	padding: 0 20px 0 20px;
+}
+
+h3 {
+	font-size: 14px;
+	line-height: 14px;
+	font-weight: bold;
+	color: #08944a;
+	padding: 0 0 0 10px;
+	margin: 20px 0 10px;
+}
+
+#main table {
+	border-top: 1px solid #ddd;
+	width:100%;
+}
+#main table tr th {
+	background: #e3e3e3;
+	padding: 0px 20px;
+	height: 29px;
+	line-height: 29px;
+	border-bottom: 1px solid #ddd;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+
+#main table tr td {
+	background: #f6f6f6;
+	padding: 0px 20px;
+	height: 29px;
+	line-height: 29px;
+	border-bottom: 1px solid #ddd;
+}
+
+#main table tr.odd td {
+	background: #fbfbfb;
+}
+
+#main table tr:hover td { background: #fdfcf6; }
+
+#main table .action {
+	text-align: right;
+	padding: 0 20px 0 10px;
+}
+
+#main table tr .action a { margin: 0 0 0 10px; text-decoration: none; color: #9b9b9b; }
+#main table tr:hover .action .edit { color: #c5a059; }
+#main table tr:hover .action .delete { color: #a02b2b; }
+#main table tr:hover .action .view { color: #55a34a; }
+
+#main table tr .action .ver {
+	color: #55a34a;
+	background: url(images/view_file.png) no-repeat;
+	padding-left:20px;
+}
+#main table tr .action .pdf {
+	color: #0099FF;
+	background: url(images/pdf.png) no-repeat;
+	padding-left:20px;
+}
+
+#main table tr:hover .action a:hover { text-decoration: underline; }

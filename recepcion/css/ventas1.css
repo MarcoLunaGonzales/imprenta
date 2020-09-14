@@ -1,0 +1,434 @@
+.inputText{
+  font-size: 11px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  
+  background-repeat: repeat-x;
+  background-image: url('../img/input.png');
+  border-left: solid #000000 1px;
+  border-top: solid #000000 1px;
+  border-right: solid #BED6F8 1px;
+  border-bottom: solid #BED6F8 1px;
+
+}
+.entrarSistema{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  width: 28px;
+  height: 21px;
+  background-image: url('../img1/go_button.gif');
+    
+}
+.btn{
+        font-size:10px;
+        font-family:Verdana,Helvetica;
+        font-weight:bold;
+        color:#f8f8f8;
+        background:#A5B2B9;
+        border:0px;
+        width:80px;
+        height:19px;
+       }
+
+.inputHidden{
+  font-size: 12px;
+  border : solid #000000 1px;
+}
+.commandButton{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  width: 130px;
+  height: 20px;
+}
+.outputText{
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  
+  color: blue;
+}
+.outputTextNormal{
+  font-family: Verdana;
+  font-size: 11px;
+  /*font-weight: bold; */
+  
+}
+.outputText2{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+.outputText1{
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  
+  color: #f2f2f2;
+}
+.registros{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+B:link {TEXT-DECORATION: none; COLOR: #000000; FONT-FAMILY: tahoma; FONT-SIZE: 9px;border:solid 0px #FFFFFF;} 
+B:active {TEXT-DECORATION: none; COLOR: #000000; FONT-FAMILY: tahoma; FONT-SIZE: 9px;border:solid 0px #FFFFFF;} 
+B:visited {TEXT-DECORATION: none; COLOR: #000000; FONT-FAMILY: tahoma; FONT-SIZE: 9px;border:solid 0px #FFFFFF;} 
+B:hover {TEXT-DECORATION: none; COLOR:#000000; FONT-WEIGHT: bold;border:solid 0px #FFFFFF;} 
+
+.headerClassCliente{
+    width: 300px;
+}
+.bodyClassCliente{
+    width: 100px;
+}
+.tituloCabezera1{
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        font-weight: bolder;
+        
+        color :#000000;
+
+}
+.tituloCabezera1{
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        font-weight: bolder;
+        
+        color :#000000;
+
+}
+.cabeceraIndex{
+    width :100%;    
+    height: 22px;
+    font-size: 12px;
+    color: #ffffff;
+    font-family: Verdana;
+    border: 0px solid red;;  
+
+}
+.headerClassACliente{
+    background-repeat :repeat-x;
+    /*background-image: url('../img/fondo.gif');*/
+    height: 22px;
+    color: #ffffff;
+    border: 1px solid #f2f2f2; 
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;  
+    background-color: #0A5B99;
+}
+/*.headerClassACliente1{
+    background-repeat :repeat-x;
+    background-image: url('../img/bar.png');
+    height: 22px;
+    color: #000066;
+    border: 1px solid #000000;    
+}*/
+
+.table2{
+  width: 400px;
+  border: 1px solid #000000;
+  font-size: 10px;
+  height: 20px;
+  
+}
+
+.tituloCabezera{
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 13px;
+
+        color :#000000;
+
+}
+.tituloCampo{  
+  
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  /*font-weight: bold;  */
+}
+
+.navegadorTabla{
+    border: 1px solid #123456;
+
+}
+.navegadorTablaHeader{
+}
+/*.panelAlert{
+    padding: 40px;
+    background-image : url(../img/proceso.gif);
+    top: 100px;
+    z-index: 3;
+    left: 200px; 
+    position: absolute;
+    border :2px solid #3C8BDA; 
+    width :300px;
+    height: 150px;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}*/
+.panelAlert{
+    padding: 20px;
+    /*background-image : url(../img/proceso.gif);*/
+    background-color: #ffffff;
+    top: 200px;
+    z-index: 3;
+    left: 200px; 
+    position: absolute;
+    border :2px solid #3C8BDA; 
+    width :450px;
+    height: 100px;
+    filter: alpha(opacity=80);
+    opacity: 0.80;
+}
+.panelSuper{
+    padding: 50px;
+    /*background-image : url(../img/proceso.gif);*/
+    background-color: #cccccc;
+    top: 0px;
+    z-index: 2; 
+    left: 0px; 
+    position: absolute;
+    border :2px solid #3C8BDA; 
+    width :4300px;
+    height: 1000px;
+    filter: alpha(opacity=70);
+    opacity: 0.8;
+}
+.panelBuscar{
+        visibility: hidden;
+        padding: 0px;
+        position: absolute;
+        border :1px double #000000;
+        background-color: #ffffff;
+        width :650px; 
+        height :500px;
+        overflow :auto;
+        z-index: 3;
+
+}
+
+/*--------------------------------------RENE inicio*/
+.commandButtonRene{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  width: 150px;
+  height: 20px;
+  background-repeat :repeat-x;
+  
+  background-image: url('../img/bar3.png');
+}
+.panelSuper1{
+    padding: 50px;
+    /*background-image : url(../img/proceso.gif);*/
+    background-color: #cccccc;
+    top: 0px;
+    z-index: 2; 
+    left: 0px; 
+    position: absolute;
+    border :2px solid #3C8BDA; 
+    width :1000px;
+    height: 1000px;
+    filter: alpha(opacity=70);
+    opacity: 0.8;
+}
+.panelBuscar1{
+        visibility: hidden;
+        padding: 0px;
+        position: absolute;
+        border :1px double #000000;
+        background-color: #ffffff;
+        width :650px; 
+        height :450px;
+        overflow :auto;
+        z-index: 3;
+
+}
+.panelCampania{
+        visibility: hidden;
+        padding: 0px;
+        position: absolute;
+        border :1px double #000000;
+        background-color: #ffffff;
+        width :550px; 
+        height :300px;
+        overflow :auto;
+        z-index: 3;
+        text-align: center;   
+}
+.panelCampania1{
+        visibility: hidden;
+        padding: 0px;
+        position: absolute;
+        border :1px double #000000;
+        background-color: #ffffff;
+        width :350px; 
+        height :125px;
+        overflow :auto;
+        z-index: 3;
+        text-align: center;   
+
+}
+.centrear{
+    text-align: center;   
+}
+.panelObs{
+        visibility: hidden;
+        padding: 0px;
+        position: absolute;
+        border :1px double #000000;
+        background-color: #ffffff;
+        width :600px; 
+        height :200px;
+        overflow :auto;
+        z-index: 3;
+
+}
+.panelActivarFuncionario{
+        visibility: hidden;
+        padding: 0px;
+        position: absolute;
+        border :1px double #000000;
+        background-color: #ffffff;
+        width :500px; 
+        height :135px;
+        overflow :auto;
+        z-index: 3;
+
+}
+/*------------------------------------RENE final*/
+
+.panelDatos{
+  
+}
+
+.tabPanel{
+  padding-left: 70px;
+}
+.columnDataTable{
+    border: 1px solid #EF9C21;
+}
+
+.datatableingresosacond{
+}
+/****************************/
+.leyendaColorNormal{
+    background-color: #FFFFFF;
+}
+.leyendaColorNormal1{
+    background-color: #FFFFFF;
+}
+.leyendaColorAnulado{
+    background-color: #FF0000;
+}
+.leyendaColorMovimiento{
+    background-color: YELLOW;
+}
+.leyendaColorPasados{
+        background-color: #FFFFFF;
+}
+/*  COLORES  PARA LA LISTA DE PEDIDO*/
+.ColorPedidoHabilitado{
+    background-color: #ffffff;    
+}
+.ColorPedidoHabilitado1{
+    background-color: #ffffff;
+}
+.ColorPedidoMorosoHabilitado{
+    background-color: #ffff99;
+}
+.ColorPedidoMorosoInhabilitado{
+    background-color: #ff6464;
+}
+/****************************/
+
+
+.tituloNavegador{
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: 5px; 
+}
+/****************************/
+.leyendaColorSalidasNormal{
+    background-color: #ffaa00;
+}
+.leyendaColorSalidasAnulado{
+    background-color: #00ffAA;
+}
+.leyendaColorSalidasRecepcionado{
+    background-color: #0000ff;
+}
+.leyendaColorSalidasPasado{
+    background-color: #FFFFFF;
+}
+/****************************/
+.calculos{
+   
+    margin: 0px;
+    padding: 0px;
+    vertical-align: top;
+    
+}
+.Estilo1 {
+    font-size: 10px;    
+}
+.split{
+    position :absolute;
+    left: 0px;
+    top: 0px;
+    width: 1px;
+   /*border: 1px solid #0099ff;*/
+    height: 700px;
+    padding-top: 150px;
+}
+.splitH{
+    position :absolute;
+    left: 0px;
+    top: 0px;
+    width: 100px;
+   /*border: 1px solid #0099ff;*/
+    height: 1px;
+    padding-top: 150px;
+}
+
+
+.headerFiltroReporte{
+    background-repeat :repeat-x;
+    background-image: url('../img/cabeceraFiltroReporte.jpg');
+    height: 22px;
+    /*border: 1px ;       
+    border-color: #CCCCCC;*/
+    border: 1px solid #CCCCCC;
+    color: #FFFFFF;
+}
+.tablaFiltroReporte{
+  border: 1px solid #CCCCCC;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+.bordeNegroTd {
+    padding: 5px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-right-color: #CCCCCC;
+    border-bottom-color: #CCCCCC;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+.bordeNegroTdMod {
+    padding: 2px;   
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-right-color: #CCCCCC;
+    border-bottom-color: #CCCCCC;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9px;    
+}
+.bordeNegroTdCliente {
+    padding: 0px;   
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-right-color: #CCCCCC;
+    border-bottom-color: #CCCCCC;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9px;    
+}

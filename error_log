@@ -1,0 +1,650 @@
+[01-Jan-2018 13:29:24 America/Caracas] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/marcoluna/public_html/imprenta/jenisse/conexion_inicio.inc on line 9
+[01-Jan-2018 13:29:24 America/Caracas] PHP Warning:  mysql_select_db(): Access denied for user 'marcoluna'@'localhost' (using password: NO) in /home/marcoluna/public_html/imprenta/jenisse/conexion_inicio.inc on line 10
+[01-Jan-2018 13:29:24 America/Caracas] PHP Warning:  mysql_select_db(): A link to the server could not be established in /home/marcoluna/public_html/imprenta/jenisse/conexion_inicio.inc on line 10
+[01-Jan-2018 13:29:24 America/Caracas] PHP Warning:  mysql_query(): Access denied for user 'marcoluna'@'localhost' (using password: NO) in /home/marcoluna/public_html/imprenta/jenisse/cookieAdm.php on line 16
+[01-Jan-2018 13:29:24 America/Caracas] PHP Warning:  mysql_query(): A link to the server could not be established in /home/marcoluna/public_html/imprenta/jenisse/cookieAdm.php on line 16
+[01-Jan-2018 13:29:24 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/cookieAdm.php on line 17
+[01-Jan-2018 13:29:24 America/Caracas] PHP Notice:  Undefined variable: nro_filas_sql in /home/marcoluna/public_html/imprenta/jenisse/cookieAdm.php on line 21
+[02-Jan-2018 15:18:28 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[02-Jan-2018 15:18:28 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[02-Jan-2018 15:18:28 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[02-Jan-2018 15:18:28 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[02-Jan-2018 15:18:28 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[05-Jan-2018 08:41:51 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[05-Jan-2018 08:41:51 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[05-Jan-2018 08:41:51 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[05-Jan-2018 08:41:51 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[05-Jan-2018 08:41:51 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[06-Jan-2018 10:13:31 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[06-Jan-2018 10:13:31 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[06-Jan-2018 10:13:31 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[06-Jan-2018 10:13:31 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[06-Jan-2018 10:13:31 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[16-Jan-2018 12:20:37 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[16-Jan-2018 12:20:37 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[16-Jan-2018 12:20:37 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[16-Jan-2018 12:20:37 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[16-Jan-2018 12:20:37 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[17-Jan-2018 16:44:59 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[17-Jan-2018 16:44:59 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[17-Jan-2018 16:44:59 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[17-Jan-2018 16:44:59 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[17-Jan-2018 16:44:59 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[17-Jan-2018 16:45:07 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[17-Jan-2018 16:45:07 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[17-Jan-2018 16:45:07 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[17-Jan-2018 16:45:07 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[17-Jan-2018 16:45:07 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[18-Jan-2018 15:23:20 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[18-Jan-2018 15:23:20 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[18-Jan-2018 15:23:20 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[18-Jan-2018 15:23:20 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[18-Jan-2018 15:23:20 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[25-Jan-2018 16:00:25 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[25-Jan-2018 16:00:25 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[25-Jan-2018 16:00:25 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[25-Jan-2018 16:00:25 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[25-Jan-2018 16:00:25 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[25-Jan-2018 18:20:37 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[25-Jan-2018 18:20:37 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[25-Jan-2018 18:20:37 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[25-Jan-2018 18:20:37 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[25-Jan-2018 18:20:37 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[27-Jan-2018 10:02:36 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[27-Jan-2018 10:02:36 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[27-Jan-2018 10:02:36 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[27-Jan-2018 10:02:36 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[27-Jan-2018 10:02:36 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[29-Jan-2018 09:30:54 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[29-Jan-2018 09:30:54 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[29-Jan-2018 09:30:54 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[29-Jan-2018 09:30:54 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[29-Jan-2018 09:30:54 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[29-Jan-2018 12:13:34 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[29-Jan-2018 12:13:34 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[29-Jan-2018 12:13:34 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[29-Jan-2018 12:13:34 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[29-Jan-2018 12:13:34 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[30-Jan-2018 10:14:35 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[30-Jan-2018 10:14:35 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[30-Jan-2018 10:14:35 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[30-Jan-2018 10:14:35 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[30-Jan-2018 10:14:35 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[30-Jan-2018 18:41:03 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[30-Jan-2018 18:41:03 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[30-Jan-2018 18:41:03 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[30-Jan-2018 18:41:03 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[30-Jan-2018 18:41:03 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[02-Feb-2018 15:49:11 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[02-Feb-2018 15:49:11 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[02-Feb-2018 15:49:11 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[02-Feb-2018 15:49:11 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[02-Feb-2018 15:49:11 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[03-Feb-2018 10:01:09 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[03-Feb-2018 10:01:09 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[03-Feb-2018 10:01:09 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[03-Feb-2018 10:01:09 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[03-Feb-2018 10:01:09 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[14-Feb-2018 15:32:22 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[14-Feb-2018 15:32:22 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[14-Feb-2018 15:32:22 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[14-Feb-2018 15:32:22 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[14-Feb-2018 15:32:22 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[15-Feb-2018 19:03:30 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[15-Feb-2018 19:03:30 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[15-Feb-2018 19:03:30 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[15-Feb-2018 19:03:30 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[15-Feb-2018 19:03:30 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[19-Feb-2018 16:11:31 America/Caracas] PHP Notice:  Undefined index: usuario in /home/marcoluna/public_html/imprenta/jenisse/cookieAdm.php on line 9
+[19-Feb-2018 16:11:31 America/Caracas] PHP Notice:  Undefined index: contrasena in /home/marcoluna/public_html/imprenta/jenisse/cookieAdm.php on line 10
+[21-Feb-2018 23:45:53 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[21-Feb-2018 23:45:53 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[21-Feb-2018 23:45:53 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[21-Feb-2018 23:45:53 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[21-Feb-2018 23:45:53 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[23-Feb-2018 10:12:45 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[23-Feb-2018 10:12:45 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-Feb-2018 10:12:45 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-Feb-2018 10:12:45 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[23-Feb-2018 10:12:45 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[27-Feb-2018 14:21:53 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[27-Feb-2018 14:21:53 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[27-Feb-2018 14:21:53 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[27-Feb-2018 14:21:53 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[27-Feb-2018 14:21:53 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[01-Mar-2018 12:01:43 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[01-Mar-2018 12:01:43 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[01-Mar-2018 12:01:43 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[01-Mar-2018 12:01:43 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[01-Mar-2018 12:01:43 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[01-Mar-2018 18:58:12 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[01-Mar-2018 18:58:12 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[01-Mar-2018 18:58:12 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[01-Mar-2018 18:58:12 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[01-Mar-2018 18:58:12 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[02-Mar-2018 15:59:40 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[02-Mar-2018 15:59:40 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[02-Mar-2018 15:59:40 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[02-Mar-2018 15:59:40 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[02-Mar-2018 15:59:40 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[07-Mar-2018 10:18:24 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[07-Mar-2018 10:18:24 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[07-Mar-2018 10:18:24 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[07-Mar-2018 10:18:24 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[07-Mar-2018 10:18:24 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[07-Mar-2018 11:21:17 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[07-Mar-2018 11:21:17 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[07-Mar-2018 11:21:17 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[07-Mar-2018 11:21:17 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[07-Mar-2018 11:21:17 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[08-Mar-2018 10:46:40 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[08-Mar-2018 10:46:40 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[08-Mar-2018 10:46:40 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[08-Mar-2018 10:46:40 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[08-Mar-2018 10:46:40 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[09-Mar-2018 14:08:34 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[09-Mar-2018 14:08:34 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[09-Mar-2018 14:08:34 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[09-Mar-2018 14:08:34 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[09-Mar-2018 14:08:34 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[13-Mar-2018 13:54:17 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[13-Mar-2018 13:54:17 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Mar-2018 13:54:17 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Mar-2018 13:54:17 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[13-Mar-2018 13:54:17 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[14-Mar-2018 15:51:25 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[14-Mar-2018 15:51:25 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[14-Mar-2018 15:51:25 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[14-Mar-2018 15:51:25 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[14-Mar-2018 15:51:25 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[15-Mar-2018 16:49:02 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[15-Mar-2018 16:49:02 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[15-Mar-2018 16:49:02 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[15-Mar-2018 16:49:02 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[15-Mar-2018 16:49:02 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[16-Mar-2018 08:31:47 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[16-Mar-2018 08:31:47 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[16-Mar-2018 08:31:47 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[16-Mar-2018 08:31:47 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[16-Mar-2018 08:31:47 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[17-Mar-2018 10:33:20 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[17-Mar-2018 10:33:20 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[17-Mar-2018 10:33:20 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[17-Mar-2018 10:33:20 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[17-Mar-2018 10:33:20 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[17-Mar-2018 22:04:36 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[17-Mar-2018 22:04:36 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[17-Mar-2018 22:04:36 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[17-Mar-2018 22:04:36 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[17-Mar-2018 22:04:36 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[19-Mar-2018 09:17:14 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[19-Mar-2018 09:17:14 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[19-Mar-2018 09:17:14 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[19-Mar-2018 09:17:14 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[19-Mar-2018 09:17:14 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[20-Mar-2018 12:01:21 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[20-Mar-2018 12:01:21 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[20-Mar-2018 12:01:21 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[20-Mar-2018 12:01:21 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[20-Mar-2018 12:01:21 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[21-Mar-2018 15:31:10 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[21-Mar-2018 15:31:10 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[21-Mar-2018 15:31:10 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[21-Mar-2018 15:31:10 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[21-Mar-2018 15:31:10 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[22-Mar-2018 10:37:49 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[22-Mar-2018 10:37:49 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[22-Mar-2018 10:37:49 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[22-Mar-2018 10:37:49 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[22-Mar-2018 10:37:49 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[23-Mar-2018 11:21:41 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[23-Mar-2018 11:21:41 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-Mar-2018 11:21:41 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-Mar-2018 11:21:41 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[23-Mar-2018 11:21:41 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[26-Mar-2018 15:15:51 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[26-Mar-2018 15:15:51 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[26-Mar-2018 15:15:51 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[26-Mar-2018 15:15:51 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[26-Mar-2018 15:15:51 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[28-Mar-2018 11:08:06 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[28-Mar-2018 11:08:06 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[28-Mar-2018 11:08:06 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[28-Mar-2018 11:08:06 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[28-Mar-2018 11:08:06 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[29-Mar-2018 09:32:43 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[29-Mar-2018 09:32:43 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[29-Mar-2018 09:32:43 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[29-Mar-2018 09:32:43 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[29-Mar-2018 09:32:43 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[03-Apr-2018 09:13:24 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[03-Apr-2018 09:13:24 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[03-Apr-2018 09:13:24 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[03-Apr-2018 09:13:24 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[03-Apr-2018 09:13:24 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[05-Apr-2018 08:40:49 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[05-Apr-2018 08:40:49 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[05-Apr-2018 08:40:49 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[05-Apr-2018 08:40:49 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[05-Apr-2018 08:40:49 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[06-Apr-2018 14:22:52 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[06-Apr-2018 14:22:52 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[06-Apr-2018 14:22:52 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[06-Apr-2018 14:22:52 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[06-Apr-2018 14:22:52 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[09-Apr-2018 12:22:32 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[09-Apr-2018 12:22:32 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[09-Apr-2018 12:22:32 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[09-Apr-2018 12:22:32 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[09-Apr-2018 12:22:32 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[10-Apr-2018 11:59:00 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[10-Apr-2018 11:59:00 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[10-Apr-2018 11:59:00 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[10-Apr-2018 11:59:00 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[10-Apr-2018 11:59:00 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[11-Apr-2018 15:01:48 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[11-Apr-2018 15:01:48 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[11-Apr-2018 15:01:48 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[11-Apr-2018 15:01:48 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[11-Apr-2018 15:01:48 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[12-Apr-2018 10:36:25 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[12-Apr-2018 10:36:25 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[12-Apr-2018 10:36:25 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[12-Apr-2018 10:36:25 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[12-Apr-2018 10:36:25 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[17-Apr-2018 15:18:37 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[17-Apr-2018 15:18:37 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[17-Apr-2018 15:18:37 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[17-Apr-2018 15:18:37 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[17-Apr-2018 15:18:37 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[18-Apr-2018 14:29:20 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[18-Apr-2018 14:29:20 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[18-Apr-2018 14:29:20 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[18-Apr-2018 14:29:20 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[18-Apr-2018 14:29:20 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[19-Apr-2018 15:27:04 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[19-Apr-2018 15:27:04 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[19-Apr-2018 15:27:04 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[19-Apr-2018 15:27:04 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[19-Apr-2018 15:27:04 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[23-Apr-2018 15:57:34 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[23-Apr-2018 15:57:34 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-Apr-2018 15:57:34 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-Apr-2018 15:57:34 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[23-Apr-2018 15:57:34 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[24-Apr-2018 14:44:56 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[24-Apr-2018 14:44:57 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[24-Apr-2018 14:44:57 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[24-Apr-2018 14:44:57 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[24-Apr-2018 14:44:57 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[25-Apr-2018 14:31:17 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[25-Apr-2018 14:31:17 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[25-Apr-2018 14:31:17 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[25-Apr-2018 14:31:17 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[25-Apr-2018 14:31:17 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[26-Apr-2018 16:21:31 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[26-Apr-2018 16:21:31 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[26-Apr-2018 16:21:31 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[26-Apr-2018 16:21:31 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[26-Apr-2018 16:21:31 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[02-May-2018 16:42:37 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[02-May-2018 16:42:37 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[02-May-2018 16:42:37 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[02-May-2018 16:42:37 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[02-May-2018 16:42:37 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[07-May-2018 09:31:28 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[07-May-2018 09:31:28 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[07-May-2018 09:31:28 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[07-May-2018 09:31:28 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[07-May-2018 09:31:28 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[09-May-2018 15:15:14 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[09-May-2018 15:15:14 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[09-May-2018 15:15:14 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[09-May-2018 15:15:14 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[09-May-2018 15:15:14 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[10-May-2018 11:36:16 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[10-May-2018 11:36:16 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[10-May-2018 11:36:16 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[10-May-2018 11:36:16 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[10-May-2018 11:36:16 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[10-May-2018 14:26:58 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[10-May-2018 14:26:58 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[10-May-2018 14:26:58 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[10-May-2018 14:26:58 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[10-May-2018 14:26:58 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[11-May-2018 11:12:54 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[11-May-2018 11:12:54 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[11-May-2018 11:12:54 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[11-May-2018 11:12:54 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[11-May-2018 11:12:54 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[14-May-2018 11:35:55 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[14-May-2018 11:35:55 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[14-May-2018 11:35:55 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[14-May-2018 11:35:55 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[14-May-2018 11:35:55 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[14-May-2018 18:27:15 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[14-May-2018 18:27:15 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[14-May-2018 18:27:15 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[14-May-2018 18:27:15 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[14-May-2018 18:27:15 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[15-May-2018 09:40:35 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[15-May-2018 09:40:35 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[15-May-2018 09:40:35 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[15-May-2018 09:40:35 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[15-May-2018 09:40:35 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[15-May-2018 17:46:19 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[15-May-2018 17:46:19 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[15-May-2018 17:46:19 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[15-May-2018 17:46:19 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[15-May-2018 17:46:19 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[16-May-2018 15:39:11 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[16-May-2018 15:39:11 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[16-May-2018 15:39:11 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[16-May-2018 15:39:11 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[16-May-2018 15:39:11 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[19-May-2018 08:55:18 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[19-May-2018 08:55:18 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[19-May-2018 08:55:18 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[19-May-2018 08:55:18 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[19-May-2018 08:55:18 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[23-May-2018 14:22:53 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[23-May-2018 14:22:53 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-May-2018 14:22:53 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-May-2018 14:22:53 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[23-May-2018 14:22:53 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[23-May-2018 18:28:16 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[23-May-2018 18:28:16 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-May-2018 18:28:16 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-May-2018 18:28:16 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[23-May-2018 18:28:16 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[23-May-2018 18:28:27 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[23-May-2018 18:28:27 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-May-2018 18:28:27 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-May-2018 18:28:27 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[23-May-2018 18:28:27 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[24-May-2018 14:22:21 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[24-May-2018 14:22:21 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[24-May-2018 14:22:21 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[24-May-2018 14:22:21 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[24-May-2018 14:22:21 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[28-May-2018 14:24:04 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[28-May-2018 14:24:04 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[28-May-2018 14:24:04 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[28-May-2018 14:24:04 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[28-May-2018 14:24:04 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[29-May-2018 14:45:46 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[29-May-2018 14:45:46 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[29-May-2018 14:45:46 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[29-May-2018 14:45:46 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[29-May-2018 14:45:46 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[30-May-2018 09:20:40 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[30-May-2018 09:20:40 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[30-May-2018 09:20:40 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[30-May-2018 09:20:40 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[30-May-2018 09:20:40 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[01-Jun-2018 10:49:31 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[01-Jun-2018 10:49:31 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[01-Jun-2018 10:49:31 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[01-Jun-2018 10:49:31 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[01-Jun-2018 10:49:31 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[05-Jun-2018 07:59:26 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[05-Jun-2018 07:59:26 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[05-Jun-2018 07:59:26 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[05-Jun-2018 07:59:26 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[05-Jun-2018 07:59:26 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[05-Jun-2018 15:46:35 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[05-Jun-2018 15:46:35 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[05-Jun-2018 15:46:35 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[05-Jun-2018 15:46:35 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[05-Jun-2018 15:46:35 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[11-Jun-2018 14:58:11 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[11-Jun-2018 14:58:11 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[11-Jun-2018 14:58:11 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[11-Jun-2018 14:58:11 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[11-Jun-2018 14:58:11 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[12-Jun-2018 09:24:15 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[12-Jun-2018 09:24:15 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[12-Jun-2018 09:24:15 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[12-Jun-2018 09:24:15 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[12-Jun-2018 09:24:15 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[13-Jun-2018 11:26:04 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[13-Jun-2018 11:26:04 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Jun-2018 11:26:04 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Jun-2018 11:26:04 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[13-Jun-2018 11:26:04 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[14-Jun-2018 11:03:56 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[14-Jun-2018 11:03:56 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[14-Jun-2018 11:03:56 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[14-Jun-2018 11:03:56 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[14-Jun-2018 11:03:56 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[18-Jun-2018 19:26:55 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[18-Jun-2018 19:26:55 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[18-Jun-2018 19:26:55 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[18-Jun-2018 19:26:55 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[18-Jun-2018 19:26:55 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[19-Jun-2018 10:56:03 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[19-Jun-2018 10:56:03 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[19-Jun-2018 10:56:03 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[19-Jun-2018 10:56:03 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[19-Jun-2018 10:56:03 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[23-Jun-2018 10:07:18 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[23-Jun-2018 10:07:18 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-Jun-2018 10:07:18 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[23-Jun-2018 10:07:18 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[23-Jun-2018 10:07:18 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[25-Jun-2018 09:30:05 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[25-Jun-2018 09:30:05 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[25-Jun-2018 09:30:05 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[25-Jun-2018 09:30:05 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[25-Jun-2018 09:30:05 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[29-Jun-2018 09:47:16 America/Caracas] PHP Notice:  Undefined index: usuario in /home/marcoluna/public_html/imprenta/jenisse/cookieAdm.php on line 9
+[29-Jun-2018 09:47:16 America/Caracas] PHP Notice:  Undefined index: contrasena in /home/marcoluna/public_html/imprenta/jenisse/cookieAdm.php on line 10
+[11-Jul-2018 17:00:17 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[11-Jul-2018 17:00:17 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[11-Jul-2018 17:00:17 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[11-Jul-2018 17:00:17 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[11-Jul-2018 17:00:17 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[28-Jul-2018 10:21:40 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[28-Jul-2018 10:21:40 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[28-Jul-2018 10:21:40 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[28-Jul-2018 10:21:40 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[28-Jul-2018 10:21:40 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[30-Jul-2018 07:07:03 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[30-Jul-2018 07:07:03 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[30-Jul-2018 07:07:03 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[30-Jul-2018 07:07:03 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[30-Jul-2018 07:07:03 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[13-Aug-2018 11:20:59 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[13-Aug-2018 11:20:59 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Aug-2018 11:20:59 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Aug-2018 11:20:59 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[13-Aug-2018 11:20:59 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[13-Aug-2018 11:21:15 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[13-Aug-2018 11:21:15 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Aug-2018 11:21:15 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Aug-2018 11:21:15 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[13-Aug-2018 11:21:15 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[13-Aug-2018 11:21:30 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[13-Aug-2018 11:21:30 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Aug-2018 11:21:30 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Aug-2018 11:21:30 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[13-Aug-2018 11:21:30 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[13-Aug-2018 11:21:54 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[13-Aug-2018 11:21:54 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Aug-2018 11:21:54 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Aug-2018 11:21:54 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[13-Aug-2018 11:21:54 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[13-Aug-2018 11:36:25 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[13-Aug-2018 11:36:25 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Aug-2018 11:36:25 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[13-Aug-2018 11:36:25 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[13-Aug-2018 11:36:25 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[20-Aug-2018 08:36:45 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[20-Aug-2018 08:36:45 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[20-Aug-2018 08:36:45 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[20-Aug-2018 08:36:45 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[20-Aug-2018 08:36:45 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[27-Aug-2018 10:35:18 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[27-Aug-2018 10:35:18 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[27-Aug-2018 10:35:18 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[27-Aug-2018 10:35:18 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[27-Aug-2018 10:35:18 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[21-Sep-2018 17:27:38 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[21-Sep-2018 17:27:38 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[21-Sep-2018 17:27:38 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[21-Sep-2018 17:27:38 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[21-Sep-2018 17:27:38 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[21-Sep-2018 17:28:45 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[21-Sep-2018 17:28:45 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[21-Sep-2018 17:28:45 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[21-Sep-2018 17:28:45 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[21-Sep-2018 17:28:45 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[28-Sep-2018 17:31:49 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[28-Sep-2018 17:31:49 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[28-Sep-2018 17:31:49 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[28-Sep-2018 17:31:49 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[28-Sep-2018 17:31:49 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[03-Oct-2018 15:52:30 America/Caracas] PHP Notice:  Undefined index: usuario in /home/marcoluna/public_html/imprenta/jenisse/cookieAdm.php on line 9
+[03-Oct-2018 15:52:30 America/Caracas] PHP Notice:  Undefined index: contrasena in /home/marcoluna/public_html/imprenta/jenisse/cookieAdm.php on line 10
+[18-Oct-2018 15:46:34 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[18-Oct-2018 15:46:34 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[18-Oct-2018 15:46:34 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[18-Oct-2018 15:46:34 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[18-Oct-2018 15:46:34 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[19-Oct-2018 19:23:03 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[19-Oct-2018 19:23:03 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[19-Oct-2018 19:23:03 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[19-Oct-2018 19:23:03 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[19-Oct-2018 19:23:03 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[09-Nov-2018 19:03:47 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[09-Nov-2018 19:03:47 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[09-Nov-2018 19:03:47 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[09-Nov-2018 19:03:47 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[09-Nov-2018 19:03:47 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[09-Nov-2018 19:03:54 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[09-Nov-2018 19:03:54 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[09-Nov-2018 19:03:54 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[09-Nov-2018 19:03:54 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[09-Nov-2018 19:03:54 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[15-Nov-2018 18:24:47 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[15-Nov-2018 18:24:47 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[15-Nov-2018 18:24:47 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[15-Nov-2018 18:24:47 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[15-Nov-2018 18:24:47 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[03-Dec-2018 19:07:04 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 14
+[03-Dec-2018 19:07:04 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[03-Dec-2018 19:07:04 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 35
+[03-Dec-2018 19:07:04 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 50
+[03-Dec-2018 19:07:04 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/jenisse/modules.php on line 53
+[14-Feb-2019 19:04:39 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[14-Feb-2019 19:04:39 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[14-Feb-2019 19:04:39 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[14-Feb-2019 19:04:39 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[14-Feb-2019 19:04:39 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[21-Feb-2019 10:46:55 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[21-Feb-2019 10:46:55 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[21-Feb-2019 10:46:55 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[21-Feb-2019 10:46:55 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[21-Feb-2019 10:46:55 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[21-Feb-2019 10:47:11 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[21-Feb-2019 10:47:11 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[21-Feb-2019 10:47:11 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[21-Feb-2019 10:47:11 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[21-Feb-2019 10:47:11 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[21-Feb-2019 11:58:31 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[21-Feb-2019 11:58:31 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[21-Feb-2019 11:58:31 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[21-Feb-2019 11:58:31 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[21-Feb-2019 11:58:31 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[21-Feb-2019 14:26:44 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[21-Feb-2019 14:26:44 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[21-Feb-2019 14:26:44 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[21-Feb-2019 14:26:44 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[21-Feb-2019 14:26:44 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[28-Feb-2019 22:06:48 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[28-Feb-2019 22:06:48 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[28-Feb-2019 22:06:48 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[28-Feb-2019 22:06:48 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[28-Feb-2019 22:06:48 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[10-Mar-2019 19:36:21 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[10-Mar-2019 19:36:21 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[10-Mar-2019 19:36:21 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[10-Mar-2019 19:36:21 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[10-Mar-2019 19:36:21 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[12-Mar-2019 21:39:50 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[12-Mar-2019 21:39:50 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[12-Mar-2019 21:39:50 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[12-Mar-2019 21:39:50 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[12-Mar-2019 21:39:50 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[12-Mar-2019 23:31:25 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[12-Mar-2019 23:31:25 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[12-Mar-2019 23:31:25 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[12-Mar-2019 23:31:25 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[12-Mar-2019 23:31:25 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[13-Mar-2019 11:30:24 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[13-Mar-2019 11:30:24 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[13-Mar-2019 11:30:24 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[13-Mar-2019 11:30:24 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[13-Mar-2019 11:30:24 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[21-Mar-2019 21:44:45 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[21-Mar-2019 21:44:45 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[21-Mar-2019 21:44:45 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[21-Mar-2019 21:44:45 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[21-Mar-2019 21:44:45 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[25-Mar-2019 21:33:57 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[25-Mar-2019 21:33:57 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[25-Mar-2019 21:33:57 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[25-Mar-2019 21:33:57 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[25-Mar-2019 21:33:57 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[25-Mar-2019 22:14:05 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[25-Mar-2019 22:14:05 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[25-Mar-2019 22:14:05 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[25-Mar-2019 22:14:05 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[25-Mar-2019 22:14:05 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[04-Apr-2019 18:55:38 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[04-Apr-2019 18:55:38 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[04-Apr-2019 18:55:38 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[04-Apr-2019 18:55:38 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[04-Apr-2019 18:55:38 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[08-Apr-2019 18:52:29 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[08-Apr-2019 18:52:29 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[08-Apr-2019 18:52:29 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[08-Apr-2019 18:52:29 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[08-Apr-2019 18:52:29 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[14-Apr-2019 20:19:42 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[14-Apr-2019 20:19:43 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[14-Apr-2019 20:19:43 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[14-Apr-2019 20:19:43 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[14-Apr-2019 20:19:43 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[18-Apr-2019 18:23:44 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[18-Apr-2019 18:23:44 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[18-Apr-2019 18:23:44 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[18-Apr-2019 18:23:44 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[18-Apr-2019 18:23:44 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[19-Apr-2019 23:25:33 America/Caracas] PHP Notice:  Undefined index: usuario in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 9
+[19-Apr-2019 23:25:34 America/Caracas] PHP Notice:  Undefined index: contrasena in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 10
+[25-Apr-2019 12:07:43 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[25-Apr-2019 12:07:43 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[25-Apr-2019 12:07:43 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[25-Apr-2019 12:07:43 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[25-Apr-2019 12:07:43 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[06-May-2019 10:00:42 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 17
+[06-May-2019 10:00:42 America/Caracas] PHP Notice:  Undefined variable: nro_filas_sql in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 21
+[06-May-2019 10:01:00 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 17
+[06-May-2019 10:01:00 America/Caracas] PHP Notice:  Undefined variable: nro_filas_sql in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 21
+[06-May-2019 14:55:52 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 17
+[06-May-2019 14:55:52 America/Caracas] PHP Notice:  Undefined variable: nro_filas_sql in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 21
+[06-May-2019 14:56:05 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 17
+[06-May-2019 14:56:05 America/Caracas] PHP Notice:  Undefined variable: nro_filas_sql in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 21
+[08-May-2019 10:54:08 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 17
+[08-May-2019 10:54:08 America/Caracas] PHP Notice:  Undefined variable: nro_filas_sql in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 21
+[08-May-2019 10:54:17 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 17
+[08-May-2019 10:54:17 America/Caracas] PHP Notice:  Undefined variable: nro_filas_sql in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 21
+[28-May-2019 22:11:26 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 14
+[28-May-2019 22:11:26 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 16
+[28-May-2019 22:11:26 America/Caracas] PHP Notice:  Undefined variable: nombres_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[28-May-2019 22:11:26 America/Caracas] PHP Notice:  Undefined variable: ap_paterno_usuario in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 35
+[28-May-2019 22:11:26 America/Caracas] PHP Notice:  Undefined index: usuario_global in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 50
+[28-May-2019 22:11:26 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/modules.php on line 53
+[19-Oct-2019 08:35:56 America/Caracas] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 17
+[19-Oct-2019 08:35:56 America/Caracas] PHP Notice:  Undefined variable: nro_filas_sql in /home/marcoluna/public_html/imprenta/convenze/cookieAdm.php on line 21

@@ -1,0 +1,131 @@
+.header {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #291e3e; FONT-FAMILY: Verdana
+}
+.headerwhite {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ffffff; FONT-FAMILY: Verdana
+}
+.pageHeader {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #291e3e; FONT-FAMILY: Verdana
+}
+.text {
+	FONT-SIZE: 8pt; COLOR: #291e3e; FONT-FAMILY: Verdana
+}
+H1 {
+	FONT-SIZE: 8pt; COLOR: #291e3e; FONT-FAMILY: Verdana
+}
+.textBold {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #291e3e; FONT-FAMILY: Verdana
+}
+.textOrange {
+	FONT-SIZE: 8pt; COLOR: #f79911; FONT-FAMILY: Verdana
+}
+.textError {
+	FONT-SIZE: 8pt; COLOR: #ff0000; FONT-FAMILY: Verdana
+}
+.textWhite {
+	FONT-SIZE: 8pt; COLOR: #ffffff; FONT-FAMILY: Verdana
+}
+.textOrangeBig {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #f79911; FONT-FAMILY: Verdana
+}
+A.home {
+	FONT-SIZE: 8pt; COLOR: #456b1f; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+A.menuItem {
+	FONT-SIZE: 8pt; COLOR: #291e3e; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+A.menuItem:hover {
+	COLOR: #f79911
+}
+A.TopMenuItem {
+	FONT-SIZE: 8pt; COLOR: #ffffff; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+A.TopMenuItem:hover {
+	COLOR: #f79911
+}
+A {
+	FONT-SIZE: 8pt; COLOR: #291e3e; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #f79911
+}
+.textbox {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; FONT-SIZE: 11px; BACKGROUND: #ffffff; BORDER-LEFT: #cccccc 1px solid; COLOR: #291e3e; BORDER-BOTTOM: #cccccc 1px solid; FONT-FAMILY: Verdana
+}
+.textarea {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; FONT-SIZE: 11px; BACKGROUND: #ffffff; BORDER-LEFT: #cccccc 1px solid; COLOR: #291e3e; BORDER-BOTTOM: #cccccc 1px solid; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+.select {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; FONT-SIZE: 8pt; BACKGROUND: #ffffff; BORDER-LEFT: #cccccc 1px solid; COLOR: #291e3e; BORDER-BOTTOM: #cccccc 1px solid; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+.greyTR {
+	BACKGROUND: #eaeaea
+}
+.lightYellowTr {
+	BACKGROUND: #f6d58e
+}
+.trVeryLightYellowBg {
+	BACKGROUND: #fef1cf
+}
+
+/*
+.mytable {
+width: 700px;
+padding: 0;
+margin: 0;
+border-collapse: collapse;
+}
+
+caption {
+padding: 0 0 5px 0;
+width: 700px;
+font: italic 11px “Trebuchet MS”, Verdana, Arial, Helvetica, sans-serif;
+text-align: right;
+font-style: italic;
+}
+
+th {
+font: bold 11px “Trebuchet MS”, Verdana, Arial, Helvetica, sans-serif;
+color: #FFF;
+border-right: 1px solid #C1DAD7;
+border-bottom: 1px solid #C1DAD7;
+border-top: 1px solid #C1DAD7;
+letter-spacing: 2px;
+text-transform: uppercase;
+text-align: left;
+padding: 6px 6px 6px 12px;
+background: #C62A2A url(images/bg_header.jpg) no-repeat;
+}
+
+thead th:first-child {
+border-top: 0;
+border-left: 0;
+border-right: 1px solid #C1DAD7;
+background: none;
+}
+
+tbody td {
+border-right: 1px solid #C1DAD7;
+border-bottom: 1px solid #C1DAD7;
+background: #fff;
+padding: 6px 6px 6px 12px;
+color: #4f6b72;
+}
+
+tbody tr:nth-child(odd) td {
+background: #F5FAFA;
+color: #797268;
+}
+
+tbody th{
+font: bold 10px “Trebuchet MS”, Verdana, Arial, Helvetica, sans-serif;
+border-left: 1px solid #C1DAD7;
+border-top: 0;
+font: bold;
+background: #22945D url(images/bullet1.gif) no-repeat;
+}
+
+tbody tr:nth-child(odd) th {
+background: #f5fafa url(images/bullet2.gif) no-repeat;
+color: #797268;
+} */

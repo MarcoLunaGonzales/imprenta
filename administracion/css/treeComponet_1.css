@@ -1,0 +1,36 @@
+/*
+ *  Created on 5 de Marzo de 2008, 18:24
+ *  @author Wilmer Manzaneda Chavez
+ *  @group ISAWI
+*/
+
+
+ul{
+    list-style-type:none;
+    list-style-position:inside;
+    margin:0px;
+    padding:0px;
+}
+.n{
+    padding-left: 10px;
+    width: 300px;
+}
+.node{
+   text-decoration:none;
+   font-family:Verdana, Arial, Helvetica, sans-serif;
+   font-size:10px;
+   margin:0px;	
+   padding:10px;
+   color:#000000;
+ }
+ .node:hover{
+   color:#0066FF;
+}
+img{
+        border:0px;
+        padding:0px;
+        margin-top:0px;
+}
+	
+	
+	

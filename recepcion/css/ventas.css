@@ -1,0 +1,345 @@
+body{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+   /*background-repeat: repeat-x;
+   background-image: url(../img/bg_b.gif);*/
+}
+.panelBuscar1{
+
+        visibility: hidden;
+        padding: 0px;
+        position:absolute;
+        border :1px double #696969;
+        width :20px; 
+        height :150px;
+        /*overflow :auto;*/
+        z-index: 4;
+        
+        text-align: center
+}
+.panelBuscar{
+        visibility: hidden;
+        padding: 0px;
+        position: absolute;
+        border :1px double #000000;
+        background-color: #ffffff;
+        width :700px; 
+        height :500px;
+        overflow :auto;
+        z-index: 3;
+
+}
+.inputText{
+
+  border : solid #cccccc 1px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+.inputText2{
+
+  border : solid #cccccc 1px;
+  font-family: Verdana;
+  font-size: 9px;
+}
+.inputHidden{
+  font-size: 12px;
+  border : solid #000000 1px;
+}
+.repetirButton{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  background-image: url('../img/actualizar1.jpg');
+}
+.btn {
+            /*    background:url(../img/header_prod.jpg);
+                background-repeat :repeat-x;
+                font-size:10px;
+		font-family:Verdana,Helvetica;
+		font-weight:bold;
+		color:white;
+		border:1px solid;
+                PADDING-RIGHT: 0px;
+                border-bottom: #cccccc 1px solid;
+                border-left: #cccccc 1px solid;
+                border-right: #cccccc 1px solid;
+                border-top: #cccccc 1px solid;
+		width:80px;
+		height:24px;*/
+        width:120px;
+        height:18px;
+	BORDER-RIGHT: #7f9771  1px solid;
+        PADDING-RIGHT: 7px;
+        BORDER-TOP: #7f9771  1px solid;
+        PADDING-LEFT: 7px;
+        BACKGROUND:#7f9771  repeat-x;
+        PADDING-BOTTOM: 1px;
+        FONT: 11px tahoma, Arial, sans-serif;
+        font-weight: bold;
+        BORDER-LEFT: #7f9771 1px solid;
+        CURSOR: pointer;
+        COLOR: #fff;
+        PADDING-TOP: 1px;
+        BORDER-BOTTOM: #7f9771  1px solid
+}
+.buscarButton{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  width: 40px;
+  height: 36px;
+  background-image: url('../img/buscarpersona1.jpg');
+}
+.commandButton{
+ /* font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  width: 100px;
+  height: 20px;
+  background-repeat :repeat-x;
+  
+  background-image: url('../img/bar3.png');*/
+BORDER-RIGHT: #7f9771  1px solid; PADDING-RIGHT: 7px; BORDER-TOP: #7f9771  1px solid; PADDING-LEFT: 7px; BACKGROUND:#7f9771  repeat-x; PADDING-BOTTOM: 1px; FONT: 11px tahoma, Arial, sans-serif; font-weight: bold; BORDER-LEFT: #7f9771 1px solid; CURSOR: pointer; COLOR: #fff; PADDING-TOP: 1px; BORDER-BOTTOM: #7f9771  1px solid
+}
+.outputText{
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  
+  color: blue;
+}
+
+.outputText4{
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  
+  color: #000000;
+}
+
+ .withborder {
+        border-style: dashed;
+        border-width: medium;        /* pone el ancho de border para todos los lados */
+        border-color: black;
+     font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+      }
+.outputText2{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+.outputText1{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+.outputText5{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+.outputText0{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 9px;
+}
+.outputTextBlanco{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color : white;
+}
+.outputTextTitulo{
+  font-family:  Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+}
+.outputText3{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  border : solid #CCCCCC 1px;
+}
+
+.registros{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+/*A:link {TEXT-DECORATION: none; COLOR: #000000; FONT-FAMILY: tahoma; FONT-SIZE: 9px} 
+A:active {TEXT-DECORATION: none; COLOR: #000000; FONT-FAMILY: tahoma; FONT-SIZE: 9px} 
+A:visited {TEXT-DECORATION: none; COLOR: #000000; FONT-FAMILY: tahoma; FONT-SIZE: 9px} 
+A:hover {TEXT-DECORATION: none; COLOR:#000000; FONT-WEIGHT: bold} 
+*/
+.headerClassCliente{
+    width: 300px;
+    font-weight
+}
+.bodyClassCliente{
+    width: 100px;
+}
+.headerClassACliente1{
+    width :100%;    
+    height: 22px;
+    background-color: #cccccc;
+    color: #123456;
+    border: 0px solid red;
+}
+.headerClassACliente2{
+    width :100%;    
+    height: 22px;
+    
+    color: #000000;
+    border: 0px solid red;
+}
+.headerClassACliente5{
+    background-repeat :repeat-x;
+
+    background-image: url('../img/barr1.jpg');
+    height: 22px;
+    border: 1px ;       
+    border-color: #000000;
+    color: #FFFFFF;
+}
+
+/*.headerClassACliente{
+    background-repeat :repeat-x;
+
+    background-image: url('../img/barr1.jpg');
+    height: 22px;
+    /*border: 1px ;       
+    border-color: #CCCCCC;*/
+  /*  border: 1px solid #CCCCCC;
+    color: #FFFFFF;
+
+}*/
+.headerClassACliente{
+    background-repeat :repeat-x;
+    background-image: url('../img/header_ekeko.jpg');
+    height: 22px;
+    color: #ffffff;
+    border-color: 1px solid #123456; 
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;  
+    background-color: #0A5B99;
+}
+
+.headerClassReportes{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+    background-repeat :repeat-x;
+    background-image: url('../img/reportes.jpg');
+    height: 22px;
+    color: #FFFFFF;
+}
+ul{
+	   list-style-type:none;
+	    margin-left:20px;
+        padding:0px;
+	}
+	a{
+
+     text-decoration:none;
+	 font-family:Verdana, Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 margin:0px;	
+	 padding:0px;
+	 color:#000000;
+    }
+	a:hover{
+	   color:#0066FF;
+    }
+	img{
+      border:0px;
+	  padding:0px;
+      margin-top:0px;
+    }
+.table2{
+  /*width: 400px;*/
+  border: 1px solid #00000c;
+  font-size: 10px;
+  /*height: 20px;*/
+  
+}
+.tableReportes{
+  /*width: 400px;*/
+background-color:#F1F1F1;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  /*height: 20px;*/
+  
+}
+
+.tituloCabezera{
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        color :#FFFFFF;
+
+}
+.tituloCampo{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color :#000000;
+}
+.navegadorTabla{
+
+}
+.navegadorTablaHeader{
+}
+.panelgrid{
+border: 1px solid #00000c;  
+    margin:2px;
+}
+.headerClassAClienteReportes{
+    background-color :#F1F1F1;
+  color: #000000;
+    border: 1px solid #cccccc;
+    
+}
+.coo{
+  vertical-align: right;
+  text-align: right;
+}
+.border{
+    border : solid #f3f3f3 1px;
+}
+.negrilla{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color :#000000;
+    font-weight :bold;
+}
+.cabecera{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color :#000000;
+    background-color :#f2f2f2;
+    font-weight :bold;
+    
+}
+.tituloCabeceraRRHH{
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color :#000000;
+        font-weight :bold;
+}
+.f{
+    width:600px;
+}
+.panelSuper{
+    padding: 50px;
+    /*background-image : url(../img/proceso.gif);*/
+    background-color: #cccccc;
+    top: 0px;
+    z-index: 2; 
+    left: 0px; 
+    position: absolute;
+    border :2px solid #3C8BDA; 
+    width :900px;
+    height: 100%;
+    filter: alpha(opacity=70);
+    opacity: 0.8;
+}
+.headerFiltroReporte{
+    background-color :#000000;  
+    height: 22px;    
+    color: #FFFFFF;
+}
+
+.leyendaColorNormal{
+    background-color: #FFFFFF;
+}
+.leyendaColorAnulado{
+    background-color: #FF6666;;
+}
