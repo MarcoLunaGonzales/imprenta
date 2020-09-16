@@ -22,7 +22,7 @@
 	
 			}
 		
-	
+	$cod_modulo=$_GET['cod_modulo'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -61,7 +61,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        SELECCIONE UN MODULO
+        SELECCIONE UN ALMACEN
       </div>
 
 
@@ -113,40 +113,44 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"><?="Bienvenido al Sistema - ".$nombres_usuario." ".$ap_paterno_usuario?></h1>
+            <h1 class="h3 mb-0 text-gray-800">Almacenes</h1>
           </div>
 
           <div class="row">
-           <?php
-			
-			$sql=" select cod_modulo, nombre_modulo, ubicacion_fisica  from modulos ";
-			$sql.=" where cod_modulo in(select cod_modulo from usuarios_modulos where cod_usuario=".$_COOKIE['usuario_global'].")";
-			$resp = mysql_query($sql);
+            <?php
+      
+      $sql=" select cod_sucursal, nombre_sucursal";
+      $sql.=" from sucursales ";
+      $sql.=" where cod_estado_registro=1 ";
+      $sql.=" order by  cod_sucursal asc";
+      $resp = mysql_query($sql);
 
-			while($dat=mysql_fetch_array($resp)){	
-															 		
-				$cod_modulo=$dat[0];	
-				$nombre_modulo=$dat[1];
-				$ubicacion_fisica=$dat[2];	
+      while($dat=mysql_fetch_array($resp)){ 
+                                  
+        $cod_sucursal=$dat['cod_sucursal']; 
+        $nombre_sucursal=$dat['nombre_sucursal'];
+      ?>
+      <?php
+        $sql2=" select cod_almacen, nombre_almacen ";
+          $sql2.=" from almacenes";
+          $sql2.=" where cod_sucursal=".$cod_sucursal;
+          $resp2 = mysql_query($sql2);
+          while($dat2=mysql_fetch_array($resp2)){ 
+            
+            $cod_almacen=$dat2['cod_almacen'];
+            $nombre_almacen=$dat2['nombre_almacen']; 
 
-				$ubicacion_fisica=str_replace(".php","",$ubicacion_fisica);
-				$carpeta=explode("/",$ubicacion_fisica)[0];
-				$archivo=explode("/",$ubicacion_fisica)[1];
-        
-        if($cod_modulo!=2){
-          $url_mod="modulos/index.php?cod_modulo=$cod_modulo";
-        }else{
-          $url_mod="almacen.php?cod_modulo=$cod_modulo";
-        }
-			?>
-            <div class="col-xl-3 col-md-6 mb-4">
-             <a href="<?=$url_mod?>" class="nav-link">	
+            $url_mod="modulos/index.php?cod_modulo=$cod_modulo&cod_almacen_global=$cod_almacen";
+
+      ?>
+           <div class="col-xl-3 col-md-6 mb-4">
+             <a href="<?=$url_mod?>" class="nav-link">  
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><?php echo $nombre_modulo;?></div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><?php echo $nombre_almacen;?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 small">Sucursal <?=$nombre_sucursal?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -156,11 +160,13 @@
               </div>
               </a>
             </div>
-            
-			<?php
-			}
-		
-		?> 
+            <?php       
+          }
+
+      }
+    
+    ?>
+
           </div>
 
         </div>
