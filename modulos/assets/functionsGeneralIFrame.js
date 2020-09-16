@@ -26,7 +26,7 @@ function cargarClasesFrame(){
 
       switch($(this).html().toLowerCase().trim()){
          case "detalle":
-           $(this).html("<i class='fas fa-fw fa-reorder'></i>");
+           $(this).html("<i class='fas fa-fw fa-list'></i>");
            $(this).addClass("btn-warning");
            $(this).addClass("text-white");
          break;

@@ -11,6 +11,6 @@ $con=mysql_connect("localhost","root","");
 $bd=mysql_select_db("impr_jenisse");
 
 if(!isset($_GET['cod_modulo'])){
-   include("librerias_ajax_iframe.php"); 
+   //include("librerias_ajax_iframe.php"); 
 }
 ?>
