@@ -4,6 +4,7 @@ if(!function_exists('register_globals')){
 	include('register_globals.php');
 	register_globals();
 }else{
+	
 }
 
 $con=mysql_connect("localhost","root","");
