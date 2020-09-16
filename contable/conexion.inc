@@ -3,6 +3,7 @@ if($_COOKIE['usuario_global']==""){
 
 	header("location:../index.html"); 
 }else{
+	/*
 date_default_timezone_set('America/Caracas');
 if(!function_exists('register_globals')){
 	include('register_globals.php');
@@ -11,10 +12,10 @@ if(!function_exists('register_globals')){
 }
 
 
-    $con=mysql_connect("localhost","mysql_imprenta","4879531Gabriela");
-$bd=mysql_select_db("imprenta_convenze");
-
-
+    $con=mysql_connect("localhost","root","");
+$bd=mysql_select_db("impr_jenisse");
+*/
+require_once ("../conexion_inicio.inc");
 }
 
 ?>

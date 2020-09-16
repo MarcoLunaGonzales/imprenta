@@ -56,7 +56,7 @@ function paginar1(f,pagina)
 02 de Julio de 2008
 -->
 
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE PAGOS</h3>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADA DE PAGOS</h3>
 <form name="form1" method="post" >
 <?php
 	$nroPagoB=$_GET['nroPagoB'];
