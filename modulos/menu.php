@@ -493,7 +493,7 @@ switch ($_GET["cod_modulo"]) {
 
 
      <li class="nav-item">
-        <a class="nav-link" href="../salirSistema.php">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
           <i class="fas fa-fw fa-table"></i>
           <span>Salir de Sistema</span></a>
       </li>   
