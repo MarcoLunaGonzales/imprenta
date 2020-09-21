@@ -336,7 +336,7 @@ function cargar_contactoProveedor_ajax(url)
       		<td colspan="3">
             <input type="hidden" name="cod_proveedor" id="cod_proveedor" value="0" >
 <input type="text" class="textoform" id="nombre_proveedor" name="nombre_proveedor" size="40" disabled="disabled">
-<a href="javascript:buscarProveedor()" accesskey="B">[Buscar Proveedor]</strong></a>
+<a href="javascript:buscarProveedor()" accesskey="B">[Buscar Proveedor]</a>
 <a  href="javascript:cargar_proveedor();">[Nuevo Proveedor]</a>
 <a  href="javascript:datosProveedor(this.form);">[Datos Proveedor]</a>
 

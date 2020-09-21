@@ -62,12 +62,20 @@ function cargarClasesFrame(){
            $(this).addClass("text-white");
          break;
          default:
-           $(this).attr("title",$(this).html());
-           $(this).addClass("btn-link");
+           /*$(this).attr("title",$(this).html());*/
+           $(this).addClass("btn btn-link");
+           $(this).css("text-decoration","none");
          break;
       }       
-
+      
+      if($(this).html().toLowerCase().trim().substr(0,1)=="["){
+        $(this).addClass("btn btn-secondary text-white");
+        $(this).css("text-decoration","none");
+     }
   });
+
+  
+
    $("table tr td a h3").each( function () {
       $(this).replaceWith("<b>"+$(this).html()+"</b>");
    });
