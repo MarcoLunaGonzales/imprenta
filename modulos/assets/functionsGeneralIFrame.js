@@ -11,6 +11,11 @@ function cargarClasesFrame(){
    $(":button").addClass("btn");
    $(":button").addClass("btn-sm");
    $(":button").addClass("btn-success");
+   
+   if($(".sa-confirm-button-container button").hasClass("btn-success")){
+       $(".sa-confirm-button-container button").removeClass("btn-sm");
+       $(".sa-confirm-button-container button").removeClass("btn-success");
+    } 
 
    $(":reset").removeClass("boton");
    $(":reset").addClass("btn");
@@ -115,6 +120,15 @@ function cargarClasesFrame(){
    $("#cotizacion").DataTable();*/
 }
 
+
+function alert(texto){
+  console.log("alert_text"+texto);
+  swal(
+  'Alerta',
+  texto,
+  'warning'
+  );
+}
 $(document).ready(function() {
   /*if($("#resultados").length>0){
     $("#resultados").html('<div class="card-header py-3"><h6 class="m-0 font-weight-bold text-success">LISTADO</h6></div>'+$("#resultados").html());

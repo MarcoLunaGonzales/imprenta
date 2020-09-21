@@ -46,7 +46,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="assets/vendor/js/sb-admin-2.min.js"></script>
-
+  <script src="assets/sweetalert/src/sweetalert2.js"></script>
  <script src="assets/functionsGeneral.js"></script> 
 </body>
 </html>

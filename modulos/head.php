@@ -12,6 +12,7 @@
 
   <!-- Custom styles for this template-->
 <link href="assets/vendor/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="assets/sweetalert/src/sweetalert2.css" rel="stylesheet">
 
 <!--<script type="text/javascript" src="jquery-latest.pack.js"></script>
 <script type="text/javascript" src="jquery.pngFix.js"></script> 
