@@ -11,6 +11,10 @@ function cargarClasesFrame(){
    $(":button").addClass("btn");
    $(":button").addClass("btn-sm");
    $(":button").addClass("btn-success");
+   $(":submit").removeClass("boton");
+   $(":submit").addClass("btn");
+   $(":submit").addClass("btn-sm");
+   $(":submit").addClass("btn-success");
    
    if($(".sa-confirm-button-container button").hasClass("btn-success")){
        $(".sa-confirm-button-container button").removeClass("btn-sm");
