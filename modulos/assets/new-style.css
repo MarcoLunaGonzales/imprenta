@@ -3,9 +3,9 @@ body{
 	visibility: hidden;
     background: url('../../images/loading.gif') 50% 0 no-repeat;
 }
-
-
-
+.modal-arriba {
+   top: -20px !important;
+}
 .cargar{
   position: fixed;
   left:0px;
@@ -37,12 +37,13 @@ body{
         background: #F0FEF5;
         color: #333333;
 }
-
 .textoform,.form-control{
-  /*color:red !important;*/
   font-size: 12px !important;
+}
+.textoform:not(.no-form-control),.form-control:not(.no-form-control)  {
   width: auto !important;
 }
+
 input:focus, input.form-control:focus,textarea:focus, textarea.form-control:focus {
 
     outline:none !important;
@@ -52,8 +53,7 @@ input:focus, input.form-control:focus,textarea:focus, textarea.form-control:focu
     -webkit-box-shadow: none;
     border-bottom: 2px solid #36B462 !important;
 }
-
-.select-css {
+.select-css:not(.custom-select) {
  display: block;
  font-size: 16px;
  font-family: 'Arial', sans-serif;

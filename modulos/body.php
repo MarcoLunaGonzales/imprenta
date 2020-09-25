@@ -6,7 +6,7 @@
           <h6 class="m-0 font-weight-bold text-success" id="titulo_menu_frame">INICIO</h6>
         </div>
         <div class="card-body">
-          <iframe src="<?=$index_frame?>" onload="cargarEstilosIframe()" id="cuerpo_frame" width="100%" frameborder="0"  style="min-height:500px;"  name="cuerpo" ></iframe>
+          <iframe src="<?=$index_frame?>" onload="cargarEstilosIframe()" id="cuerpo_frame" width="100%" frameborder="0"  style="min-height:650px;"  name="cuerpo" ></iframe>
         </div>
       </div>
     </div>  

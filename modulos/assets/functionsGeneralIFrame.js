@@ -1,12 +1,16 @@
-
 function cargarClasesFrame(){
-   $(":text").addClass("form-control");
-   $(":text").attr("autocomplete","off");
-   $("textarea").addClass("form-control");
-   $("select").addClass("select-css");
-   $("table").addClass("table");
-   $("table").addClass("table-sm");
-   $("table").addClass("table-success");
+    $(":text").addClass("form-control");
+    $(":text").attr("autocomplete","off"); 
+    $("textarea").addClass("form-control");
+    $("select").addClass("select-css");
+
+   //if(!$("table").hasClass("table")){
+     $("table").addClass("table");
+     $("table").addClass("table-sm");
+     $("table").addClass("table-success");
+     $("#resultados table").addClass("table-bordered");
+     $("resultados table tfoot tr th").removeAttr("style");
+   //}  
    $(":button").removeClass("boton");
    $(":button").addClass("btn");
    $(":button").addClass("btn-sm");
@@ -133,6 +137,75 @@ function alert(texto){
   'warning'
   );
 }
+var tablaReporte=null;
+var tablaReporteClase=null;
+function agregarTablaReporteFiltros(){
+  // Setup - add a text input to each footer cell
+        $('#tablaReporteFiltros tfoot th').each( function () {
+            var title = $(this).text();
+            $(this).html( '<input type="text" class="no-form-control" placeholder="'+title+'" />' );
+        } );
+     
+        // DataTable
+        tablaReporte = $('#tablaReporteFiltros').DataTable({
+            initComplete: function () {
+                // Apply the search
+                this.api().columns().every( function () {
+                    var that = this;
+                    $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                        if ( that.search() !== this.value ) {
+                            that
+                                .search( this.value )
+                                .draw();
+                        }
+                    });
+                });
+            },
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+            },
+            fixedHeader: {
+                  header: true,
+                  footer: true
+            },
+            "order": false,
+            "pageLength": 100
+        }); 
+}
+function agregarTablaReporteFiltrosClase(){
+  // Setup - add a text input to each footer cell
+        $('.tablaReporteFiltros tfoot th').each( function () {
+            var title = $(this).text();
+            $(this).html( '<input type="text" class="no-form-control" placeholder="'+title+'" />' );
+        } );
+     
+        // DataTable
+        tablaReporteClase = $('.tablaReporteFiltros').DataTable({
+            initComplete: function () {
+                // Apply the search
+                this.api().columns().every( function () {
+                    var that = this;
+                    $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                        if ( that.search() !== this.value ) {
+                            that
+                                .search( this.value )
+                                .draw();
+                        }
+                    });
+                });
+            },
+            "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+            },
+            fixedHeader: {
+                  header: true,
+                  footer: true
+            },
+            "order": false,
+            "pageLength": 100
+        }); 
+}
+
 $(document).ready(function() {
   /*if($("#resultados").length>0){
     $("#resultados").html('<div class="card-header py-3"><h6 class="m-0 font-weight-bold text-success">LISTADO</h6></div>'+$("#resultados").html());
@@ -140,4 +213,29 @@ $(document).ready(function() {
 	cargarClasesFrame();
   setInterval('cargarClasesFrame()',1000);
 	$("body").attr("style","visibility:visible !important;background:none;");
+
+  $(".csp").each(function(){
+    var cantidad =  $(this).attr("colspan");
+    //alert(cantidad);
+    for (var i = 1; i < parseInt(cantidad); i++) {
+       $(this).after("<td class='d-none'></td>");
+    };
+   });
+   
+   $('#tablaReporte').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+            },
+            fixedHeader: {
+              header: true,
+              footer: true
+            },
+            "order": false,
+            "pageLength": 100
+
+    } );
+    
+    agregarTablaReporteFiltros();
+    agregarTablaReporteFiltrosClase();
+        
 });

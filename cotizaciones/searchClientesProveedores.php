@@ -57,25 +57,6 @@ require("conexion.inc");
 		}
 		$nro_filas_sql=$nro_filas_sql_clientes+$nro_filas_sql_proveedores;
 		
-		if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Tipo</td>
-            <td>Nombre</td>
-    		<td>Ciudad</td>
-    		<td>Direccion</td>
-    		<td>Telefono</td>
-    		<td>Celular</td>
-            <td>Email</td>							
-    		<td>Contacto</td>			
-    		<td>Estado</td>											
-		</tr>
-		<tr><th colspan="9" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -113,47 +94,29 @@ require("conexion.inc");
 		}
 		$sql.=" )";
 		$sql.=" order BY nom  asc";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 		
 		$resp = mysql_query($sql);
 
 ?>	
-<h3 align="center" style="background:#FFF;font-size: 10px;color: #000;font-weight:bold;">Total Registro:<?php echo $nro_filas_sql;?></h3>
-	<table width="100%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)" >Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-                      <p align="center">				
-						Ir a Pagina<input type="text" name="pagina1" class="texto" id="pagina1" size="5" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar(this.form)"  >	
-				  </p>
-						<?php }?>
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Tipo</td>
-            <td>Nombre</td>
-    		<td>Ciudad</td>
-    		<td>Direccion</td>
-    		<td>Telefono</td>
-    		<td>Celular</td>
-            <td>Fax</td>
-            <td>Email</td>							
-    		<td>Contactos</td>			
-    		<td>Estado</td>	
-    		<td>Registro</td>			
-    		<td>Edicion</td>	                   															
+	<table width="100%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" id="tablaReporteFiltros" style="width:100% !important;">   
+	    <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+    		<th>Tipo</th>
+            <th>Nombre</th>
+    		<th>Ciudad</th>
+    		<th>Direccion</th>
+    		<th>Telefono</th>
+    		<th>Celular</th>
+            <th>Fax</th>
+            <th>Email</th>							
+    		<th>Contactos</th>			
+    		<th>Estado</th>	
+    		<th>Registro</th>			
+    		<th>Edicion</th>	                   															
 		</tr>
-
+      </thead>	
+     <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){	
@@ -323,30 +286,26 @@ require("conexion.inc");
 
 <?php
 		 } 
-?>			
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina2" size="5"  class="texto" id="pagina2" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar2(this.form)">	</p>
-                         <?php } ?>		
-</td>
-			</tr>
+?>		
+        </tbody>
+	    <tfoot>
+	    <tr height="20px" align="center"  class="bg-success">
+    		<th>Tipo</th>
+            <th>Nombre</th>
+    		<th>Ciudad</th>
+    		<th>Direccion</th>
+    		<th>Telefono</th>
+    		<th>Celular</th>
+            <th>Fax</th>
+            <th>Email</th>							
+    		<th>Contactos</th>			
+    		<th>Estado</th>	
+    		<th>Registro</th>			
+    		<th>Edicion</th>	                   															
+		</tr>
+	 </tfoot> 	
 		</table>
 
-<?php
-	}
-?>
 	
 </body>
 </html>
