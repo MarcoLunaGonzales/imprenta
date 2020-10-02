@@ -43,26 +43,7 @@ include("funciones.php");
 	while($dat=mysql_fetch_array($resp)){
 		$nro_filas_sql=$dat[0];
 	}
-?>
-	<div id="nroRows" align="center" class="textoform"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>&nbsp;</td>
-            <td>Gasto</td>
-			<td>Observaciones</td>				
-    		<td>Estado</td>
-			<td>Fecha de Registro</td>	
-			<td>Ultima Edici&oacute;n</td>																
-		</tr>
-		<tr><th colspan="6" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -90,38 +71,25 @@ include("funciones.php");
 		}			
 		$sql.=" order by g.desc_gasto";
 		//echo $sql;
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 		$resp = mysql_query($sql);
 		
 
 ?>	
 
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="7">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>     
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Gasto</td>
-			<td>Observaciones</td>				
-    		<td>Estado</td>
-			<td>Fecha de Registro</td>	
-			<td>Ultima Edici&oacute;n</td>	
-            <td>&nbsp;</td>	
-            <td>&nbsp;</td>																		
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" bgColor="#cccccc" style="width:100% !important;">
+<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+            <th>Gasto</th>
+			<th>Observaciones</th>				
+    		<th>Estado</th>
+			<th>Fecha de Registro</th>	
+			<th>Ultima Edici&oacute;n</th>	
+            <th>&nbsp;</th>	
+            <th>&nbsp;</th>																		
 		</tr>
-
+  </thead>    
+  <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){
@@ -187,35 +155,18 @@ include("funciones.php");
 				echo strftime("%d/%m/%Y",strtotime($fecha_modifica))." ". $nombres_usuario_modifica[0].$ap_paterno_usuario_modifica[0].$ap_materno_usuario_modifica[0];
 				}
 				 ?></td>
-            <td><a href="editGasto.php?cod_gasto=<?php echo $cod_gasto;?>"><img src="img/edit.png"  border="0"></a></td>
-            <td><a href="deleteGasto.php?cod_gasto=<?php echo $cod_gasto;?>"><img src="img/delete.gif" border="0" width="16" height="16"></a></td>
+            <td><a href="editGasto.php?cod_gasto=<?php echo $cod_gasto;?>" class="btn btn-success text-white"><i class="fa fa-edit"></i></a></td>
+            <td><a href="deleteGasto.php?cod_gasto=<?php echo $cod_gasto;?>" class="btn btn-danger text-white"><i class="fa fa-trash"></i></a></td>
 
 					
    	  </tr>
 <?php
 		 } 
 ?>		
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="7">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>	
+  			</tbody>	
   </table>
 		</div>			
-<?php
-	}
-?>
+
    
 </body>
 </html>

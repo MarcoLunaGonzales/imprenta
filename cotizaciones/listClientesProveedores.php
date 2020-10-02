@@ -37,7 +37,7 @@ function buscar()
 					divResultado.innerHTML = ajax.responseText;	
 
 					cargarClasesFrame();	
-					agregarTablaReporteFiltros();
+			        agregarTablaReporteClase();
 				}
 			}
 				ajax.send(null)	
@@ -109,8 +109,8 @@ function registrar(f){
 </head>
 <body  bgcolor="#FFFFFF">
 <h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE CLIENTES Y PROVEEDORES 
-	<a class="btn btn-sm btn-info float-right text-white" href="#" data-toggle="modal" data-target="#filtroModal">
-       Buscar Proveedor o Cliente
+	<a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
     </a>
 </h3>
 <form name="form1" id="form1" method="post" >
@@ -201,7 +201,7 @@ function registrar(f){
 		$sql.=" )";
 		$sql.=" order BY nom  asc";
 		/*$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;*/
-		
+		$sql.=" limit 50";	//CORREGIDO
 		$resp = mysql_query($sql);
 
 ?>	
@@ -215,7 +215,7 @@ function registrar(f){
   }   
   
 </style>
-	<table align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" id="tablaReporteFiltros" style="width:100% !important;">
+	<table align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" id="tablaReporte" style="width:100% !important;">
 	  <thead>
 	    <tr height="20px" align="center"  class="bg-success text-white">
     		<th>Tipo</th>
@@ -405,7 +405,7 @@ function registrar(f){
 		 } 
 ?>			
         </tbody>
-	    <tfoot>
+	    <!--<tfoot>
 	    <tr height="20px" align="center"  class="bg-success">
     		<th>Tipo</th>
             <th>Nombre</th>
@@ -420,12 +420,11 @@ function registrar(f){
     		<th>Registro</th>			
     		<th>Edicion</th>	                   															
 		</tr>
-	 </tfoot> 
+	 </tfoot>--> 
 		</table>
 	
 </div> 	
-<?php require("cerrar_conexion.inc");
-?>
+
 
 <!-- MODAL FILTRO-->
   <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -451,7 +450,8 @@ function registrar(f){
       </div>
     </div>
   </div>
-
+ <?php require("cerrar_conexion.inc");
+?>
 </form>
 </body>
 </html>

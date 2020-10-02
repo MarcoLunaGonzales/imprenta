@@ -206,6 +206,40 @@ function agregarTablaReporteFiltrosClase(){
         }); 
 }
 
+
+var tablaReporteSimple=null;
+var tablaReporteSimpleClase=null;
+function agregarTablaReporte(){
+   $('#tablaReporte').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+            },
+            fixedHeader: {
+              header: true,
+              footer: true
+            },
+            "searching": false,
+            "order": false,
+            "pageLength": 50
+
+    } );
+}
+function agregarTablaReporteClase(){
+  $('.tablaReporte').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+            },
+            fixedHeader: {
+              header: true,
+              footer: true
+            },
+            "searching": false,
+            "order": false,
+            "pageLength": 50
+
+    } );
+}
+
 $(document).ready(function() {
   /*if($("#resultados").length>0){
     $("#resultados").html('<div class="card-header py-3"><h6 class="m-0 font-weight-bold text-success">LISTADO</h6></div>'+$("#resultados").html());
@@ -222,19 +256,9 @@ $(document).ready(function() {
     };
    });
    
-   $('#tablaReporte').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-            },
-            fixedHeader: {
-              header: true,
-              footer: true
-            },
-            "order": false,
-            "pageLength": 100
+    agregarTablaReporte();
+    agregarTablaReporteClase();
 
-    } );
-    
     agregarTablaReporteFiltros();
     agregarTablaReporteFiltrosClase();
         

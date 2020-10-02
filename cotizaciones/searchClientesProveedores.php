@@ -99,7 +99,7 @@ require("conexion.inc");
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="100%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" id="tablaReporteFiltros" style="width:100% !important;">   
+	<table width="100%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" class="tablaReporte" style="width:100% !important;">   
 	    <thead>
 	    <tr height="20px" align="center"  class="bg-success text-white">
     		<th>Tipo</th>
@@ -288,7 +288,7 @@ require("conexion.inc");
 		 } 
 ?>		
         </tbody>
-	    <tfoot>
+	    <!--<tfoot>
 	    <tr height="20px" align="center"  class="bg-success">
     		<th>Tipo</th>
             <th>Nombre</th>
@@ -303,7 +303,7 @@ require("conexion.inc");
     		<th>Registro</th>			
     		<th>Edicion</th>	                   															
 		</tr>
-	 </tfoot> 	
+	 </tfoot>--> 	
 		</table>
 
 	

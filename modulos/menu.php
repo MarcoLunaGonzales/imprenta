@@ -329,7 +329,7 @@ switch ($_GET["cod_modulo"]) {
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white small py-2 collapse-inner rounded">
             <h6 class="collapse-header">Sub Menu</h6>
-              <a class="collapse-item" href="../<?=$carpeta?>/listCuentas.php" target="cuerpo"></a>
+              <a class="collapse-item" href="../<?=$carpeta?>/listCuentas.php" target="cuerpo">Cuentas</a>
               <a class="collapse-item" href="../<?=$carpeta?>/listClientesCuentas.php" target="cuerpo">Clientes</a>
               <a class="collapse-item" href="../<?=$carpeta?>/listProveedoresCuentas.php" target="cuerpo">Proveedores</a>
           </div>

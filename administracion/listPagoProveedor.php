@@ -11,10 +11,39 @@
 <title>INVENTA</title>
 <link rel="STYLESHEET" type="text/css" href="pagina.css" />
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script type="text/javascript" src="ajax/searchAjax.js"></script>
 <script type="text/javascript">
 
+function objetoAjax(){
+	var xmlhttp=false;
+	try {
+		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+		try {
+		   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch (E) {
+			xmlhttp = false;
+  		}
+	}
 
+	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+		xmlhttp = new XMLHttpRequest();
+	}
+	return xmlhttp;
+}
+
+function resultados_ajax(datos){
+	divResultado = document.getElementById('resultados');
+	ajax=objetoAjax();
+	ajax.open("GET",datos);
+	ajax.onreadystatechange=function() {
+		if (ajax.readyState==4) {
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
+		}
+	}
+	ajax.send(null)
+}
 function buscar()
 {
 if(document.form1.codActivoFecha.checked){
@@ -105,86 +134,15 @@ function anular(cod_pago_prov,nro_pago_prov)
 02 de Julio de 2008
 -->
 
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE PAGOS A PROVEEDOR </h3>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE PAGOS A PROVEEDOR 
+    <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" method="post" >
 
 
-    <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr class="texto">
-          <th align="right" >Nro Pago Proveedor:</th>
-          <td  align="left" colspan="5">
-            <input type="text" name="nro_pago_provB" id="nro_pago_provB" class="textoform" size="20" value="<?php echo $_GET['nro_pago_provB'];?>" onkeyup="buscar()" />
-        </td>
-          </tr>
-
-      <tr class="texto">
-        <th align="right" >Proveedor:</th>
-          <td align="left" colspan="5">
-            <input type="text" name="nombre_proveedorB" id="nombre_proveedorB"  class="textoform" value="<?php echo $_GET['nombre_proveedorB'];?>" size="30" onkeyup="buscar()"/>
-         </td>
-      </tr>        
-       <tr class="texto">
-         <th  align="right" >Estado de Pago Proveedor:</th>
-         <td  align="left" colspan="5">
-		 <select name="cod_estado_pago_provB" id="cod_estado_pago_provB" onchange="buscar();" class="textoform">
-				<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql2=" select cod_estado_pago_prov, desc_estado_pago_prov";
-					$sql2.=" from   estado_pago_proveedor ";
-					$sql2.=" order by cod_estado_pago_prov asc ";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_estado_pago_prov=$dat2['cod_estado_pago_prov'];	
-			  		 		$desc_estado_pago_prov=$dat2['desc_estado_pago_prov'];	
-				 ?>
-                 <option value="<?php echo $cod_estado_pago_prov;?>" <?php if($_GET['cod_estado_pago_provB']==$cod_estado_pago_prov){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago_prov);?></option>				
-				<?php		
-					}
-				?>						
-			</select></td>
-       </tr>       
-   <tr class="texto">
-         <th  align="right" >Tipo de Doc:</th>
-          <td  align="left">
-            <select name="cod_tipo_docB" id="cod_tipo_docB" onchange="buscar();" class="textoform">
-				<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql2=" select cod_tipo_doc, desc_tipo_doc";
-					$sql2.=" from   tipo_documento  where (cod_tipo_doc=4 or cod_tipo_doc=5)";
-					$sql2.=" order by cod_tipo_doc asc ";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_tipo_doc=$dat2['cod_tipo_doc'];	
-			  		 		$desc_tipo_doc=$dat2['desc_tipo_doc'];	
-				 ?>
-                 <option value="<?php echo $cod_tipo_doc;?>" <?php if($_GET['cod_tipo_docB']==$cod_tipo_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_tipo_doc);?></option>				
-				<?php		
-					}
-				?>						
-			</select>
-			</td>
- <th  align="right" >Nro Doc:</th>
-          <td  align="left">
-            <input type="text" name="nro_docB" id="nro_docB"  class="textoform" size="20" value="<?php echo $_GET['nro_docB'];?>" onkeyup="buscar()"/></td>
- <th align="right" >Fact o Rec:</th>
-          <td  align="left">
-            <input type="text" name="nro_doc_externoB" id="nro_doc_externoB"  class="textoform" size="20" value="<?php echo $_GET['nro_doc_externoB'];?>" onkeyup="buscar()"/></td>						
-       </tr>
-            
-       <tr class="texto">
-         <th  align="right" >Rango de Fecha:</th>
-          <td  align="left" colspan="5"><span id="sprytextfield6">
-          <label for="fechaInicioB">De</label>
-          <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $_GET['fechaInicioB']; ?>" size="10" />
-          <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span></span><span id="sprytextfield7">
-          <label for="fechaFinalB">Hasta</label>
-          <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $_GET['fechaFinalB'];?>" size="10"  />
-          <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span></span><input type="checkbox" name="codActivoFecha" id="codActivoFecha" onClick="buscar()" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?>></td>
-       </tr>     
-                               
-  </table>
+    
 
 <br/>
 <div id="resultados">
@@ -252,30 +210,7 @@ function anular(cod_pago_prov,nro_pago_prov)
 	while($dat_aux=mysql_fetch_array($resp)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-	<div id="nroRows" align="center" class="textoform"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Nro de Pago</td>
-			<td>Fecha Pago</td>
-            <td>Cliente</td>
-            <td>Monto Total (Bs)</td>
-            <td>Documentos</td>				
-			<td>Observaciones</td>
-            <td>Estado</td>
-			<td>&nbsp;</td>	
-			<td>&nbsp;</td>	
-			<td>&nbsp;</td>																													            
-		</tr>
-		<tr><th colspan="10" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -341,41 +276,28 @@ function anular(cod_pago_prov,nro_pago_prov)
 		
 		$sql.=" order  by pp.fecha_pago_prov desc,pp.nro_pago_prov desc ";
 		//echo $sql;
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-</td>
-			</tr>
-
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Nro de Pago</td>
-			<td>Fecha Pago</td>
-            <td>Proveedor</td>
-            <td>Monto Total (Bs)</td>
-            <td>Documentos</td>				
-			<td>Observaciones</td>
-            <td>Estado</td>
-			<td>Fecha Registro</td>	
-			<td>Ultima Edicion</td>	
-			<td>&nbsp;</td>	
-			<td>&nbsp;</td>	  
-			<td>&nbsp;</td>	                  	            																	
+	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+   <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+            <th>Nro de Pago</th>
+			<th>Fecha Pago</th>
+            <th>Proveedor</th>
+            <th>Monto Total (Bs)</th>
+            <th>Documentos</th>				
+			<th>Observaciones</th>
+            <th>Estado</th>
+			<th>Fecha Registro</th>	
+			<th>Ultima Edicion</th>	
+			<th>&nbsp;</th>	
+			<th>&nbsp;</th>	  
+			<th>&nbsp;</th>	                  	            																	
 		</tr>
-
+		</thead>
+   <tbody>
 <?php   
 
 	$cont=0;
@@ -530,28 +452,106 @@ function anular(cod_pago_prov,nro_pago_prov)
 		 } 
 ?>			
 
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+	</tbody>
 		</table>
 		
-<?php
-	}
-?>
-</div>	
+</div>
+
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr class="texto">
+          <th align="right" >Nro Pago Proveedor:</th>
+          <td  align="left" colspan="5">
+            <input type="text" name="nro_pago_provB" id="nro_pago_provB" class="textoform" size="20" value="<?php echo $_GET['nro_pago_provB'];?>" onkeyup="buscar()" />
+        </td>
+          </tr>
+
+      <tr class="texto">
+        <th align="right" >Proveedor:</th>
+          <td align="left" colspan="5">
+            <input type="text" name="nombre_proveedorB" id="nombre_proveedorB"  class="textoform" value="<?php echo $_GET['nombre_proveedorB'];?>" size="30" onkeyup="buscar()"/>
+         </td>
+      </tr>        
+       <tr class="texto">
+         <th  align="right" >Estado de Pago Proveedor:</th>
+         <td  align="left" colspan="5">
+		 <select name="cod_estado_pago_provB" id="cod_estado_pago_provB" onchange="buscar();" class="textoform">
+				<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql2=" select cod_estado_pago_prov, desc_estado_pago_prov";
+					$sql2.=" from   estado_pago_proveedor ";
+					$sql2.=" order by cod_estado_pago_prov asc ";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_estado_pago_prov=$dat2['cod_estado_pago_prov'];	
+			  		 		$desc_estado_pago_prov=$dat2['desc_estado_pago_prov'];	
+				 ?>
+                 <option value="<?php echo $cod_estado_pago_prov;?>" <?php if($_GET['cod_estado_pago_provB']==$cod_estado_pago_prov){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago_prov);?></option>				
+				<?php		
+					}
+				?>						
+			</select></td>
+       </tr>       
+   <tr class="texto">
+         <th  align="right" >Tipo de Doc:</th>
+          <td  align="left">
+            <select name="cod_tipo_docB" id="cod_tipo_docB" onchange="buscar();" class="textoform">
+				<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql2=" select cod_tipo_doc, desc_tipo_doc";
+					$sql2.=" from   tipo_documento  where (cod_tipo_doc=4 or cod_tipo_doc=5)";
+					$sql2.=" order by cod_tipo_doc asc ";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_tipo_doc=$dat2['cod_tipo_doc'];	
+			  		 		$desc_tipo_doc=$dat2['desc_tipo_doc'];	
+				 ?>
+                 <option value="<?php echo $cod_tipo_doc;?>" <?php if($_GET['cod_tipo_docB']==$cod_tipo_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_tipo_doc);?></option>				
+				<?php		
+					}
+				?>						
+			</select>
+			</td>
+ <th  align="right" >Nro Doc:</th>
+          <td  align="left">
+            <input type="text" name="nro_docB" id="nro_docB"  class="textoform" size="20" value="<?php echo $_GET['nro_docB'];?>" onkeyup="buscar()"/></td>
+ <th align="right" >Fact o Rec:</th>
+          <td  align="left">
+            <input type="text" name="nro_doc_externoB" id="nro_doc_externoB"  class="textoform" size="20" value="<?php echo $_GET['nro_doc_externoB'];?>" onkeyup="buscar()"/></td>						
+       </tr>
+            
+       <tr class="texto">
+         <th  align="right" >Rango de Fecha:</th>
+          <td  align="left" colspan="5"><span id="sprytextfield6">
+          <label for="fechaInicioB">De</label>
+          <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $_GET['fechaInicioB']; ?>" size="10" />
+          <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span></span><span id="sprytextfield7">
+          <label for="fechaFinalB">Hasta</label>
+          <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $_GET['fechaFinalB'];?>" size="10"  />
+          <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span></span><input type="checkbox" name="codActivoFecha" id="codActivoFecha" onClick="buscar()" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?>></td>
+       </tr>     
+                               
+  </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>	
 <?php require("cerrar_conexion.inc");
 ?>
 

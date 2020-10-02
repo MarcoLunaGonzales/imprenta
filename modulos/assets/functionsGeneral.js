@@ -30,3 +30,8 @@ function cargarEstilosIframe(){
 $("#accordionSidebar li a").on("click",function(){
   $("#titulo_menu_frame").html($(this).html());
 });
+
+function abrirModalFiltroPrincipal(){
+      $(window.frameElement).find('#filtroModal').modal("show");
+}
+

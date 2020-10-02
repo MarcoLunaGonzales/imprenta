@@ -31,7 +31,9 @@ function resultados_ajax(datos){
 	ajax.open("GET", datos);
 	ajax.onreadystatechange=function() {
 		if (ajax.readyState==4) {
-			divResultado.innerHTML = ajax.responseText
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
 		}
 	}
 	ajax.send(null)
@@ -104,8 +106,8 @@ function anular(cod_registro)
 
 ?>
 <h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE COTIZACIONES 
-<a class="btn btn-info float-right text-white" href="#" data-toggle="modal" data-target="#filtroModal">
-       Filtrar Datos
+   <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
     </a>
 </h3>
 
@@ -234,11 +236,12 @@ function anular(cod_registro)
 	//Fin Busqueda/////////////////	
 			$sql.=" order by  c.cod_cotizacion desc ";
 		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";	//CORREGIDO
 		//	echo $sql;
 		$resp = mysql_query($sql);
 		$cont=0;
 ?>	
-	<table align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" id="cotizacion" class="tablaReporteFiltros" style="width:100% !important;">   
+	<table align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" id="cotizacion" class="tablaReporte" style="width:100% !important;">   
 		<thead>
 	    <tr height="20px" align="center"  class="bg-success text-white">
             <th>&nbsp;</th> 
@@ -404,7 +407,7 @@ function anular(cod_registro)
 		 } 
 ?>			
         </tbody>
-        <tfoot>
+        <!--<tfoot>
 	    <tr height="20px" align="center"  class="bg-success">
             <th>&nbsp;</th> 
             <th>&nbsp;</th> 
@@ -422,13 +425,13 @@ function anular(cod_registro)
             <th>&nbsp;</th> 
             <th>&nbsp;</th> 
 		</tr>
-	   </tfoot>
+	   </tfoot>-->
 		</table>
 		
 
-</div>	
-<?php require("cerrar_conexion.inc");
-?>
+</div>
+
+
 <br>
 <!-- MODAL FILTRO-->
   <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -515,7 +518,8 @@ function anular(cod_registro)
       </div>
     </div>
   </div>
-
+  <?php require("cerrar_conexion.inc");
+?>
 </form>
 
 </body>

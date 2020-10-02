@@ -1,4 +1,4 @@
-<?php
+<?
 header("Cache-Control: no-store, no-cache, must-revalidate");
 function suma_fechas($fecha,$ndias)
 {
@@ -26,8 +26,8 @@ include("funciones.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Documento sin t&iacute;tulo</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
@@ -110,27 +110,7 @@ include("funciones.php");
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-<h3 align="center" style="background:#F7F5F3;font-size: 10px;color:#E78611;font-weight:bold;">Nro de Registros <?php echo $nro_filas_sql;?></h3>
-<?php		
-	if($nro_filas_sql==0){
-?>
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Salida</td>
-    		<td>Fecha</td>	
-            <td>Tipo de Salida</td>															
-    		<td>Observaciones</td>	            
-			<td>Estado</td> 
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>        
-		</tr>
-		<tr><th colspan="9" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -204,40 +184,30 @@ $sql.=" and s.cod_almacen=".$_COOKIE['cod_almacen_global'];
 
 		}
 	}
-		$sql.=" order by s.cod_salida desc ";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" order by  s.cod_salida desc ";
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 		$resp = mysql_query($sql);
 		$cont=0;
 ?>	
-	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="10">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Salida</td>
-    		<td>Fecha</td>	
-            <td>Tipo de Salida</td>
-            <td>Monto</td>	
-            <td>A cuenta</td>
-            <td>Saldo</td>														
-    		<td>Observaciones</td>	            
-			<td>Estado</td>
-            <td>Estado de Pago</td> 
-            <td>&nbsp;</td>
-             
+	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+       <thead>   
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>Nro Salida</th>
+    		<th>Fecha</th>	
+            <th>Tipo de Salida</th>
+            <th>Monto</th>	
+            <th>A cuenta</th>
+            <th>Saldo</th>														
+    		<th>Observaciones</th>	            
+			<th>Estado</th>
+            <th>Estado de Pago</th> 
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>       
+            
 		</tr>
+		</thead>
+		<tbody>
 <?php   
 		while($dat=mysql_fetch_array($resp)){
 				$cod_salida=$dat['cod_salida']; 
@@ -435,7 +405,6 @@ $sql.=" and s.cod_almacen=".$_COOKIE['cod_almacen_global'];
             </td>	
 			<td align="left">
             <?php
-
             	if($cod_tipo_salida==1){
 	 				$monto_venta=0;
 			 		$sqlAux=" select sum(sd.precio_venta*sd.cant_salida) ";
@@ -452,7 +421,7 @@ $sql.=" and s.cod_almacen=".$_COOKIE['cod_almacen_global'];
 			<td align="left">
 <?php 
 		if($cod_tipo_salida==1){
-			 	$sqlAux=" select pd.monto_pago_detalle, p.fecha_pago ";
+			 	$sqlAux=" select  pd.monto_pago_detalle, p.fecha_pago ";
 			 	$sqlAux.=" from pagos_detalle pd, pagos p";
 			 	$sqlAux.=" where pd.cod_pago=p.cod_pago";
 			 	$sqlAux.=" and p.cod_estado_pago<>2";
@@ -461,11 +430,11 @@ $sql.=" and s.cod_almacen=".$_COOKIE['cod_almacen_global'];
 				$respAux = mysql_query($sqlAux);
 				$acuenta_venta=0;
 				while($datAux=mysql_fetch_array($respAux)){
-					
+
 					$monto_pago_detalle=$datAux['monto_pago_detalle'];
 					$fecha_pago=$datAux['fecha_pago'];
 					$fecha_pago=strftime("%Y-%m-%d",strtotime($fecha_pago));
-					
+
 						$acuenta_venta=$acuenta_venta+$monto_pago_detalle;
 					
 				}				
@@ -480,7 +449,7 @@ $sql.=" and s.cod_almacen=".$_COOKIE['cod_almacen_global'];
 			 ?></td>                     										
 			<td align="left">&nbsp; <?php echo $obs_salida ;?></td>
             <td align="left">&nbsp;<?php echo $desc_estado_salida ;?></td>
-            <td align="left" <?php if(($monto_venta-$acuenta_venta)>0 and $cod_tipo_salida==1 and $cod_estado_pago_doc==3){?>  bgcolor="#FF3333"=""<?php }?>>
+                       <td align="left" <?php if(($monto_venta-$acuenta_venta)>0 and $cod_tipo_salida==1 and $cod_estado_pago_doc==3){?>  bgcolor="#FF3333"=""<?php }?>>
             <?php
             if($cod_tipo_salida==1){
 				 
@@ -496,34 +465,20 @@ $sql.=" and s.cod_almacen=".$_COOKIE['cod_almacen_global'];
 			
 			?>
             </td>
-			<td> <a href="detalleSalida.php?cod_salida=<?php echo $cod_salida; ?>" target="_blank">View </a></td>																	
-
+			<td><a href="detalleSalida.php?cod_salida=<?php echo $cod_salida; ?>" target="_blank"><img src="icons/page8.gif"  title="Detalle de Salida" height="15" width="15" align="middle">  </a><br/><br/>
+			<center><a href="../reportes/docSalida.php?cod_salida=<?php echo $cod_salida; ?>" target="_blank">
+			<img src="img/imprimir.jpg"  height="20" width="20" align="middle" title="Detalle para Impresion"> </a></center></td>																	
+<td> <a href="javascript:editar(<?php echo $cod_salida; ?>,'<?php echo $nro_salida."/".$gestion; ?>',<?php echo $cod_estado_salida; ?>,<?php echo $swValFecha;?>,<?php echo $swValIngreso; ?>)">Editar </a>
+</td>										
+			<td><a href="javascript:anular(<?php echo $cod_salida; ?>,'<?php echo $nro_salida."/".$gestion; ?>',<?php echo $cod_estado_salida; ?>,<?php echo $swValIngreso; ?>)">Anular</a></td>
 							
 							            
    	  </tr>
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="10">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+          </tbody>
 		</table>
-		
-<?php
-	}
-?>
+
 </body>
 </html>

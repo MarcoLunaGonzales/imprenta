@@ -65,7 +65,9 @@ function buscar()
 			ajax.open("GET",'searchGastosGral.php'+param);
 			ajax.onreadystatechange=function() {
 				if (ajax.readyState==4) {
-					divResultado.innerHTML = ajax.responseText
+					divResultado.innerHTML = ajax.responseText;
+					cargarClasesFrame();	
+			        agregarTablaReporteClase();
 				}
 			}
 		ajax.send(null)
@@ -143,109 +145,12 @@ function paginar1(f,pagina)
 	include("funciones.php");
 
 ?>
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE GASTOS </h3>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE GASTOS 
+  <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 
-<table border="0" align="center">
-<tr>
-<td><strong>Nro de Gasto</strong></td>
-<td colspan="3"><input type="text" name="nroGastoGralB" id="nroGastoGralB" size="10" value="<?php echo $nroGastoGralB;?>" class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr class="texto">
-		 <td><strong>Nro de Doc</strong></td>
-		 <td ><input type="text" name="nroDocB" id="nroDocB" size="10" value="<?php echo $nroDocB;?>" class="textoform" onkeyup="buscar()" ></td>
-         <td align="left" ><strong>Tipo de Documento</strong></td>
-         <td align="left"><select name="cod_tipo_docB" id="cod_tipo_docB" onchange="buscar();" class="textoform">
-				<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql2=" select cod_tipo_doc, desc_tipo_doc";
-					$sql2.=" from   tipo_documento ";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_tipo_doc=$dat2['cod_tipo_doc'];	
-			  		 		$desc_tipo_doc=$dat2['desc_tipo_doc'];	
-				 ?>
-                 <option value="<?php echo $cod_tipo_doc;?>" <?php if($cod_tipo_docB==$cod_tipo_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_tipo_doc);?></option>				
-				<?php		
-					}
-				?>						
-			</select></td>
- </tr>     
-
-<tr><td><strong>Proveedor</strong></td>
-<td colspan="3">
- <input name="nombreProveedorB" id="nombreProveedorB" size="70" class="textoform" value="<?php echo $nombreProveedorB; ?>" onkeyup="buscar()">
-	</td>
-</tr>
-<tr>
-<td><strong>Tipo de Pago </strong></td>
-<td><select name="cod_tipo_pagoB" id="cod_tipo_pagoB" class="textoform" onchange="buscar()"  >
-<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql4="select cod_tipo_pago,nombre_tipo_pago from tipos_pago";
-					$resp4=mysql_query($sql4);
-						while($dat4=mysql_fetch_array($resp4))
-						{
-							$cod_tipo_pago=$dat4[0];	
-			  		 		$nombre_tipo_pago=$dat4[1];	
-				 ?><option value="<?php echo $cod_tipo_pago;?>" <?php if($_GET['cod_tipo_pagoB']==$cod_tipo_pago){?>selected<?php }?>><?php echo $nombre_tipo_pago;?></option>				
-				<?php		
-					}
-				?>						
-			</select>
-</td>
-<td><strong>Estado de Pago</strong></td>
-<td >
-<select name="cod_estado_pago_docB" id="cod_estado_pago_docB" onchange="buscar();" class="textoform">
-				<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql2=" select cod_estado_pago_doc, desc_estado_pago_doc";
-					$sql2.=" from   estado_pago_documento ";
-					$sql2.=" order by cod_estado_pago_doc asc ";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_estado_pago_doc=$dat2['cod_estado_pago_doc'];	
-			  		 		$desc_estado_pago_doc=$dat2['desc_estado_pago_doc'];	
-				 ?>
-                 <option value="<?php echo $cod_estado_pago_doc;?>" <?php if($_GET['cod_estado_pago_docB']==$cod_estado_pago_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago_doc);?></option>				
-				<?php		
-					}
-				?>						
-			</select>
-	</td>
-</tr>
-<tr><td><strong>Estado de Gasto</strong></td>
-<td colspan="3">
-<select name="cod_estadoB" id="cod_estadoB" onchange="buscar();" class="textoform">
-				<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql2=" select cod_estado, desc_estado";
-					$sql2.=" from   estados_gastos_gral ";
-					$sql2.=" order by cod_estado asc ";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_estado=$dat2['cod_estado'];	
-			  		 		$desc_estado=$dat2['desc_estado'];	
-				 ?>
-                 <option value="<?php echo $cod_estado;?>" <?php if($_GET['cod_estadoB']==$cod_estado){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado);?></option>				
-				<?php		
-					}
-				?>						
-			</select>
-	</td>
-</tr>
-<tr >
-     		<td>&nbsp;<b>Rango de Fecha<br/>(dd/mm/aaaa)</b>&nbsp;</td>			
-     		<td colspan="3"><strong>De&nbsp;</strong>
-                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $fechaInicioB; ?>">
-        <strong>&nbsp;Hasta&nbsp;</strong>
-        <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $fechaFinalB; ?>" >
-<input type="checkbox" name="codActivoFecha" id="codActivoFecha" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?> onClick="buscar()" ><strong>Chekear la casilla para buscar por fechas.</strong>
-			</td>
-    	</tr>
-</table>
 
 <div id="resultados">
 <?php 
@@ -316,40 +221,8 @@ $sql.=" left join proveedores p on(gg.cod_proveedor=p.cod_proveedor)";
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-<h3 align="center" style="background:#FFF;font-size: 10px;color:#E78611;font-weight:bold;">Nro de Registros <?php echo $nro_filas_sql;?></h3>
+		
 
-<table border="0" align="center" width="89%">
-<tr><td align="right">
-<div align="right"><a href="newGastoGral.php"><img src="img/adicionar.jpg" border="0">[Nuevo Gasto]</a></div>
-</td>
-</tr>
-</table>
-<?php		
-	if($nro_filas_sql==0){
-?>
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Gasto</td>            
-    		<td>Fecha Gasto</td>
-            <td>Nro Rec</td>	
-            <td>Proveedor</td>
-			<td>Gasto</td>
-            <td>Cantidad</td>
-			<td>Monto</td>
-            <td>Ref</td>
-			<td>Tipo de Pago</td>
-            <td>Estado de Pago</td>
-			<td>Estado de Gasto</td>             														    		
-			<td>Fecha Registro</td>      
-            <td>Fecha Edicion</td>                
-        
-		</tr>
-		<tr><th colspan="13" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -417,47 +290,34 @@ $sql.=" left join proveedores p on(gg.cod_proveedor=p.cod_proveedor)";
 		}
 	}
 	$sql.=" order by gg.fecha_gasto_gral desc ,gg.nro_gasto_gral desc";
-	$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+	$sql.=" limit 50";
 
 	$resp = mysql_query($sql);
 	$cont=0;
 ?>
-<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgcolor="#cccccc">
-  <tr bgcolor="#FFFFFF" align="center">
-    <td colspan="16"><p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)" >Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-                      <p align="center">				
-						Ir a Pagina<input type="text" name="pagina1" class="texto" id="pagina1" size="5" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar(this.form)"  >	
-				  </p>
-						<?php }?></td>
+<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgcolor="#cccccc" class="tablaReporte" style="width:100% !important;">
+
+  <thead>
+  <tr height="20px" align="center"  class="bg-success text-white">
+    <th>Nro Gasto</th>
+    <th>Fecha Gasto</th>
+    <th>Nro Rec</th>
+    <th>Proveedor</th>
+    <th>Gasto</th>
+    <th>Cantidad</th>
+    <th>Monto</th>
+    <th>Ref</th>
+	<th>Forma de Pago</th>
+    <th>Estado de Pago</th>
+    <th>Fecha Registro</th>
+    <th>Fecha Edicion</th>
+    <th>Estado de Doc</th>
+	<th>Editar</th>
+	<th>Anular</th>
+	<th>Copiar</th>	
   </tr>
-  <tr height="20px" align="center"  class="titulo_tabla">
-    <td>Nro Gasto</td>
-    <td>Fecha Gasto</td>
-    <td>Nro Rec</td>
-    <td>Proveedor</td>
-    <td>Gasto</td>
-    <td>Cantidad</td>
-    <td>Monto</td>
-    <td>Ref</td>
-	<td>Forma de Pago</td>
-    <td>Estado de Pago</td>
-    <td>Fecha Registro</td>
-    <td>Fecha Edicion</td>
-    <td>Estado de Doc</td>
-	<td>Editar</td>
-	<td>Anular</td>
-	<td>Copiar</td>	
-  </tr>
+  </thead>
+  <tbody>
   <?php   
 		while($dat=mysql_fetch_array($resp)){
 			$cod_gasto_gral=$dat['cod_gasto_gral']; 
@@ -635,29 +495,132 @@ $sql.=" left join proveedores p on(gg.cod_proveedor=p.cod_proveedor)";
   <?php
 		 } 
 ?>
-  <tr bgcolor="#FFFFFF" align="center">
-    <td colspan="16">
-		<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina2" size="5"  class="texto" id="pagina2" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar2(this.form)">	</p>
-                         <?php } ?>	
-	</td>
-  </tr>
+  </tbody>
 </table>
-<?php
-	}
-?>
+
 </div>
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table border="0" align="center">
+<tr>
+<td><strong>Nro de Gasto</strong></td>
+<td colspan="3"><input type="text" name="nroGastoGralB" id="nroGastoGralB" size="10" value="<?php echo $nroGastoGralB;?>" class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr class="texto">
+		 <td><strong>Nro de Doc</strong></td>
+		 <td ><input type="text" name="nroDocB" id="nroDocB" size="10" value="<?php echo $nroDocB;?>" class="textoform" onkeyup="buscar()" ></td>
+         <td align="left" ><strong>Tipo de Documento</strong></td>
+         <td align="left"><select name="cod_tipo_docB" id="cod_tipo_docB" onchange="buscar();" class="textoform">
+				<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql2=" select cod_tipo_doc, desc_tipo_doc";
+					$sql2.=" from   tipo_documento ";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_tipo_doc=$dat2['cod_tipo_doc'];	
+			  		 		$desc_tipo_doc=$dat2['desc_tipo_doc'];	
+				 ?>
+                 <option value="<?php echo $cod_tipo_doc;?>" <?php if($cod_tipo_docB==$cod_tipo_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_tipo_doc);?></option>				
+				<?php		
+					}
+				?>						
+			</select></td>
+ </tr>     
+
+<tr><td><strong>Proveedor</strong></td>
+<td colspan="3">
+ <input name="nombreProveedorB" id="nombreProveedorB" size="70" class="textoform" value="<?php echo $nombreProveedorB; ?>" onkeyup="buscar()">
+	</td>
+</tr>
+<tr>
+<td><strong>Tipo de Pago </strong></td>
+<td><select name="cod_tipo_pagoB" id="cod_tipo_pagoB" class="textoform" onchange="buscar()"  >
+<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql4="select cod_tipo_pago,nombre_tipo_pago from tipos_pago";
+					$resp4=mysql_query($sql4);
+						while($dat4=mysql_fetch_array($resp4))
+						{
+							$cod_tipo_pago=$dat4[0];	
+			  		 		$nombre_tipo_pago=$dat4[1];	
+				 ?><option value="<?php echo $cod_tipo_pago;?>" <?php if($_GET['cod_tipo_pagoB']==$cod_tipo_pago){?>selected<?php }?>><?php echo $nombre_tipo_pago;?></option>				
+				<?php		
+					}
+				?>						
+			</select>
+</td>
+<td><strong>Estado de Pago</strong></td>
+<td >
+<select name="cod_estado_pago_docB" id="cod_estado_pago_docB" onchange="buscar();" class="textoform">
+				<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql2=" select cod_estado_pago_doc, desc_estado_pago_doc";
+					$sql2.=" from   estado_pago_documento ";
+					$sql2.=" order by cod_estado_pago_doc asc ";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_estado_pago_doc=$dat2['cod_estado_pago_doc'];	
+			  		 		$desc_estado_pago_doc=$dat2['desc_estado_pago_doc'];	
+				 ?>
+                 <option value="<?php echo $cod_estado_pago_doc;?>" <?php if($_GET['cod_estado_pago_docB']==$cod_estado_pago_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago_doc);?></option>				
+				<?php		
+					}
+				?>						
+			</select>
+	</td>
+</tr>
+<tr><td><strong>Estado de Gasto</strong></td>
+<td colspan="3">
+<select name="cod_estadoB" id="cod_estadoB" onchange="buscar();" class="textoform">
+				<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql2=" select cod_estado, desc_estado";
+					$sql2.=" from   estados_gastos_gral ";
+					$sql2.=" order by cod_estado asc ";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_estado=$dat2['cod_estado'];	
+			  		 		$desc_estado=$dat2['desc_estado'];	
+				 ?>
+                 <option value="<?php echo $cod_estado;?>" <?php if($_GET['cod_estadoB']==$cod_estado){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado);?></option>				
+				<?php		
+					}
+				?>						
+			</select>
+	</td>
+</tr>
+<tr >
+     		<td>&nbsp;<b>Rango de Fecha<br/>(dd/mm/aaaa)</b>&nbsp;</td>			
+     		<td colspan="3"><strong>De&nbsp;</strong>
+                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $fechaInicioB; ?>">
+        <strong>&nbsp;Hasta&nbsp;</strong>
+        <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $fechaFinalB; ?>" >
+<input type="checkbox" name="codActivoFecha" id="codActivoFecha" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?> onClick="buscar()" ><strong>Chekear la casilla para buscar por fechas.</strong>
+			</td>
+    	</tr>
+</table>
+<div align="right"><a href="newGastoGral.php"class="btn btn-warning"><i class="fa fa-plus"></i> NUEVO GASTO</a></div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php require("cerrar_conexion.inc");
 ?>
 <br>

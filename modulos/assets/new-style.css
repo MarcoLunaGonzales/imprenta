@@ -3,6 +3,12 @@ body{
 	visibility: hidden;
     background: url('../../images/loading.gif') 50% 0 no-repeat;
 }
+.boton-filtro-iframe{
+  position:fixed;
+  right:20px;
+  z-index:290;
+  font-size:14px;
+}
 .modal-arriba {
    top: -20px !important;
 }

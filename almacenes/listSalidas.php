@@ -26,9 +26,38 @@ function suma_fechas($fecha,$ndias)
 <title>MODULO DE ALMACENES</title>
 <link rel="STYLESHEET" type="text/css" href="pagina.css" />
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script type="text/javascript" src="ajax/searchAjax.js"></script>
 <script type="text/javascript">
+function objetoAjax(){
+	var xmlhttp=false;
+	try {
+		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+		try {
+		   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch (E) {
+			xmlhttp = false;
+  		}
+	}
 
+	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+		xmlhttp = new XMLHttpRequest();
+	}
+	return xmlhttp;
+}
+
+function resultados_ajax(datos){
+	divResultado = document.getElementById('resultados');
+	ajax=objetoAjax();
+	ajax.open("GET",datos);
+	ajax.onreadystatechange=function() {
+		if (ajax.readyState==4) {
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
+		}
+	}
+	ajax.send(null)
+}
 function buscar()
 {	
 	if(document.form1.codActivoFecha.checked){
@@ -134,41 +163,11 @@ function editar(cod_salida,nro_salida,cod_estado_salida,swValFecha,swValIngreso)
 
 
 ?>
-<h3 align="center" style="background:#F7F5F3;font-size: 14px;color: #E78611;font-weight:bold;">SALIDAS DE  <?php echo strtoupper($nombre_almacen);?></h3>
-
-<table border="0" align="center">
-<tr>
-<td><strong>Nro de Salida</strong></td>
-<td ><input type="text" name="nroSalidaB" id="nroSalidaB" size="10" class="textoform" onkeyup="buscar()"  ></td>
-<td><strong>Tipo de Salida</strong></td>
-<td><input type="text" name="tipoSalidaB" id="tipoSalidaB" size="30" class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr>
-<td><strong>Nro Hoja de Ruta</strong></td>
-<td><input type="text" name="nroHojaRutaB" id="nroHojaRutaB" size="30" class="textoform" onkeyup="buscar()" ></td>
-<td><strong>Orden de Trabajo</strong></td>
-<td><input type="text" name="nroOrdenTrabajoB" id="nroOrdenTrabajoB" size="30"  class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr>
-<td><strong>Almacen de Traspaso</strong></td>
-<td><input type="text" name="almacenTraspasoB" id="almacenTraspasoB" size="30"  class="textoform" onkeyup="buscar()" ></td>
-<td><strong>Cliente</strong></td>
-<td><input type="text" name="nombreClienteB" id="nombreClienteB" size="30" class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr>
-<td><strong>Estado de Salida</strong></td>
-<td ><input type="text" name="estadoSalidaB" id="estadoSalidaB" size="30"  class="textoform" onkeyup="buscar()" ></td>
-<td><strong>Material</strong></td>
-<td><input type="text" name="descCompletaMaterialB" id="descCompletaMaterialB" size="50"  class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr >
-     		<td>&nbsp;<b>Rango de Fecha<br/>(dd/mm/aaaa)</b>&nbsp;</td>			
-     		<td colspan="3"><strong>De&nbsp;</strong>
-                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform">
-        <strong>&nbsp;Hasta&nbsp;</strong><input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform"><input type="checkbox" name="codActivoFecha" id="codActivoFecha"  onClick="buscar()"><strong>(Chekear para buscar por fechas)</strong>
-			</td>
-    	</tr>
-</table>
+<h3 align="center" style="background:#F7F5F3;font-size: 14px;color: #E78611;font-weight:bold;">SALIDAS DE  <?php echo strtoupper($nombre_almacen);?>
+   <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 
 <div id="resultados">
 <?php 
@@ -248,27 +247,7 @@ function editar(cod_salida,nro_salida,cod_estado_salida,swValFecha,swValIngreso)
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-<h3 align="center" style="background:#F7F5F3;font-size: 10px;color:#E78611;font-weight:bold;">Nro de Registros <?php echo $nro_filas_sql;?></h3>
-<?php		
-	if($nro_filas_sql==0){
-?>
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Salida</td>
-    		<td>Fecha</td>	
-            <td>Tipo de Salida</td>															
-    		<td>Observaciones</td>	            
-			<td>Estado</td> 
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>        
-		</tr>
-		<tr><th colspan="9" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -343,41 +322,29 @@ $sql.=" and s.cod_almacen=".$_COOKIE['cod_almacen_global'];
 		}
 	}
 		$sql.=" order by  s.cod_salida desc ";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";
 		$resp = mysql_query($sql);
 		$cont=0;
 ?>	
-	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Salida</td>
-    		<td>Fecha</td>	
-            <td>Tipo de Salida</td>
-            <td>Monto</td>	
-            <td>A cuenta</td>
-            <td>Saldo</td>														
-    		<td>Observaciones</td>	            
-			<td>Estado</td>
-            <td>Estado de Pago</td> 
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>       
+	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+        <thead>   
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>Nro Salida</th>
+    		<th>Fecha</th>	
+            <th>Tipo de Salida</th>
+            <th>Monto</th>	
+            <th>A cuenta</th>
+            <th>Saldo</th>														
+    		<th>Observaciones</th>	            
+			<th>Estado</th>
+            <th>Estado de Pago</th> 
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>       
             
 		</tr>
+		</thead>
+		<tbody>
 <?php   
 		while($dat=mysql_fetch_array($resp)){
 				$cod_salida=$dat['cod_salida']; 
@@ -649,28 +616,64 @@ $sql.=" and s.cod_almacen=".$_COOKIE['cod_almacen_global'];
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+
+			</tbody>
 		</table>
 		
-<?php
-	}
-?>
 </div>	
+
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table border="0" align="center">
+<tr>
+<td><strong>Nro de Salida</strong></td>
+<td ><input type="text" name="nroSalidaB" id="nroSalidaB" size="10" class="textoform" onkeyup="buscar()"  ></td>
+<td><strong>Tipo de Salida</strong></td>
+<td><input type="text" name="tipoSalidaB" id="tipoSalidaB" size="30" class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr>
+<td><strong>Nro Hoja de Ruta</strong></td>
+<td><input type="text" name="nroHojaRutaB" id="nroHojaRutaB" size="30" class="textoform" onkeyup="buscar()" ></td>
+<td><strong>Orden de Trabajo</strong></td>
+<td><input type="text" name="nroOrdenTrabajoB" id="nroOrdenTrabajoB" size="30"  class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr>
+<td><strong>Almacen de Traspaso</strong></td>
+<td><input type="text" name="almacenTraspasoB" id="almacenTraspasoB" size="30"  class="textoform" onkeyup="buscar()" ></td>
+<td><strong>Cliente</strong></td>
+<td><input type="text" name="nombreClienteB" id="nombreClienteB" size="30" class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr>
+<td><strong>Estado de Salida</strong></td>
+<td ><input type="text" name="estadoSalidaB" id="estadoSalidaB" size="30"  class="textoform" onkeyup="buscar()" ></td>
+<td><strong>Material</strong></td>
+<td><input type="text" name="descCompletaMaterialB" id="descCompletaMaterialB" size="50"  class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr >
+     		<td>&nbsp;<b>Rango de Fecha<br/>(dd/mm/aaaa)</b>&nbsp;</td>			
+     		<td colspan="3"><strong>De&nbsp;</strong>
+                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform">
+        <strong>&nbsp;Hasta&nbsp;</strong><input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform"><input type="checkbox" name="codActivoFecha" id="codActivoFecha"  onClick="buscar()"><strong>(Chekear para buscar por fechas)</strong>
+			</td>
+    	</tr>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php require("cerrar_conexion.inc");
 ?>
 <br>

@@ -79,27 +79,7 @@ include("funciones.php");
 		while($dat_aux=mysql_fetch_array($resp_aux)){
 			$nro_filas_sql=$dat_aux[0];
 		}
-		if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Cliente</td>
-    		<td>Nit</td>
-    		<td>Categoria</td>
-    		<td>Ciudad</td>
-    		<td>Direcci&oacute;n</td>
-    		<td>Telefonos</td>
-    		<td>Fax</td>
-            <td>Celular</td>			
-    		<td>Email</td>					
-    		<td>Observaciones</td>			
-    		<td>Estado</td>											
-		</tr>
-		<tr><th colspan="11" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -189,55 +169,31 @@ and  (cli.cod_cuenta IS NULL or cli.cod_cuenta='')*/
 			}
 		}
 		$sql.=" order by cli.nombre_cliente asc";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;				
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;				
 		$resp = mysql_query($sql);
 
 ?>	
-<h3 align="center" style="background:#FFF;font-size: 10px;color: #000;font-weight:bold;">Nro de Registros:<?php echo $nro_filas_sql;?></h3>
-<table border="0" align="center" >
-<tr>
 
-<td bgcolor="#FFFF66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td ><strong>Alerta: Clientes no Vinculados con una Cuenta</strong></td>
-</tr>
-</table>
-	<table width="89%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="14">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)" >Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-                      <p align="center">				
-						Ir a Pagina<input type="text" name="pagina1" class="texto" id="pagina1" size="5" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar(this.form)"  >	
-				  </p>
-						<?php }?>
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>ID</td>
-			<td>Nro Cuenta</td>
-			<td>Nombre Cuenta</td>
-            <td>Cliente</td>
-            <td>Nit</td>
-            <td>Direccion</td>
-            <td>Telf/Celular/fax</td>
-            <td >Contactos</td>
-            <td>Unidades</td> 
-			<td>HR</td> 
-			<td>OT</td> 
-			<td>VTA</td>
-			<td>TOTAL DOC.</td> 
-			<td>&nbsp;</td>            															
+	<table width="89%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" class="tablaReporte" style="width:100% !important;">
+    <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+    		<th>ID</th>
+			<th>Nro Cuenta</th>
+			<th>Nombre Cuenta</th>
+            <th>Cliente</th>
+            <th>Nit</th>
+            <th>Direccion</th>
+            <th>Telf/Celular/fax</th>
+            <th >Contactos</th>
+            <th>Unidades</th> 
+			<th>HR</th> 
+			<th>OT</th> 
+			<th>VTA</th>
+			<th>TOTAL DOC.</th> 
+			<th>&nbsp;</th>            															
 		</tr>
-
+     </thead>   
+     <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){	
@@ -362,29 +318,9 @@ and  (cli.cod_cuenta IS NULL or cli.cod_cuenta='')*/
 <?php
 		 } 
 ?>			
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="14">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina2" size="5"  class="texto" id="pagina2" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar2(this.form)">	</p>
-                         <?php } ?>		
-</td>
-			</tr>
+	</tbody>
 		</table>
 
-<?php
-	}
-?>
 	
 </body>
 </html>

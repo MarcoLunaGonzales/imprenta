@@ -58,23 +58,7 @@ function guardar(f){
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-	if($nro_filas_sql==0){
-?>
-<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Grupo</td>
-			<td>SubGrupo</td>
-			<td>ID Material ANTIGUO </td>
-            <td>ID Material ACTUAL</td>
-    		<td>Material</td>
-			<td>Unidad</td>			
-											
-		</tr>
-		<tr><th colspan="6" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-  </table>
-	
-<?php	
-	}else{
+
 	
 ?>
 <h3 align="center" style="background:#FFF;font-size: 10px;color: #E78611;font-weight:bold;"><?php echo "Nro de Registros :".$nro_filas_sql;?></h3>
@@ -125,8 +109,9 @@ function guardar(f){
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="95%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
+	<table width="95%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
 			<td rowspan="2">&nbsp;</td>
 			<td rowspan="2">Grupo</td>
 			<td rowspan="2">SubGrupo</td>
@@ -137,13 +122,15 @@ function guardar(f){
 			<td rowspan="2">Precio Venta Actual</td>		 																					
 			<td rowspan="2">Nuevo Precio </td>		 																					
 		</tr>
-		<tr height="20px" align="center"  class="titulo_tabla">
+
+		<tr height="20px" align="center"  class="bg-success text-white">
 		<?php for($i=1;$i<=$nroColumnas;$i++){?>
 			<td>&nbsp;</td>			
 			<td>Precio</td>	
  		    <?php }?>																			
 		</tr>
-	
+	   </thead>
+	   <tbody>
 
 <?php   
 	$cont=0;
@@ -276,12 +263,10 @@ function guardar(f){
    	  </tr>
 <?php
 		 } 
-?>			
+?>		
+    </tbody>	
   </table>
 					
-<?php
-	}
-?>
 	<br>
 <div align="center">
 	<input type="submit" class="boton" name="btn_guardar" value="Guardar"   >

@@ -27,14 +27,16 @@ function buscar()
 		var param="?";
 		param+='proveedorContactoB='+document.form1.proveedorContactoB.value;
 		param+='&codcuentaB='+document.form1.codcuentaB.checked;
-		param+='&nro_filas_show='+document.form1.nro_filas_show.value;	
+		param+='&nro_filas_show=1';
 		
 		divResultado = document.getElementById('resultados');
 		ajax=objetoAjax();
 			ajax.open("GET",'searchListProveedoresCuentas.php'+param);
 			ajax.onreadystatechange=function() {
 				if (ajax.readyState==4) {
-					divResultado.innerHTML = ajax.responseText
+					divResultado.innerHTML = ajax.responseText;
+                    cargarClasesFrame();	
+			        agregarTablaReporteClase();  
 				}
 			}
 				ajax.send(null)	
@@ -108,7 +110,11 @@ function paginar2(f)
 <!---Autor:Gabriela Quelali Siñani
 02 de Julio de 2008
 -->
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE PROVEEDORES</h3>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE PROVEEDORES
+   <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" id="form1" method="post" >
 <?php 
 	require("conexion.inc");
@@ -116,26 +122,7 @@ function paginar2(f)
 
 ?>
 
-<table border="0" align="center">
-<tr>
-<td><strong>Buscar por Proveedor o Contacto</strong></td>
-<td><input type="text" name="proveedorContactoB" id="proveedorContactoB" size="60" class="textoform"  onkeyup="buscar()" ></td>
-</tr>
-<tr>
-<td><strong>Ver Proveedores no Vinculados con Cta</strong></td>
-<td ><input type="checkbox" name="codcuentaB" id="codcuentaB"  onclick="buscar()" ></td>
-</tr>
-</table>
-<div align="center" class="text">Nro de Registros Mostrados por Pagina
-	<select name="nro_filas_show" id="nro_filas_show" class="text" onchange="paginar1(this.form,1)" >
-		<option value="20" <?php if($_GET['nro_filas_show']==20){ ?> selected="true"<?php }?> >20</option>
-	    <option value="50" <?php if($_GET['nro_filas_show']==50){ ?> selected="true"<?php }?> >50</option>
-    	<option value="100" <?php if($_GET['nro_filas_show']==100){ ?> selected="true"<?php }?> >100</option>
-	    <option value="200" <?php if($_GET['nro_filas_show']==200){ ?> selected="true"<?php }?> >200</option>
-    	<option value="300"<?php if($_GET['nro_filas_show']==300){ ?> selected="true"<?php }?> >300</option>
-        <option value="400"<?php if($_GET['nro_filas_show']==400){ ?> selected="true"<?php }?> >400</option>
-    </select>
-</div>
+
 
 <div id="resultados">
 
@@ -170,23 +157,7 @@ function paginar2(f)
 		while($dat_aux=mysql_fetch_array($resp_aux)){
 			$nro_filas_sql=$dat_aux[0];
 		}
-		if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>ID</td>
-            <td>Proveedor</td>
-            <td>Nit</td>
-            <td>Ciudad</td>
-            <td>Direccion</td>
-            <td>Telf/Celular/Fax</td>
-            <td colspan="3">Contactos</td>										
-		</tr>
-		<tr><th colspan="9" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -217,54 +188,30 @@ function paginar2(f)
 		}	
 	
 		$sql.=" order by nombre_proveedor asc";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";
 
 		$resp = mysql_query($sql);
 
 ?>	
-<h3 align="center" style="background:#FFF;font-size: 10px;color: #000;font-weight:bold;">Total Registro:<?php echo $nro_filas_sql;?></h3>
-	<table border="0" align="center" >
-<tr>
 
-<td bgcolor="#FFFF66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td ><strong>Alerta: Proveedores no Vinculados con una Cuenta</strong></td>
-</tr>
-</table>
-	<table width="89%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)" >Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-                      <p align="center">				
-						Ir a Pagina<input type="text" name="pagina1" class="texto" id="pagina1" size="5" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar(this.form)"  >	
-				  </p>
-						<?php }?>
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>ID</td>
-            <td>Nro Cuenta</td>
-            <td>Nombre Cuenta</td>
-            <td>Proveedor</td>
-            <td>Nit</td>
-            <td>Ciudad</td>            
-            <td>Direccion</td>
-            <td>Telf/Celular/Fax</td>
-            <td>**Contactos**</td>
-            <td>Contactos</td>
-            <td>ING</td>
-            <td>&nbsp;</td>            															
+	<table width="89%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" class="tablaReporte" style="width:100% !important;">
+    <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+    		<th>ID</th>
+            <th>Nro Cuenta</th>
+            <th>Nombre Cuenta</th>
+            <th>Proveedor</th>
+            <th>Nit</th>
+            <th>Ciudad</th>            
+            <th>Direccion</th>
+            <th>Telf/Celular/Fax</th>
+            <th>**Contactos**</th>
+            <th>Contactos</th>
+            <th>ING</th>
+            <th>&nbsp;</th>            															
 		</tr>
-
+	</thead>  	
+    <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){	
@@ -379,33 +326,40 @@ function paginar2(f)
 <?php
 		 } 
 ?>			
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina2" size="5"  class="texto" id="pagina2" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar2(this.form)">	</p>
-                         <?php } ?>		
-</td>
-
-
-			</tr>
+	</tbody>
 		</table>
 
-<?php
-	}
-?>
 	
-</div> 	
+</div> 
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table border="0" align="center">
+<tr>
+<td><strong>Buscar por Proveedor o Contacto</strong></td>
+<td><input type="text" name="proveedorContactoB" id="proveedorContactoB" size="60" class="textoform"  onkeyup="buscar()" ></td>
+</tr>
+<tr>
+<td><strong>Ver Proveedores no Vinculados con Cta</strong></td>
+<td ><input type="checkbox" name="codcuentaB" id="codcuentaB"  onclick="buscar()" ></td>
+</tr>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>	
 <?php require("cerrar_conexion.inc");
 ?>
 

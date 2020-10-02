@@ -34,7 +34,9 @@ function resultados_ajax(datos){
 	ajax.open("GET", datos);
 	ajax.onreadystatechange=function() {
 		if (ajax.readyState==4) {
-			divResultado.innerHTML = ajax.responseText
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
 		}
 	}
 	ajax.send(null)
@@ -65,38 +67,18 @@ function paginar1(f,pagina)
 02 de Julio de 2008
 -->
 
-<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">TIPO DE CAMBIO</h3>
+<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">TIPO DE CAMBIO
+   <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" id="form1" method="post" >
 <?php
 	$cod_monedaB=$_GET['cod_monedaB'];
 ?>
 <br/>
 
-    <table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr class="texto">
-          <td width="120" align="right" class="al_derecha">Buscar por Moneda</td>
-          <td width="256" align="left">
-          <select name="cod_monedaB" id="cod_monedaB" class="textoform">
-          <option value="0">Seleccione una opci&oacute;n</option>	
-	   <?php
-					$sql2=" select cod_moneda, desc_moneda, abrev_moneda";
-					$sql2.=" from   monedas ";
-					$sql2.=" where  cod_moneda<>1";
-					$sql2.=" order by desc_moneda asc ";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_moneda=$dat2['cod_moneda'];	
-			  		 		$desc_moneda=$dat2['desc_moneda'];
-							$abrev_moneda=$dat2['abrev_moneda'];	
-				 ?>
-                 <option value="<?php echo $cod_moneda;?>" <?php if($cod_moneda==$cod_monedaB){?> selected="true" <?php }?>><?php echo $desc_moneda; ?></option>				
-				<?php		
-					}
-				?>						
-			</select></td>
-          </tr>
-    </table>
+    
 
 <br/>
  <div id="resultados" align="center">   
@@ -124,23 +106,6 @@ function paginar1(f,pagina)
 	while($dat=mysql_fetch_array($resp)){
 		$nro_filas_sql=$dat[0];
 	}
-?>
-	<div id="nroRows" align="center" class="textoform"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Fecha</td>
-			<td>Moneda</td>				
-    		<td>Cambio Bs</td>															
-		</tr>
-		<tr><th colspan="3" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -162,34 +127,22 @@ function paginar1(f,pagina)
 			$sql.=" and tc.cod_moneda=".$cod_monedaB;
 		}		
 		$sql.=" order by tc.fecha_tipo_cambio desc ";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";
 		$resp = mysql_query($sql);
 
 ?>	
 
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="4">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>     
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Fecha</td>
-			<td>Moneda</td>				
-    		<td>Cambio Bs</td>		
-          <td>&nbsp;</td>																		
-		</tr>
 
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">    
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+            <th>Fecha</th>
+			<th>Moneda</th>				
+    		<th>Cambio Bs</th>		
+          <th>&nbsp;</th>																		
+		</tr>
+        </thead>
+        <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){
@@ -210,29 +163,56 @@ function paginar1(f,pagina)
    	  </tr>
 <?php
 		 } 
-?>		
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="4">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>	
+?>		</tbody>
   </table>
 		</div>			
-<?php
-	}
-?>
+
 </div>	
+
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr class="texto">
+          <td width="120" align="right" class="al_derecha">Buscar por Moneda</td>
+          <td width="256" align="left">
+          <select name="cod_monedaB" id="cod_monedaB" class="textoform">
+          <option value="0">Seleccione una opci&oacute;n</option>	
+	   <?php
+					$sql2=" select cod_moneda, desc_moneda, abrev_moneda";
+					$sql2.=" from   monedas ";
+					$sql2.=" where  cod_moneda<>1";
+					$sql2.=" order by desc_moneda asc ";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_moneda=$dat2['cod_moneda'];	
+			  		 		$desc_moneda=$dat2['desc_moneda'];
+							$abrev_moneda=$dat2['abrev_moneda'];	
+				 ?>
+                 <option value="<?php echo $cod_moneda;?>" <?php if($cod_moneda==$cod_monedaB){?> selected="true" <?php }?>><?php echo $desc_moneda; ?></option>				
+				<?php		
+					}
+				?>						
+			</select></td>
+          </tr>
+    </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php require("cerrar_conexion.inc");
 ?>
 

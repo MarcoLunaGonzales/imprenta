@@ -11,10 +11,39 @@
 <title>INVENTA</title>
 <link rel="STYLESHEET" type="text/css" href="pagina.css" />
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script type="text/javascript" src="ajax/searchAjax.js"></script>
 <script type="text/javascript">
 
+function objetoAjax(){
+	var xmlhttp=false;
+	try {
+		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+		try {
+		   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch (E) {
+			xmlhttp = false;
+  		}
+	}
 
+	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+		xmlhttp = new XMLHttpRequest();
+	}
+	return xmlhttp;
+}
+
+function resultados_ajax(datos){
+	divResultado = document.getElementById('resultados');
+	ajax=objetoAjax();
+	ajax.open("GET",datos);
+	ajax.onreadystatechange=function() {
+		if (ajax.readyState==4) {
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
+		}
+	}
+	ajax.send(null)
+}
 function buscar()
 {
 
@@ -56,7 +85,11 @@ function paginar1(f,pagina)
 02 de Julio de 2008
 -->
 
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADA DE PAGOS</h3>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADA DE PAGOS
+   <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" method="post" >
 <?php
 	$nroPagoB=$_GET['nroPagoB'];
@@ -72,67 +105,7 @@ function paginar1(f,pagina)
 ?>
 
 
-    <table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr class="texto">
-          <td width="150" align="right" >Nro Pago:</td>
-          <td width="350" align="left">
-            <input type="text" name="nroPagoB" id="nroPagoB" class="textoform" size="30" value="<?php echo $nroPagoB;?>" onkeyup="buscar()" />
-        </td>
-          </tr>
-
-      <tr class="texto">
-        <td width="90" align="right" >Cliente:</td>
-          <td width="256" align="left">
-            <input type="text" name="nombreClienteB" id="nombreClienteB"  class="textoform" value="<?php echo $nombreClienteB;?>" size="30" onkeyup="buscar()"/>
-         </td>
-      </tr>        
-       <tr class="texto">
-         <td width="90" align="right" >Estado de Pago:</td>
-         <td width="256" align="left"><select name="cod_estado_pagoB" id="cod_estado_pagoB" onchange="buscar();" class="textoform">
-				<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql2=" select cod_estado_pago, desc_estado_pago";
-					$sql2.=" from   estados_pago ";
-					$sql2.=" order by cod_estado_pago asc ";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_estado_pago=$dat2['cod_estado_pago'];	
-			  		 		$desc_estado_pago=$dat2['desc_estado_pago'];	
-				 ?>
-                 <option value="<?php echo $cod_estado_pago;?>" <?php if($cod_estado_pagoB==$cod_estado_pago){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago);?></option>				
-				<?php		
-					}
-				?>						
-			</select></td>
-       </tr>       
-   <tr class="texto">
-         <td width="90" align="right" >Nro de Hoja de Ruta:</td>
-          <td width="256" align="left">
-            <input type="text" name="nroHojaRutaB" id="nroHojaRutaB"  class="textoform" size="30" value="<?php echo $nroHojaRutaB;?>" onkeyup="buscar()"/></td>
-       </tr>
-   <tr class="texto">
-         <td width="90" align="right" >Nro de Orden Trabajo:</td>
-          <td width="256" align="left">
-            <input type="text" name="nroOrdenTrabajoB" id="nroOrdenTrabajoB"  class="textoform" size="30" value="<?php echo $nroOrdenTrabajoB;?>" onkeyup="buscar()"/></td>
-       </tr> 
-   <tr class="texto">
-         <td width="90" align="right" >Nro de Salida:</td>
-          <td width="256" align="left">
-            <input type="text" name="nroSalidaB" id="nroSalidaB"  class="textoform" size="30" value="<?php echo $nroSalidaB;?>" onkeyup="buscar()"/></td>
-       </tr>               
-       <tr class="texto">
-         <td width="90" align="right" >Rango de Fecha:</td>
-          <td width="256" align="left"><span id="sprytextfield6">
-          <label for="fechaInicioB">De</label>
-          <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $fechaInicioB; ?>" size="10" />
-          <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span></span><span id="sprytextfield7">
-          <label for="fechaFinalB">Hasta</label>
-          <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $fechaFinalB;?>" size="10"  />
-          <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span></span><input type="checkbox" name="codActivoFecha" id="codActivoFecha" onClick="buscar()" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?>></td>
-       </tr>     
-                               
-  </table>
+   
 
 <br/>
 <div id="resultados">
@@ -199,30 +172,6 @@ function paginar1(f,pagina)
 	while($dat_aux=mysql_fetch_array($resp)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-	<div id="nroRows" align="center" class="textoform"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Nro de Pago</td>
-			<td>Fecha Pago</td>
-            <td>Cliente</td>
-            <td>Monto Total (Bs)</td>
-            <td>Documentos</td>				
-			<td>Observaciones</td>
-            <td>Estado</td>
-			<td>&nbsp;</td>	
-			<td>&nbsp;</td>	
-			<td>&nbsp;</td>																													            
-		</tr>
-		<tr><th colspan="10" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -281,38 +230,25 @@ function paginar1(f,pagina)
 		}
 		
 		$sql.=" order  by p.cod_pago desc ";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="9">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-</td>
-			</tr>
-
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Nro de Pago</td>
-			<td>Fecha Pago</td>
-            <td>Cliente</td>
-            <td>Monto Total (Bs)</td>
-            <td>Documentos</td>				
-			<td>Observaciones</td>
-            <td>Estado</td>
-			<td>&nbsp;</td>	
-			<td>&nbsp;</td>	                  	            																	
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+      <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+            <th>Nro de Pago</th>
+			<th>Fecha Pago</th>
+            <th>Cliente</th>
+            <th>Monto Total (Bs)</th>
+            <th>Documentos</th>				
+			<th>Observaciones</th>
+            <th>Estado</th>
+			<th>&nbsp;</th>	
+			<th>&nbsp;</th>	                  	            																	
 		</tr>
-
+		</thead>
+     <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){
@@ -464,28 +400,91 @@ function paginar1(f,pagina)
 		 } 
 ?>			
 
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="9">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+	</tbody>
 		</table>
 		
-<?php
-	}
-?>
+
 </div>	
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+ <table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr class="texto">
+          <td width="150" align="right" >Nro Pago:</td>
+          <td width="350" align="left">
+            <input type="text" name="nroPagoB" id="nroPagoB" class="textoform" size="30" value="<?php echo $nroPagoB;?>" onkeyup="buscar()" />
+        </td>
+          </tr>
+
+      <tr class="texto">
+        <td width="90" align="right" >Cliente:</td>
+          <td width="256" align="left">
+            <input type="text" name="nombreClienteB" id="nombreClienteB"  class="textoform" value="<?php echo $nombreClienteB;?>" size="30" onkeyup="buscar()"/>
+         </td>
+      </tr>        
+       <tr class="texto">
+         <td width="90" align="right" >Estado de Pago:</td>
+         <td width="256" align="left"><select name="cod_estado_pagoB" id="cod_estado_pagoB" onchange="buscar();" class="textoform">
+				<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql2=" select cod_estado_pago, desc_estado_pago";
+					$sql2.=" from   estados_pago ";
+					$sql2.=" order by cod_estado_pago asc ";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_estado_pago=$dat2['cod_estado_pago'];	
+			  		 		$desc_estado_pago=$dat2['desc_estado_pago'];	
+				 ?>
+                 <option value="<?php echo $cod_estado_pago;?>" <?php if($cod_estado_pagoB==$cod_estado_pago){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago);?></option>				
+				<?php		
+					}
+				?>						
+			</select></td>
+       </tr>       
+   <tr class="texto">
+         <td width="90" align="right" >Nro de Hoja de Ruta:</td>
+          <td width="256" align="left">
+            <input type="text" name="nroHojaRutaB" id="nroHojaRutaB"  class="textoform" size="30" value="<?php echo $nroHojaRutaB;?>" onkeyup="buscar()"/></td>
+       </tr>
+   <tr class="texto">
+         <td width="90" align="right" >Nro de Orden Trabajo:</td>
+          <td width="256" align="left">
+            <input type="text" name="nroOrdenTrabajoB" id="nroOrdenTrabajoB"  class="textoform" size="30" value="<?php echo $nroOrdenTrabajoB;?>" onkeyup="buscar()"/></td>
+       </tr> 
+   <tr class="texto">
+         <td width="90" align="right" >Nro de Salida:</td>
+          <td width="256" align="left">
+            <input type="text" name="nroSalidaB" id="nroSalidaB"  class="textoform" size="30" value="<?php echo $nroSalidaB;?>" onkeyup="buscar()"/></td>
+       </tr>               
+       <tr class="texto">
+         <td width="90" align="right" >Rango de Fecha:</td>
+          <td width="256" align="left"><span id="sprytextfield6">
+          <label for="fechaInicioB">De</label>
+          <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $fechaInicioB; ?>" size="10" />
+          <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span></span><span id="sprytextfield7">
+          <label for="fechaFinalB">Hasta</label>
+          <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $fechaFinalB;?>" size="10"  />
+          <span class="textfieldRequiredMsg">Se necesita un valor.</span><span class="textfieldInvalidFormatMsg">Formato no válido.</span></span><input type="checkbox" name="codActivoFecha" id="codActivoFecha" onClick="buscar()" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?>></td>
+       </tr>     
+                               
+  </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php require("cerrar_conexion.inc");
 ?>
 

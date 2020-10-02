@@ -30,40 +30,21 @@ $cod_estado_registro=$_GET['cod_estado_registro'];
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-	
-?>
-	<div id="nroRows" align="center" class="texto"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>&nbsp;</td>
-            <td>Area</td>
-			<td>Observaciones</td>				
-    		<td>Estado</td>
-			<td>Fecha de Registro</td>	
-			<td>Ultima Edicion</td>		                                                            
-          </tr>
-          <tr  class="texto_tabla">
-            <td bgcolor="#FFFFFF" align="center" colspan="6">No se tiene registros.</td>              
-          </tr>          
-        </table>
-<?php		
-			
-	}else{
+
 ?>
         
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>&nbsp;</td>
-            <td>Area</td>
-			<td>Observaciones</td>				
-    		<td>Estado</td>
-			<td>Fecha de Registro</td>	
-			<td>Ultima Edicion</td>		                           
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+    		<th>&nbsp;</th>
+            <th>Area</th>
+			<th>Observaciones</th>				
+    		<th>Estado</th>
+			<th>Fecha de Registro</th>	
+			<th>Ultima Edicion</th>		                           
           </tr>
+          </thead>
+          <tbody>
         <?php
 			$sql=" select a.cod_area, a.nombre_area, a.obs_area, a.cod_estado_registro, e.nombre_estado_registro, a.fecha_registro, ";
 			$sql.=" a.cod_usuario_registro, a.fecha_modifica, a.cod_usuario_modifica ";
@@ -102,12 +83,8 @@ $cod_estado_registro=$_GET['cod_estado_registro'];
             <?php
 			}					
 	  ?>
- 
+   </tbody>
 </table>
-
-
-  <?php					
-	}
-?>        
+        
 </body>
 </html>

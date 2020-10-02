@@ -26,14 +26,16 @@ function buscar()
 {	
 		var param="?";
 		param+='numero_cuentaB='+document.form1.numero_cuentaB.value;
-		param+='&nro_filas_show='+document.form1.nro_filas_show.value;	
+		param+='&nro_filas_show=1';
 		
 		divResultado = document.getElementById('resultados');
 		ajax=objetoAjax();
 			ajax.open("GET",'searchCuentas.php'+param);
 			ajax.onreadystatechange=function() {
 				if (ajax.readyState==4) {
-					divResultado.innerHTML = ajax.responseText
+					divResultado.innerHTML = ajax.responseText;
+					cargarClasesFrame();	
+			        agregarTablaReporteClase();
 				}
 			}
 				ajax.send(null)	
@@ -107,7 +109,11 @@ function registrar(f){
 <!---Autor:Gabriela Quelali Siñani
 02 de Julio de 2008
 -->
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE PLAN DE CUENTAS</h3>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE PLAN DE CUENTAS
+  <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" id="form1" method="post" >
 <?php 
 	require("conexion.inc");
@@ -115,32 +121,7 @@ function registrar(f){
 
 ?>
 
-<table border="0" align="center">
-<tr>
-<td><strong>Buscar por Cuenta</strong></td>
-<td colspan="3"><input type="text" name="numero_cuentaB" id="numero_cuentaB" size="60" class="textoform" value="<?php echo $numero_cuentaB;?>" onkeyup="buscar()" ></td>
-</tr>
-</table>
-<table border="0" align="center" width="89%">
-<tr><td align="right">
-<div align="right"><a href="newCuenta.php"><img src="img/adicionar.jpg" border="0">[Adicionar Cuenta]</a></div>
-</td>
-</tr>
-<tr><td align="right">
-<div align="right"><a href="../reportes/pdfListCuentas.php" target="_blank">[Reporte de Cuentas]</a></div>
-</td>
-</tr>
-</table>
-<div align="center" class="text">Nro de Registros Mostrados por Pagina
-  <select name="nro_filas_show" id="nro_filas_show" class="text" onchange="paginar1(this.form,1)" >
-		<option value="20" <?php if($_GET['nro_filas_show']==20){ ?> selected="true"<?php }?> >20</option>
-	    <option value="50" <?php if($_GET['nro_filas_show']==50){ ?> selected="true"<?php }?> >50</option>
-    	<option value="100" <?php if($_GET['nro_filas_show']==100){ ?> selected="true"<?php }?> >100</option>
-	    <option value="200" <?php if($_GET['nro_filas_show']==200){ ?> selected="true"<?php }?> >200</option>
-    	<option value="300"<?php if($_GET['nro_filas_show']==300){ ?> selected="true"<?php }?> >300</option>
-        <option value="400"<?php if($_GET['nro_filas_show']==400){ ?> selected="true"<?php }?> >400</option>
-    </select>
-</div>
+
 
 <div id="resultados">
 
@@ -173,22 +154,6 @@ function registrar(f){
 		}		
 
 		
-		if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Nro Cuenta</td>
-            <td>Descripcion</td>
-    		<td>Moneda</td>
-    		<td>Estado</td>
-    		<td>Registro</td>
-    		<td>Ultima Edici&oacute;n</td>									
-		</tr>
-		<tr><th colspan="9" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -211,48 +176,30 @@ function registrar(f){
 			$sql.=" or desc_cuenta like'%".$_GET['numero_cuentaB']."%')";			
 		}
 		$sql.=" order by nro_cuenta asc";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";
 
 		
 		$resp = mysql_query($sql);
 
 ?>	
-<h3 align="center" style="background:#FFF;font-size: 10px;color: #000;font-weight:bold;">Total Registro:<?php echo $nro_filas_sql;?></h3>
-	<table width="95%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)" >Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-                      <p align="center">				
-						Ir a Pagina<input type="text" name="pagina1" class="texto" id="pagina1" size="5" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar(this.form)"  >	
-				  </p>
-						<?php }?>
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Nro Cuenta</td>
-            <td>Cuenta</td> 
-			<td>Cliente</td> 
-			<td>Proveedor</td>            
-            <td>Detalle</td>
-            <td>Vinculacion</td>
-    		<td>Moneda</td>
-    		<td>Estado</td>
-    		<td>Registro</td>
-    		<td>Ultima Edici&oacute;n</td>	
-            <td>Editar</td>	
-			<td>Eliminar</td>		                   																                   															
+	<table width="95%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" class="tablaReporte" style="width:100% !important;">
+       <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+    		<th>Nro Cuenta</th>
+            <th>Cuenta</th> 
+			<th>Cliente</th> 
+			<th>Proveedor</th>            
+            <th>Detalle</th>
+            <th>Vinculacion</th>
+    		<th>Moneda</th>
+    		<th>Estado</th>
+    		<th>Registro</th>
+    		<th>Ultima Edici&oacute;n</th>	
+            <th>Editar</th>	
+			<th>Eliminar</th>		                   																                   															
 		</tr>
-
+      </thead>   
+      <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){	
@@ -419,31 +366,46 @@ function registrar(f){
 <?php
 		 } 
 ?>			
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina2" size="5"  class="texto" id="pagina2" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar2(this.form)">	</p>
-                         <?php } ?>		
-</td>
-			</tr>
+	</tbody>
 		</table>
 
-<?php
-	}
-?>
 	
-</div> 	
+</div>
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table border="0" align="center">
+<tr>
+<td><strong>Buscar por Cuenta</strong></td>
+<td colspan="3"><input type="text" name="numero_cuentaB" id="numero_cuentaB" size="60" class="textoform" value="<?php echo $numero_cuentaB;?>" onkeyup="buscar()" ></td>
+</tr>
+</table>
+<table border="0" align="center" width="89%">
+<tr><td align="right">
+<div align="right"><a href="newCuenta.php" class="btn btn-warning text-white"><i class="fa fa-plus"></i> Adicionar Cuenta</a></div>
+</td>
+</tr>
+<tr><td align="right">
+<div align="right"><a href="../reportes/pdfListCuentas.php" class="btn btn-secondary text-white" target="_blank">Reporte de Cuentas</a></div>
+</td>
+</tr>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>	 	
 <?php require("cerrar_conexion.inc");
 ?>
 

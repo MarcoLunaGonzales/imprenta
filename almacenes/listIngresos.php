@@ -26,9 +26,39 @@ function suma_fechas($fecha,$ndias)
 <title>MODULO DE ALMACENES</title>
 <link rel="STYLESHEET" type="text/css" href="pagina.css" />
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script type="text/javascript" src="ajax/searchAjax.js"></script>
-<script type="text/javascript">
 
+<script type="text/javascript">
+function objetoAjax(){
+	var xmlhttp=false;
+	try {
+		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+		try {
+		   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch (E) {
+			xmlhttp = false;
+  		}
+	}
+
+	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+		xmlhttp = new XMLHttpRequest();
+	}
+	return xmlhttp;
+}
+
+function resultados_ajax(datos){
+	divResultado = document.getElementById('resultados');
+	ajax=objetoAjax();
+	ajax.open("GET",datos);
+	ajax.onreadystatechange=function() {
+		if (ajax.readyState==4) {
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
+		}
+	}
+	ajax.send(null)
+}
 function buscar()
 {	
 	if(document.form1.codActivoFecha.checked){
@@ -170,111 +200,13 @@ function editar(cod_ingreso,nro_ingreso, swValFecha,swValIngreso,cod_estado_ingr
 
 
 ?>
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">INGRESOS <?php echo strtoupper($nombre_almacen);?></h3>
-
-<table border="0" align="center">
-<tr>
-<td><strong>Nro de Ingreso</strong></td>
-<td colspan="3"><input type="text" name="nroIngresoB" id="nroIngresoB" size="10" class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr>
-<td><strong>Proveedor</strong></td>
-<td>
- <input name="nombreProveedorB" id="nombreProveedorB" size="30" class="textoform"  onkeyup="buscar()">
-	</td>
-<td><strong>Almacen de Salida</strong></td>
-<td><input type="text" name="almacenSalidaB" id="almacenSalidaB" size="30" class="textoform" onkeyup="buscar()" ></td>
-</tr>
-
-<tr>
-<td><strong>Factura</strong></td>
-<td><input type="text" name="nrofacturaB" id="nrofacturaB" size="30" class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr>
-<td><strong>Material</strong></td>
-<td colspan="4"><input type="text" name="descCompletaMaterialB" id="descCompletaMaterialB" size="70" class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr>
-<td><strong>Tipo de Pago </strong></td>
-<td><select name="cod_tipo_pagoB" id="cod_tipo_pagoB" class="textoform" onchange="buscar()"  >
-<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql4="select cod_tipo_pago,nombre_tipo_pago from tipos_pago";
-					$resp4=mysql_query($sql4);
-						while($dat4=mysql_fetch_array($resp4))
-						{
-							$cod_tipo_pago=$dat4[0];	
-			  		 		$nombre_tipo_pago=$dat4[1];	
-				 ?><option value="<?php echo $cod_tipo_pago;?>" <?php if($_GET['cod_tipo_pagoB']==$cod_tipo_pago){?>selected<?php }?>><?php echo $nombre_tipo_pago;?></option>				
-				<?php		
-					}
-				?>						
-			</select>
-</td>
-<td><strong>Estado de Pago </strong></td>
-<td><select name="cod_estado_pago_docB" id="cod_estado_pago_docB" onchange="buscar();" class="textoform">
-				<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql2=" select cod_estado_pago_doc, desc_estado_pago_doc";
-					$sql2.=" from   estado_pago_documento ";
-					$sql2.=" order by cod_estado_pago_doc asc ";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_estado_pago_doc=$dat2['cod_estado_pago_doc'];	
-			  		 		$desc_estado_pago_doc=$dat2['desc_estado_pago_doc'];	
-				 ?>
-                 <option value="<?php echo $cod_estado_pago_doc;?>" <?php if($_GET['cod_estado_pago_docB']==$cod_estado_pago_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago_doc);?></option>				
-				<?php		
-					}
-				?>						
-			</select></td>
-</tr>
-<tr>
-<td><strong>Tipo de Ingreso</strong></td>
-<td><select name="cod_tipo_ingresoB" id="cod_tipo_ingresoB" class="textoform" onchange="buscar()"  >
-<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql4="select cod_tipo_ingreso,nombre_tipo_ingreso from tipos_ingreso";
-					$resp4=mysql_query($sql4);
-						while($dat4=mysql_fetch_array($resp4))
-						{
-							$cod_tipo_ingreso=$dat4['cod_tipo_ingreso'];	
-			  		 		$nombre_tipo_ingreso=$dat4['nombre_tipo_ingreso'];	
-				 ?><option value="<?php echo $cod_tipo_ingreso;?>" <?php if($_GET['cod_tipo_ingresoB']==$cod_tipo_ingreso){?>selected<?php }?>><?php echo $nombre_tipo_ingreso;?></option>				
-				<?php		
-					}
-				?>						
-			</select>
-			</td>
-<td><strong>Estado de Ingreso</strong></td>
-<td><select name="cod_estado_ingresoB" id="cod_estado_ingresoB" class="textoform" onchange="buscar()"  >
-<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql4="select cod_estado_ingreso, desc_estado_ingreso from estados_ingresos_almacen";
-					$resp4=mysql_query($sql4);
-						while($dat4=mysql_fetch_array($resp4))
-						{
-							$cod_estado_ingreso=$dat4['cod_estado_ingreso'];	
-			  		 		$desc_estado_ingreso=$dat4['desc_estado_ingreso'];	
-				 ?><option value="<?php echo $cod_estado_ingreso;?>" <?php if($_GET['cod_estado_ingresoB']==$cod_estado_ingreso){?>selected<?php }?>><?php echo $desc_estado_ingreso;?></option>				
-				<?php		
-					}
-				?>						
-			</select></td>
-</tr>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">INGRESOS <?php echo strtoupper($nombre_almacen);?>
+   <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 
 
-<tr >
-     		<td>&nbsp;<b>Rango de Fecha<br/>(dd//mm/aaaa)</b>&nbsp;</td>			
-     		<td colspan="3"><strong>De&nbsp;</strong>
-                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" >
-       <strong>&nbsp;Hasta&nbsp;</strong>
-        <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform"  >
-<input type="checkbox" name="codActivoFecha" id="codActivoFecha"  onClick="buscar()" ><strong>(Chekear para buscar por fechas)</strong>
-			</td>
-    	</tr>
-</table>
 
 <div id="resultados">
 <?php 
@@ -352,27 +284,7 @@ function editar(cod_ingreso,nro_ingreso, swValFecha,swValIngreso,cod_estado_ingr
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-<h3 align="center" style="background:#FFF;font-size: 10px;color:#E78611;font-weight:bold;">Nro de Registros <?php echo $nro_filas_sql;?></h3>
-<?php		
-	if($nro_filas_sql==0){
-?>
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Ingreso</td>
-    		<td>Fecha</td>	
-            <td>Tipo de Ingreso</td>
-			<td>Proveedor</td>														
-    		<td>Almacen de Traspaso</td>
-            <td>Factura</td>	
-    		<td>Observaciones</td>	            
-			<td>Estado</td>         
-		</tr>
-		<tr><th colspan="8" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -448,42 +360,34 @@ function editar(cod_ingreso,nro_ingreso, swValFecha,swValIngreso,cod_estado_ingr
 
 
 	$sql.=" order by  i.cod_ingreso desc";
-	$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+	$sql.=" limit 50";
 	$resp = mysql_query($sql);
 	$cont=0;
 ?>
-<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgcolor="#cccccc">
-  <tr bgcolor="#FFFFFF" align="center">
-    <td colspan="18"><p align="center"> <b>
-      <?php if($pagina>1){ ?>
-      <a href="#" onClick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-      <?php }?>
-      </b> <b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b> <b>
-        <?php if($nropaginas>$pagina){ ?>
-        <a href="#" onClick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-        <?php }?>
-      </b> </p></td>
+<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgcolor="#cccccc" class="tablaReporte" style="width:100% !important;">
+  <thead>
+  <tr height="20px" align="center"  class="bg-success text-white">
+    <th>Nro Ingreso</th>
+    <th>Fecha</th>
+    <th>Tipo de Ingreso</th>
+    <th>Proveedor</th>
+    <th>Almacen de Traspaso</th>
+    <th>Factura</th>
+    <th>Plazo Pago </th>
+    <th>Monto Total</th>	
+    <th>A Cuenta</th>
+	<th>Saldo</th>
+    <th>Estado Pago</th>
+    <th>Tipo Pago</th>
+    <th>Observaciones</th>
+    <th>Estado</th>
+    <th>Ultima  Edicion</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
   </tr>
-  <tr height="20px" align="center"  class="titulo_tabla">
-    <td>Nro Ingreso</td>
-    <td>Fecha</td>
-    <td>Tipo de Ingreso</td>
-    <td>Proveedor</td>
-    <td>Almacen de Traspaso</td>
-    <td>Factura</td>
-    <td>Plazo Pago </td>
-    <td>Monto Total</td>	
-    <td>A Cuenta</td>
-	<td>Saldo</td>
-    <td>Estado Pago</td>
-    <td>Tipo Pago</td>
-    <td>Observaciones</td>
-    <td>Estado</td>
-    <td>Ultima  Edicion</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
+ </thead> 
+ <tbody>
   <?php   
 		while($dat=mysql_fetch_array($resp)){
 				
@@ -622,26 +526,133 @@ $sql3.=" from (select sdi.* from salidas s inner join salidas_detalle_ingresos s
   <?php
 		 } 
 ?>
-  <tr bgcolor="#FFFFFF" align="center">
-    <td colspan="18"><p align="center"> <b>
-      <?php if($pagina>1){ ?>
-      <a href="#" onClick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-      <?php }?>
-      </b> <b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b> <b>
-        <?php if($nropaginas>$pagina){ ?>
-        <a href="#" onClick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-        <?php }?>
-      </b> </p>
-        <p align="center"> Ir a Pagina
-            <input type="text" name="pagina" size="5">
-          <input name="button"  type="button" onClick="paginar(this.form)"  value="Go" size="8">
-      </td>
-  </tr>
+  </tbody>
 </table>
-<?php
-	}
-?>
+
 </div>
+
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table border="0" align="center">
+<tr>
+<td><strong>Nro de Ingreso</strong></td>
+<td colspan="3"><input type="text" name="nroIngresoB" id="nroIngresoB" size="10" class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr>
+<td><strong>Proveedor</strong></td>
+<td>
+ <input name="nombreProveedorB" id="nombreProveedorB" size="30" class="textoform"  onkeyup="buscar()">
+	</td>
+<td><strong>Almacen de Salida</strong></td>
+<td><input type="text" name="almacenSalidaB" id="almacenSalidaB" size="30" class="textoform" onkeyup="buscar()" ></td>
+</tr>
+
+<tr>
+<td><strong>Factura</strong></td>
+<td><input type="text" name="nrofacturaB" id="nrofacturaB" size="30" class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr>
+<td><strong>Material</strong></td>
+<td colspan="4"><input type="text" name="descCompletaMaterialB" id="descCompletaMaterialB" size="70" class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr>
+<td><strong>Tipo de Pago </strong></td>
+<td><select name="cod_tipo_pagoB" id="cod_tipo_pagoB" class="textoform" onchange="buscar()"  >
+<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql4="select cod_tipo_pago,nombre_tipo_pago from tipos_pago";
+					$resp4=mysql_query($sql4);
+						while($dat4=mysql_fetch_array($resp4))
+						{
+							$cod_tipo_pago=$dat4[0];	
+			  		 		$nombre_tipo_pago=$dat4[1];	
+				 ?><option value="<?php echo $cod_tipo_pago;?>" <?php if($_GET['cod_tipo_pagoB']==$cod_tipo_pago){?>selected<?php }?>><?php echo $nombre_tipo_pago;?></option>				
+				<?php		
+					}
+				?>						
+			</select>
+</td>
+<td><strong>Estado de Pago </strong></td>
+<td><select name="cod_estado_pago_docB" id="cod_estado_pago_docB" onchange="buscar();" class="textoform">
+				<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql2=" select cod_estado_pago_doc, desc_estado_pago_doc";
+					$sql2.=" from   estado_pago_documento ";
+					$sql2.=" order by cod_estado_pago_doc asc ";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_estado_pago_doc=$dat2['cod_estado_pago_doc'];	
+			  		 		$desc_estado_pago_doc=$dat2['desc_estado_pago_doc'];	
+				 ?>
+                 <option value="<?php echo $cod_estado_pago_doc;?>" <?php if($_GET['cod_estado_pago_docB']==$cod_estado_pago_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago_doc);?></option>				
+				<?php		
+					}
+				?>						
+			</select></td>
+</tr>
+<tr>
+<td><strong>Tipo de Ingreso</strong></td>
+<td><select name="cod_tipo_ingresoB" id="cod_tipo_ingresoB" class="textoform" onchange="buscar()"  >
+<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql4="select cod_tipo_ingreso,nombre_tipo_ingreso from tipos_ingreso";
+					$resp4=mysql_query($sql4);
+						while($dat4=mysql_fetch_array($resp4))
+						{
+							$cod_tipo_ingreso=$dat4['cod_tipo_ingreso'];	
+			  		 		$nombre_tipo_ingreso=$dat4['nombre_tipo_ingreso'];	
+				 ?><option value="<?php echo $cod_tipo_ingreso;?>" <?php if($_GET['cod_tipo_ingresoB']==$cod_tipo_ingreso){?>selected<?php }?>><?php echo $nombre_tipo_ingreso;?></option>				
+				<?php		
+					}
+				?>						
+			</select>
+			</td>
+<td><strong>Estado de Ingreso</strong></td>
+<td><select name="cod_estado_ingresoB" id="cod_estado_ingresoB" class="textoform" onchange="buscar()"  >
+<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql4="select cod_estado_ingreso, desc_estado_ingreso from estados_ingresos_almacen";
+					$resp4=mysql_query($sql4);
+						while($dat4=mysql_fetch_array($resp4))
+						{
+							$cod_estado_ingreso=$dat4['cod_estado_ingreso'];	
+			  		 		$desc_estado_ingreso=$dat4['desc_estado_ingreso'];	
+				 ?><option value="<?php echo $cod_estado_ingreso;?>" <?php if($_GET['cod_estado_ingresoB']==$cod_estado_ingreso){?>selected<?php }?>><?php echo $desc_estado_ingreso;?></option>				
+				<?php		
+					}
+				?>						
+			</select></td>
+</tr>
+
+
+<tr >
+     		<td>&nbsp;<b>Rango de Fecha<br/>(dd//mm/aaaa)</b>&nbsp;</td>			
+     		<td colspan="3"><strong>De&nbsp;</strong>
+                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" >
+       <strong>&nbsp;Hasta&nbsp;</strong>
+        <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform"  >
+<input type="checkbox" name="codActivoFecha" id="codActivoFecha"  onClick="buscar()" ><strong>(Chekear para buscar por fechas)</strong>
+			</td>
+    	</tr>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php require("cerrar_conexion.inc");
 ?>
 <br>

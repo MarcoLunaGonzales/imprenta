@@ -5,9 +5,38 @@
 <title>Hojas de Ruta</title>
 <link rel="STYLESHEET" type="text/css" href="pagina.css" />
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script type="text/javascript" src="ajax/searchAjax.js"></script>
 <script type="text/javascript">
+function objetoAjax(){
+	var xmlhttp=false;
+	try {
+		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+		try {
+		   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch (E) {
+			xmlhttp = false;
+  		}
+	}
 
+	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+		xmlhttp = new XMLHttpRequest();
+	}
+	return xmlhttp;
+}
+
+function resultados_ajax(datos){
+	divResultado = document.getElementById('resultados');
+	ajax=objetoAjax();
+	ajax.open("GET",datos);
+	ajax.onreadystatechange=function() {
+		if (ajax.readyState==4) {
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
+		}
+	}
+	ajax.send(null)
+}
 function buscar()
 {	
 	if(document.form1.codActivoFecha.checked){
@@ -63,56 +92,13 @@ function openPopup(url){
 	$cod_estado_pago_docB=$_GET['cod_estado_pago_docB'];
 
 ?>
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE HOJAS DE RUTA </h3>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE HOJAS DE RUTA 
+  <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 
-<table border="0" align="center">
-<td><strong>Nro de Hoja de Ruta</strong></td>
-<td colspan="3"><input type="text" name="nroHojaRutaB" id="nroHojaRutaB" size="10" value="<?php echo $nroHojaRutaB;?>" class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr>
-<td><strong>Nro de Cotizacion</strong></td>
-<td colspan="3"><input type="text" name="nrocotizacionB" id="nrocotizacionB" size="10" class="textoform" onkeyup="buscar()" value="<?php echo $nrocotizacionB;?>" ></td>
-</tr>
-<tr><td><strong>Clientes</strong></td>
-<td colspan="3">
- <input name="nombreClienteB" id="nombreClienteB" size="30" class="textoform" value="<?php echo $nombreClienteB; ?>" onkeyup="buscar()">
-	</td>
-	<td rowspan="2">&nbsp;</td>
-</tr>
 
-<tr>
-
-<tr class="texto">
-         <td width="90" align="left" ><strong>Estado de Pago</strong></td>
-         <td width="256" align="left"><select name="cod_estado_pago_docB" id="cod_estado_pago_docB" onchange="buscar();" class="textoform">
-				<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql2=" select cod_estado_pago_doc, desc_estado_pago_doc";
-					$sql2.=" from   estado_pago_documento ";
-					$sql2.=" order by cod_estado_pago_doc asc ";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_estado_pago_doc=$dat2['cod_estado_pago_doc'];	
-			  		 		$desc_estado_pago_doc=$dat2['desc_estado_pago_doc'];	
-				 ?>
-                 <option value="<?php echo $cod_estado_pago_doc;?>" <?php if($cod_estado_pago_docB==$cod_estado_pago_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago_doc);?></option>				
-				<?php		
-					}
-				?>						
-			</select></td>
-       </tr>       
-
-<tr >
-     		<td>&nbsp;<b>Rango de Fecha<br/>(dd/mm/aaaa)</b>&nbsp;</td>			
-     		<td><strong>De&nbsp;</strong>
-                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $fechaInicioB; ?>">
-        <strong>&nbsp;Hasta&nbsp;</strong>
-        <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $fechaFinalB; ?>" >
-<input type="checkbox" name="codActivoFecha" id="codActivoFecha" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?> onClick="buscar()" ><strong>Chekear la casilla para buscar por fechas.</strong>
-			</td>
-    	</tr>
-</table>
 
 <div id="resultados">
 <?php 
@@ -169,36 +155,7 @@ function openPopup(url){
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-<h3 align="center" style="background:#FFF;font-size: 10px;color:#E78611;font-weight:bold;">Nro de Registros <?php echo $nro_filas_sql;?></h3>
-<?php		
-	if($nro_filas_sql==0){
-?>
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Hoja Ruta</td>            
-    		<td>Fecha</td>
-            <td>Cliente</td>	
-            <!--td>Monto Bs.</td>
-			<td>Desc. Bs.</td>
-            <td>Inc. Bs.</td>
-			<td>Total Monto Bs.</td>
-            <td>A cuenta Bs.</td>
-            <td>Saldo Bs.</td>
-			<td>Monto Gastos Bs.</td-->             														    		
-			<td>Estado HR</td>      
-            <td>Estado de Pago</td>                
-			<td>Ref. Cotizacion</td>
-            <td>Notas de Remision</td>
-            <td>Facturas</td>
-            <!--td>&nbsp;</td>
-            <td>Informe</td-->         
-		</tr>
-		<tr><th colspan="8" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -255,46 +212,34 @@ function openPopup(url){
 	//Fin Busqueda/////////////////	
 	$sql.=" order by g.gestion desc, hr.nro_hoja_ruta desc";	
 	//echo $sql;
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";
 		//	echo $sql;
 		$resp = mysql_query($sql);
 		$cont=0;
 ?>	
-	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="8">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Hoja Ruta</td>            
-    		<td>Fecha</td>
-            <td>Cliente</td>	
-            <!--td>Monto Bs.</td>
-			<td>Desc. Bs.</td>
-            <td>Inc. Bs.</td>
-			<td>Total Monto Bs.</td>
-            <td>A cuenta Bs.</td>
-            <td>Saldo Bs.</td>
-			<td>Monto Gastos Bs.</td-->             														    		
-			<td>Estado HR</td>      
-            <td>Estado de Pago</td>                
-			<td>Ref. Cotizacion</td>
-            <td>Notas de Remision</td>
-            <td>Facturas</td>
-            <!--td>&nbsp;</td>
-            <td>Informe</td-->   
+	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;"> 
+			<thead>  
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>Nro Hoja Ruta</th>            
+    		<th>Fecha</th>
+            <th>Cliente</th>	
+            <!--th>Monto Bs.</th>
+			<th>Desc. Bs.</th>
+            <th>Inc. Bs.</th>
+			<th>Total Monto Bs.</th>
+            <th>A cuenta Bs.</th>
+            <th>Saldo Bs.</th>
+			<th>Monto Gastos Bs.</th-->             														    		
+			<th>Estado HR</th>      
+            <th>Estado de Pago</th>                
+			<th>Ref. Cotizacion</th>
+            <th>Notas de Remision</th>
+            <th>Facturas</th>
+            <!--th>&nbsp;</th>
+            <th>Informe</th-->   
 		</tr>
+		</thead>
+		<tbody>
 <?php   
 		while($dat=mysql_fetch_array($resp)){
 				
@@ -612,28 +557,78 @@ function openPopup(url){
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="8">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+  			</tbody>
 		</table>
 		
-<?php
-	}
-?>
 </div>	
+
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table border="0" align="center">
+<td><strong>Nro de Hoja de Ruta</strong></td>
+<td colspan="3"><input type="text" name="nroHojaRutaB" id="nroHojaRutaB" size="10" value="<?php echo $nroHojaRutaB;?>" class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr>
+<td><strong>Nro de Cotizacion</strong></td>
+<td colspan="3"><input type="text" name="nrocotizacionB" id="nrocotizacionB" size="10" class="textoform" onkeyup="buscar()" value="<?php echo $nrocotizacionB;?>" ></td>
+</tr>
+<tr><td><strong>Clientes</strong></td>
+<td colspan="3">
+ <input name="nombreClienteB" id="nombreClienteB" size="30" class="textoform" value="<?php echo $nombreClienteB; ?>" onkeyup="buscar()">
+	</td>
+	<td rowspan="2">&nbsp;</td>
+</tr>
+
+<tr>
+
+<tr class="texto">
+         <td width="90" align="left" ><strong>Estado de Pago</strong></td>
+         <td width="256" align="left"><select name="cod_estado_pago_docB" id="cod_estado_pago_docB" onchange="buscar();" class="textoform">
+				<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql2=" select cod_estado_pago_doc, desc_estado_pago_doc";
+					$sql2.=" from   estado_pago_documento ";
+					$sql2.=" order by cod_estado_pago_doc asc ";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_estado_pago_doc=$dat2['cod_estado_pago_doc'];	
+			  		 		$desc_estado_pago_doc=$dat2['desc_estado_pago_doc'];	
+				 ?>
+                 <option value="<?php echo $cod_estado_pago_doc;?>" <?php if($cod_estado_pago_docB==$cod_estado_pago_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago_doc);?></option>				
+				<?php		
+					}
+				?>						
+			</select></td>
+       </tr>       
+
+<tr >
+     		<td>&nbsp;<b>Rango de Fecha<br/>(dd/mm/aaaa)</b>&nbsp;</td>			
+     		<td><strong>De&nbsp;</strong>
+                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $fechaInicioB; ?>">
+        <strong>&nbsp;Hasta&nbsp;</strong>
+        <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $fechaFinalB; ?>" >
+<input type="checkbox" name="codActivoFecha" id="codActivoFecha" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?> onClick="buscar()" ><strong>Chekear la casilla para buscar por fechas.</strong>
+			</td>
+    	</tr>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>	
 <?php require("cerrar_conexion.inc");
 ?>
 <br>
