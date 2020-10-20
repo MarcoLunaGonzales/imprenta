@@ -10,8 +10,8 @@ if(!function_exists('register_globals')){
 }else{
 }
 
-   $con=mysql_connect("localhost","mysql_imprenta","4879531Gabriela");
-$bd=mysql_select_db("imprenta_convenze");
+$con=mysql_connect("localhost","root","4868422Marco");
+$bd=mysql_select_db("imprenta");
 
 }
 
