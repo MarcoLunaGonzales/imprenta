@@ -129,7 +129,11 @@ function eliminar(f)
 <!---Autor:Gabriela Quelali Siñani
 02 de Julio de 2008
 -->
-<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">MATERIALES</h3>
+<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">MATERIALES
+  <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" method="post" action="registrarMaterial.php">
 <?php 
 	require("conexion.inc");
@@ -140,65 +144,6 @@ function eliminar(f)
 
 ?>
 
-<table border="0" align="center">
-<tr>
-<td><strong>Grupo:</strong></td>
-<td colspan="3">
-<select name="codgrupoB" id="codgrupoB" class="textoform" onChange="listaSubGrupos(form1)"
-			>
-				<option value="0">Seleccione una opcion</option>	
-              <?php
-					$sql2="select cod_grupo, nombre_grupo from grupos where cod_estado_registro=1 order by  nombre_grupo asc";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_grupo=$dat2[0];	
-			  		 		$nombre_grupo=$dat2[1];	
-				 ?>
-				 <option value="<?php echo $cod_grupo;?>" <?php if($cod_grupo==$codgrupoB){echo "selected='selected'";}?>><?php echo $nombre_grupo;?>
-				 </option>					 
-
-              <?php		
-					}
-				?>
-            </select>
-</td>
-</tr>
-<tr>
-<td><strong>Subgrupo:</strong></td>
-<td colspan="3">
-				<div id="div_subgrupo">
-			<select name="codsubgrupoB" id="codsubgrupoB" class="textoform">	
-			<option value="0">Seleccione una opcion</option>
-				<?php if($codgrupoB<>""){?>			
-				<?php
-					$sql2=" select cod_subgrupo, nombre_subgrupo from subgrupos ";
-					$sql2.=" where cod_estado_registro=1  and cod_grupo=".$codgrupoB;
-					$sql2.= "  order by  nombre_subgrupo asc";
-
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_subgrupo=$dat2[0];	
-			  		 		$nombre_subgrupo=$dat2[1];	
-				 ?>
-				 <option value="<?php echo $cod_subgrupo;?>" <?php if($cod_subgrupo==$codsubgrupoB){echo "selected='selected'";}?>><?php echo $nombre_subgrupo;?>
-				 </option>					 				
-				<?php		
-					}
-				?>		
-				<?php }?>					
-			</select>	
-				</div>	
-				</td>
-
-</tr>
-<tr>
-<td><strong>Material:</strong></td>
-<td colspan="3"><input type="text" name="desccompletamaterialB" id="desccompletamaterialB" size="30" class="textoform" value="<?php echo $desccompletamaterialB;?>" ></td>
-<td rowspan="2"><a  onClick="buscar(form1)"><img src="images/buscar_header.jpg" border="0" alt="Buscar"></a></td>
-</tr>
-</table>
 <?php	
 	//Paginador
 	$nro_filas_show=50;	
@@ -231,30 +176,7 @@ function eliminar(f)
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Grupo</td>
-			<td>SubGrupo</td>
-			<td>Id Material ANTIGUO</td>
-			<td>Id Material ACTUAL</td>  
-    		<td>Material</td>
-			<td>Unidad</td>
-			
-			<td>Stock Minimo</td>
-			<td>Stock Maximo</td>	
-			<td>Estado</td>											
-		</tr>
-		<tr><th colspan="9" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
-	
-?>
-<h3 align="center" style="background:#F7F5F3;font-size: 10px;color: #E78611;font-weight:bold;"><?php echo "Nro de Registros :".$nro_filas_sql;?></h3>
-<?php
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -290,24 +212,27 @@ function eliminar(f)
 		}			
 
 		$sql.=" order by g.nombre_grupo, sbg.nombre_subgrupo, m.desc_completa_material asc ";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit 50";
 		
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="98%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>&nbsp;</td>
-			<td>Grupo</td>
-			<td>SubGrupo</td>
-			<!--td>Id Material ANTIGUO</td-->
-			<td>Id Material ACTUAL</td>            
-			<td>Material</td>			
-			<td>Unidad</td>		
-			<td>Stock Minimo</td>
-			<td>Stock Maximo</td>	
-			<td>Estado</td>	    																		
+	<table width="98%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>&nbsp;</th>
+			<th>Grupo</th>
+			<th>SubGrupo</th>
+			<!--th>Id Material ANTIGUO</th-->
+			<th>Id Material ACTUAL</th>            
+			<th>Material</th>			
+			<th>Unidad</th>		
+			<th>Stock Minimo</th>
+			<th>Stock Maximo</th>	
+			<th>Estado</th>	    																		
 		</tr>
+		</thead>
+		<tbody>
 
 <?php   
 	$cont=0;
@@ -400,28 +325,87 @@ function eliminar(f)
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="10">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina"  id="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(form1)">												
-				</td>
-			</tr>
-		</TABLE>
+			</tbody>
+		</table>
 					
-<?php
-	}
-?>
-		
+	<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table border="0" align="center">
+<tr>
+<td><strong>Grupo:</strong></td>
+<td colspan="3">
+<select name="codgrupoB" id="codgrupoB" class="textoform" onChange="listaSubGrupos(form1)"
+			>
+				<option value="0">Seleccione una opcion</option>	
+              <?php
+					$sql2="select cod_grupo, nombre_grupo from grupos where cod_estado_registro=1 order by  nombre_grupo asc";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_grupo=$dat2[0];	
+			  		 		$nombre_grupo=$dat2[1];	
+				 ?>
+				 <option value="<?php echo $cod_grupo;?>" <?php if($cod_grupo==$codgrupoB){echo "selected='selected'";}?>><?php echo $nombre_grupo;?>
+				 </option>					 
+
+              <?php		
+					}
+				?>
+            </select>
+</td>
+</tr>
+<tr>
+<td><strong>Subgrupo:</strong></td>
+<td colspan="3">
+				<div id="div_subgrupo">
+			<select name="codsubgrupoB" id="codsubgrupoB" class="textoform">	
+			<option value="0">Seleccione una opcion</option>
+				<?php if($codgrupoB<>""){?>			
+				<?php
+					$sql2=" select cod_subgrupo, nombre_subgrupo from subgrupos ";
+					$sql2.=" where cod_estado_registro=1  and cod_grupo=".$codgrupoB;
+					$sql2.= "  order by  nombre_subgrupo asc";
+
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_subgrupo=$dat2[0];	
+			  		 		$nombre_subgrupo=$dat2[1];	
+				 ?>
+				 <option value="<?php echo $cod_subgrupo;?>" <?php if($cod_subgrupo==$codsubgrupoB){echo "selected='selected'";}?>><?php echo $nombre_subgrupo;?>
+				 </option>					 				
+				<?php		
+					}
+				?>		
+				<?php }?>					
+			</select>	
+				</div>	
+				</td>
+
+</tr>
+<tr>
+<td><strong>Material:</strong></td>
+<td colspan="3"><input type="text" name="desccompletamaterialB" id="desccompletamaterialB" size="30" class="textoform" value="<?php echo $desccompletamaterialB;?>" ></td>
+<td rowspan="2"><a  onClick="buscar(form1)" class="btn btn-warning"><i class="fa fa-search"></i></a></td>
+</tr>
+</table>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>		
 <?php require("cerrar_conexion.inc");
 ?>
 <br>

@@ -1,15 +1,5 @@
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-<title>SISTEMA DE GESTION</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-
-</style>
-</head>
-<body style="margin: 0pt; padding: 0pt; background: rgb(199, 200, 200) url(images/tall.jpg) repeat-x scroll left bottom; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
-<div align="center">
 <?php
-require("conexion_inicio.inc");
+	require("conexion_inicio.inc");
 	$sql=" select  nombres_usuario, ap_paterno_usuario, ap_materno_usuario,cod_perfil  from usuarios ";
 	$sql.=" where cod_usuario='".$_COOKIE['usuario_global']."'";
 	$resp=mysql_query($sql);
@@ -22,29 +12,112 @@ require("conexion_inicio.inc");
 
 		
 	}
-?>	
-<table width="980" border="0" cellpadding="0" cellspacing="0" bgcolor="#F3F9FC" id="Table_01" >
-	<tbody>
-	<tr>
-		<td colspan="3">
-			<img src="images/banner1.jpg"  width="980" height="92"alt="" ></td>
-	</tr>
-	<tr>
-		<td colspan="3"><img src="images/barraheader.jpg" alt="" >
-		<div style="position: absolute; top:90px; left: 400px; margin: 10px; width: 1024px;">
-  <span class="cabecera"><?php echo "Usuario: ".$nombres_usuario." ".$ap_paterno_usuario; ?></span></div>
+		
+	$sql=" select  nombre_modulo, ubicacion_fisica  from modulos ";
+			$sql.=" where cod_modulo=".$_GET['cod_modulo']."";
+			$resp = mysql_query($sql);
 
-</td>
-	</tr>
-	<tr valign="top"  height="200" align="center">
-		<td width="400">&nbsp;</td>	
-		<td width="280"   align="center">
-		<div id="member">
-		  <form method="post">
-	 
-		  
+			while($dat=mysql_fetch_array($resp)){																 		
+				$nombre_modulo=$dat['nombre_modulo'];
+	
+			}
+		
+	
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta content="text/html; charset=ISO-8859-1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="images/icono_2.jpg"> 
+  <title>Imprenta</title>
 
-			<?php
+  <!-- Custom fonts for this template-->
+  <link href="modulos/assets/vendor/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="modulos/assets/vendor/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="modules.php">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-print"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">IMPRENTA <sup>2</sup></div>
+      </a>
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        SELECCIONE UN MODULO
+      </div>
+
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+         <ul class="navbar-nav ml-auto">
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?="".$nombres_usuario." ".$ap_paterno_usuario?></span>
+                <img class="img-profile rounded-circle" src="images/perfil.png">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="salirSistema.php">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Cerrar Sesión
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"><?="Bienvenido al Sistema - ".$nombres_usuario." ".$ap_paterno_usuario?></h1>
+          </div>
+
+          <div class="row">
+           <?php
 			
 			$sql=" select cod_modulo, nombre_modulo, ubicacion_fisica  from modulos ";
 			$sql.=" where cod_modulo in(select cod_modulo from usuarios_modulos where cod_usuario=".$_COOKIE['usuario_global'].")";
@@ -56,30 +129,77 @@ require("conexion_inicio.inc");
 				$nombre_modulo=$dat[1];
 				$ubicacion_fisica=$dat[2];	
 
+				$ubicacion_fisica=str_replace(".php","",$ubicacion_fisica);
+				$carpeta=explode("/",$ubicacion_fisica)[0];
+				$archivo=explode("/",$ubicacion_fisica)[1];
+        
+        if($cod_modulo!=2){
+          $url_mod="modulos/index.php?cod_modulo=$cod_modulo";
+        }else{
+          $url_mod="almacen.php?cod_modulo=$cod_modulo";
+        }
 			?>
-				
-				<a href="<?php echo $ubicacion_fisica."?cod_modulo=".$cod_modulo;?>" ><?php echo $nombre_modulo;?></a>
-				 				
+            <div class="col-xl-3 col-md-6 mb-4">
+             <a href="<?=$url_mod?>" class="nav-link">	
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><?php echo $nombre_modulo;?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </a>
+            </div>
+            
 			<?php
 			}
 		
-		?>	
-		<a href="salirSistema.php">Salir del Sistema</a>	  
- 	
-		    </form>
-	</div>
-	</td>
-	<td width="300">&nbsp;</td>	
-	</tr>	
-	<tr>
-	<td colspan="3"><img src="images/index_05.jpg" alt="" ></td>
-	<td colspan="3"></td>
-	</tr>
-		<tr>
-	<td colspan="3"><img src="images/barraheader.jpg" alt="" ></td>
-	</tr>
-</tbody>
-</table>
-</div>
+		?> 
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Imprenta 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="modulos/assets/vendor/vendor/jquery/jquery.min.js"></script>
+  <script src="modulos/assets/vendor/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="modulos/assets/vendor/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="modulos/assets/vendor/js/sb-admin-2.min.js"></script>
+
 </body>
+
 </html>

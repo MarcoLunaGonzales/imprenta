@@ -34,7 +34,9 @@ function resultados_ajax(datos){
 	ajax.open("GET", datos);
 	ajax.onreadystatechange=function() {
 		if (ajax.readyState==4) {
-			divResultado.innerHTML = ajax.responseText
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
 		}
 	}
 	ajax.send(null)
@@ -79,13 +81,214 @@ function paginar1(f,pagina)
 02 de Julio de 2008
 -->
 
-<h3 align="center" style="background:#F7F5F3;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE CLIENTES</h3>
+<h3 align="center" style="background:#F7F5F3;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE CLIENTES
+  <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" id="form1" method="post" >
 <?php
 
 ?>
 
- <table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
+ 
+
+<br/>
+ <div id="resultados" align="center">   
+<?php
+	$nro_filas_show=100;	
+	$pagina=$_GET['pagina'];
+	//echo $pagina;
+	if ($pagina==""){
+		$pagina = 1;
+		$fila_inicio=0;
+		$fila_final=$nro_filas_show;
+	}else{
+		$fila_inicio=(($pagina*$nro_filas_show)-$nro_filas_show);
+		$fila_final=($fila_inicio+$nro_filas_show);
+	}	
+	
+	$sql=" select count(*)  ";
+	$sql.=" from clientes cli, ciudades ciu, clientes_categorias cat, estados_referenciales er ";
+	$sql.=" where cli.cod_categoria=cat.cod_categoria";
+	$sql.=" and  cli.cod_ciudad=ciu.cod_ciudad";
+	$sql.=" and cli.cod_estado_registro=er.cod_estado_registro ";
+	$sql.=" order by cli.nombre_cliente asc ";
+
+	/*$sql.=" from gastos g, estados_referenciales er ";
+	$sql.=" where g.cod_estado_registro=er.cod_estado_registro ";	
+	if($_GET['cod_estado_registro']<>0){
+			$sql.=" and g.cod_estado_registro=".$_GET['cod_estado_registro'];
+	}
+	if($_GET['descGastoB']<>""){
+			$sql.=" and g.desc_gasto like '%".$_GET['descGastoB']."%'";
+	}	*/
+	$resp = mysql_query($sql);
+	while($dat=mysql_fetch_array($resp)){
+		$nro_filas_sql=$dat[0];
+	}
+		//Calculo de Nro de Paginas
+			$nropaginas=1;
+			if($nro_filas_sql<$nro_filas_show){
+				$nropaginas=1;
+			}else{
+				$nropag_aux=round($nro_filas_sql/$nro_filas_show);
+
+				if($nro_filas_sql>($nropag_aux*$nro_filas_show)){
+					$nropaginas=$nropag_aux+1;
+				}else{
+					$nropaginas=$nropag_aux;
+				}
+			}					
+		//Fin de calculo de paginas
+		$sql=" select cli.cod_cliente, cli.nombre_cliente, cli.cod_categoria, cat.desc_categoria, cli.cod_ciudad, ";
+		$sql.=" ciu.desc_ciudad, cli.direccion_cliente, cli.telefono_cliente,";
+		$sql.=" cli.celular_cliente, cli.fax_cliente, cli.email_cliente, cli.obs_cliente, cli.cod_usuario_registro,";
+		$sql.=" cli.fecha_registro, cli.cod_usuario_modifica, cli.fecha_modifica, cli.cod_estado_registro, er.nombre_estado_registro";
+		$sql.=" from clientes cli, ciudades ciu, clientes_categorias cat, estados_referenciales er";
+		$sql.=" where cli.cod_categoria=cat.cod_categoria";
+		$sql.=" and  cli.cod_ciudad=ciu.cod_ciudad";
+		$sql.=" and cli.cod_estado_registro=er.cod_estado_registro ";
+		
+	/*if($_GET['cod_estado_registro']<>0){
+			$sql.=" and g.cod_estado_registro=".$_GET['cod_estado_registro'];
+	}
+		if($_GET['descGastoB']<>""){
+			$sql.=" and g.desc_gasto like '%".$_GET['descGastoB']."%'";
+		}		*/	
+		$sql.=" order by cli.nombre_cliente asc";
+		$sql.=" limit 50";
+		$resp = mysql_query($sql);
+
+?>	
+
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">   
+	<thead>		
+	    <tr height="20px" align="center"  class="bg-success text-white">
+            <th>&nbsp;</th>
+            <th>Cliente</th>
+            <th>Categoria</th>	
+			<th>Ciudad</th>				
+    		<th>Direcci&oacute;n</th>
+            <th>Celular</th>
+			<th>Telefono</th>	
+            <th>Fax</th>
+            <th>Email</th>
+            <th>Observaciones</th>	
+            <th>Estado</th>																		
+		</tr>
+	</thead>
+    <tbody>
+<?php   
+	$cont=0;
+		while($dat=mysql_fetch_array($resp)){
+			
+				$cod_cliente=$dat['cod_cliente'];
+				$nombre_cliente=$dat['nombre_cliente'];
+				$cod_categoria=$dat['cod_categoria'];
+				$desc_categoria=$dat['desc_categoria'];
+				$cod_ciudad=$dat['cod_ciudad'];
+				$desc_ciudad=$dat['desc_ciudad'];
+				$direccion_cliente=$dat['direccion_cliente'];
+				$telefono_cliente=$dat['telefono_cliente'];
+				$celular_cliente=$dat['celular_cliente'];
+				$fax_cliente=$dat['fax_cliente'];
+				$email_cliente=$dat['email_cliente'];
+				$obs_cliente=$dat['obs_cliente'];
+				$cod_usuario_registro=$dat['cod_usuario_registro'];
+				$fecha_registro=$dat['fecha_registro'];
+				$cod_usuario_modifica=$dat['cod_usuario_modifica'];
+				$fecha_modifica=$dat['fecha_modifica'];
+				$cod_estado_registro=$dat['cod_estado_registro'];
+				$nombre_estado_registro=$dat['nombre_estado_registro'];
+		
+				///Usuario de Registro//////////
+				if($cod_usuario_registro<>""){
+					$sqlAux=" select nombres_usuario, ap_paterno_usuario, ap_materno_usuario ";
+					$sqlAux.=" from usuarios ";
+					$sqlAux.=" where cod_usuario=".$cod_usuario_registro;
+					$respAux = mysql_query($sqlAux);
+					$nombres_usuario_registro="";
+					$ap_paterno_usuario_registro="";
+					$ap_materno_usuario_registro="";						
+					while($datAux=mysql_fetch_array($respAux)){
+						
+						$nombres_usuario_registro=$datAux['nombres_usuario'];
+						$ap_paterno_usuario_registro=$datAux['ap_paterno_usuario'];
+						$ap_materno_usuario_registro=$datAux['ap_materno_usuario'];						
+					}
+				}
+				////////////////////////////////	
+				///Usuario de Modifica//////////
+				if($cod_usuario_modifica<>""){
+					$sqlAux=" select nombres_usuario, ap_paterno_usuario, ap_materno_usuario ";
+					$sqlAux.=" from usuarios ";
+					$sqlAux.=" where cod_usuario=".$cod_usuario_modifica;
+					$respAux = mysql_query($sqlAux);
+					$nombres_usuario_modifica="";
+					$ap_paterno_usuario_modifica="";
+					$ap_materno_usuario_modifica="";						
+					while($datAux=mysql_fetch_array($respAux)){
+						
+						$nombres_usuario_modifica=$datAux['nombres_usuario'];
+						$ap_paterno_usuario_modifica=$datAux['ap_paterno_usuario'];
+						$ap_materno_usuario_modifica=$datAux['ap_materno_usuario'];						
+					}
+				}
+				////////////////////////////////				
+				$cont=$cont+1;
+				
+?> 
+		<tr bgcolor="#FFFFFF">	
+    		<td align="left"><?php echo $cont;?></td>
+            <td align="left"><?php echo $nombre_cliente;?></td>
+    		<td><?php echo $desc_categoria;?></td>
+    		<td><?php echo $desc_ciudad; ?></td>
+            <td><?php echo $direccion_cliente; ?></td>
+            <td><?php echo $celular_cliente; ?></td>
+            <td><?php echo $telefono_cliente; ?></td>
+            <td><?php echo $fax_cliente; ?></td>
+            <td><?php echo $email_cliente; ?></td>
+            <td><?php echo $obs_cliente; ?></td>
+            <td><?php echo $nombre_estado_registro; ?></td>
+			<!--td>
+			<?php
+				if($fecha_registro<>""){ 
+					echo strftime("%d/%m/%Y",strtotime($fecha_registro))." ". $nombres_usuario_registro[0].$ap_paterno_usuario_registro[0].$ap_materno_usuario_registro[0]; 
+				}
+			?>
+            </td>
+   			<td><?php 
+				if($fecha_modifica<>""){
+				echo strftime("%d/%m/%Y",strtotime($fecha_modifica))." ". $nombres_usuario_modifica[0].$ap_paterno_usuario_modifica[0].$ap_materno_usuario_modifica[0];
+				}
+				 ?></td>
+
+
+					
+   	  </tr-->
+<?php
+		 } 
+?>		
+  			</tbody>	
+  </table>
+		</div>			
+
+</div>	
+
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr >
           <td width="122" align="right" >TODOS</td>
           <td width="20"><label>
@@ -182,244 +385,13 @@ function paginar1(f,pagina)
             </td>
           </tr>                
     </table>
-
-<br/>
- <div id="resultados" align="center">   
-<?php
-	$nro_filas_show=100;	
-	$pagina=$_GET['pagina'];
-	//echo $pagina;
-	if ($pagina==""){
-		$pagina = 1;
-		$fila_inicio=0;
-		$fila_final=$nro_filas_show;
-	}else{
-		$fila_inicio=(($pagina*$nro_filas_show)-$nro_filas_show);
-		$fila_final=($fila_inicio+$nro_filas_show);
-	}	
-	
-	$sql=" select count(*)  ";
-	$sql.=" from clientes cli, ciudades ciu, clientes_categorias cat, estados_referenciales er ";
-	$sql.=" where cli.cod_categoria=cat.cod_categoria";
-	$sql.=" and  cli.cod_ciudad=ciu.cod_ciudad";
-	$sql.=" and cli.cod_estado_registro=er.cod_estado_registro ";
-	$sql.=" order by cli.nombre_cliente asc ";
-
-	/*$sql.=" from gastos g, estados_referenciales er ";
-	$sql.=" where g.cod_estado_registro=er.cod_estado_registro ";	
-	if($_GET['cod_estado_registro']<>0){
-			$sql.=" and g.cod_estado_registro=".$_GET['cod_estado_registro'];
-	}
-	if($_GET['descGastoB']<>""){
-			$sql.=" and g.desc_gasto like '%".$_GET['descGastoB']."%'";
-	}	*/
-	$resp = mysql_query($sql);
-	while($dat=mysql_fetch_array($resp)){
-		$nro_filas_sql=$dat[0];
-	}
-?>
-	<div id="nroRows" align="center" class="textoform"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Cliente</td>
-            <td>Categoria</td>	
-			<td>Ciudad</td>				
-    		<td>Direcci&oacute;n</td>
-            <td>Celular</td>
-			<td>Telefono</td>	
-            <td>Fax</td>
-            <td>Email</td>
-            <td>Observaciones</td>	
-            <td>Estado</td>	
-																			
-		</tr>
-		<tr><th colspan="10" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
-		//Calculo de Nro de Paginas
-			$nropaginas=1;
-			if($nro_filas_sql<$nro_filas_show){
-				$nropaginas=1;
-			}else{
-				$nropag_aux=round($nro_filas_sql/$nro_filas_show);
-
-				if($nro_filas_sql>($nropag_aux*$nro_filas_show)){
-					$nropaginas=$nropag_aux+1;
-				}else{
-					$nropaginas=$nropag_aux;
-				}
-			}					
-		//Fin de calculo de paginas
-		$sql=" select cli.cod_cliente, cli.nombre_cliente, cli.cod_categoria, cat.desc_categoria, cli.cod_ciudad, ";
-		$sql.=" ciu.desc_ciudad, cli.direccion_cliente, cli.telefono_cliente,";
-		$sql.=" cli.celular_cliente, cli.fax_cliente, cli.email_cliente, cli.obs_cliente, cli.cod_usuario_registro,";
-		$sql.=" cli.fecha_registro, cli.cod_usuario_modifica, cli.fecha_modifica, cli.cod_estado_registro, er.nombre_estado_registro";
-		$sql.=" from clientes cli, ciudades ciu, clientes_categorias cat, estados_referenciales er";
-		$sql.=" where cli.cod_categoria=cat.cod_categoria";
-		$sql.=" and  cli.cod_ciudad=ciu.cod_ciudad";
-		$sql.=" and cli.cod_estado_registro=er.cod_estado_registro ";
-		
-	/*if($_GET['cod_estado_registro']<>0){
-			$sql.=" and g.cod_estado_registro=".$_GET['cod_estado_registro'];
-	}
-		if($_GET['descGastoB']<>""){
-			$sql.=" and g.desc_gasto like '%".$_GET['descGastoB']."%'";
-		}		*/	
-		$sql.=" order by cli.nombre_cliente asc";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
-		$resp = mysql_query($sql);
-
-?>	
-
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="11">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>     
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>&nbsp;</td>
-            <td>Cliente</td>
-            <td>Categoria</td>	
-			<td>Ciudad</td>				
-    		<td>Direcci&oacute;n</td>
-            <td>Celular</td>
-			<td>Telefono</td>	
-            <td>Fax</td>
-            <td>Email</td>
-            <td>Observaciones</td>	
-            <td>Estado</td>																		
-		</tr>
-
-<?php   
-	$cont=0;
-		while($dat=mysql_fetch_array($resp)){
-			
-				$cod_cliente=$dat['cod_cliente'];
-				$nombre_cliente=$dat['nombre_cliente'];
-				$cod_categoria=$dat['cod_categoria'];
-				$desc_categoria=$dat['desc_categoria'];
-				$cod_ciudad=$dat['cod_ciudad'];
-				$desc_ciudad=$dat['desc_ciudad'];
-				$direccion_cliente=$dat['direccion_cliente'];
-				$telefono_cliente=$dat['telefono_cliente'];
-				$celular_cliente=$dat['celular_cliente'];
-				$fax_cliente=$dat['fax_cliente'];
-				$email_cliente=$dat['email_cliente'];
-				$obs_cliente=$dat['obs_cliente'];
-				$cod_usuario_registro=$dat['cod_usuario_registro'];
-				$fecha_registro=$dat['fecha_registro'];
-				$cod_usuario_modifica=$dat['cod_usuario_modifica'];
-				$fecha_modifica=$dat['fecha_modifica'];
-				$cod_estado_registro=$dat['cod_estado_registro'];
-				$nombre_estado_registro=$dat['nombre_estado_registro'];
-		
-				///Usuario de Registro//////////
-				if($cod_usuario_registro<>""){
-					$sqlAux=" select nombres_usuario, ap_paterno_usuario, ap_materno_usuario ";
-					$sqlAux.=" from usuarios ";
-					$sqlAux.=" where cod_usuario=".$cod_usuario_registro;
-					$respAux = mysql_query($sqlAux);
-					$nombres_usuario_registro="";
-					$ap_paterno_usuario_registro="";
-					$ap_materno_usuario_registro="";						
-					while($datAux=mysql_fetch_array($respAux)){
-						
-						$nombres_usuario_registro=$datAux['nombres_usuario'];
-						$ap_paterno_usuario_registro=$datAux['ap_paterno_usuario'];
-						$ap_materno_usuario_registro=$datAux['ap_materno_usuario'];						
-					}
-				}
-				////////////////////////////////	
-				///Usuario de Modifica//////////
-				if($cod_usuario_modifica<>""){
-					$sqlAux=" select nombres_usuario, ap_paterno_usuario, ap_materno_usuario ";
-					$sqlAux.=" from usuarios ";
-					$sqlAux.=" where cod_usuario=".$cod_usuario_modifica;
-					$respAux = mysql_query($sqlAux);
-					$nombres_usuario_modifica="";
-					$ap_paterno_usuario_modifica="";
-					$ap_materno_usuario_modifica="";						
-					while($datAux=mysql_fetch_array($respAux)){
-						
-						$nombres_usuario_modifica=$datAux['nombres_usuario'];
-						$ap_paterno_usuario_modifica=$datAux['ap_paterno_usuario'];
-						$ap_materno_usuario_modifica=$datAux['ap_materno_usuario'];						
-					}
-				}
-				////////////////////////////////				
-				$cont=$cont+1;
-				
-?> 
-		<tr bgcolor="#FFFFFF">	
-    		<td align="left"><?php echo $cont;?></td>
-            <td align="left"><?php echo $nombre_cliente;?></td>
-    		<td><?php echo $desc_categoria;?></td>
-    		<td><?php echo $desc_ciudad; ?></td>
-            <td><?php echo $direccion_cliente; ?></td>
-            <td><?php echo $celular_cliente; ?></td>
-            <td><?php echo $telefono_cliente; ?></td>
-            <td><?php echo $fax_cliente; ?></td>
-            <td><?php echo $email_cliente; ?></td>
-            <td><?php echo $obs_cliente; ?></td>
-            <td><?php echo $nombre_estado_registro; ?></td>
-			<!--td>
-			<?php
-				if($fecha_registro<>""){ 
-					echo strftime("%d/%m/%Y",strtotime($fecha_registro))." ". $nombres_usuario_registro[0].$ap_paterno_usuario_registro[0].$ap_materno_usuario_registro[0]; 
-				}
-			?>
-            </td>
-   			<td><?php 
-				if($fecha_modifica<>""){
-				echo strftime("%d/%m/%Y",strtotime($fecha_modifica))." ". $nombres_usuario_modifica[0].$ap_paterno_usuario_modifica[0].$ap_materno_usuario_modifica[0];
-				}
-				 ?></td>
-
-
-					
-   	  </tr-->
-<?php
-		 } 
-?>		
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="11">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>	
-  </table>
-		</div>			
-<?php
-	}
-?>
-</div>	
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php require("cerrar_conexion.inc");
 ?>
 

@@ -79,33 +79,7 @@ require("conexion.inc");
 	while($dat_aux=mysql_fetch_array($resp)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-	<div id="nroRows" align="center" class="textoform"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Nro Orden Trabajo</td>
-		  <td>Fecha de Orden Trabajo</td>
-            <td>Numero</td>
-            <td>Cliente</td>
-            <td>Monto</td>
-            <td>Tipo de Pago</td>					
-			<td>Detalle</td>
-            <td>Observacion</td>
-			<td>Estado Actual</td>
-            <td>Estado de Pago</td>	
-			<td>Fecha de Registro</td>
-			<td>Fecha de Ultima Edicion</td>
-            <td>&nbsp;</td>   																													            
-		</tr>
-		<tr><th colspan="13" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -158,49 +132,36 @@ require("conexion.inc");
 		}
 	}
 	$sql.=" order by  ot.cod_orden_trabajo desc ";
-	$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+	//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 	$resp = mysql_query($sql);
 
 ?>	
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="18">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-</td>
-			</tr>
-
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Nro O.T.</td>          
-			<td>Fecha O.T.</td>            
-            <td>Cliente</td>
-			<td>Tipo de Pago</td>
-            <td>Monto</td>
-            <td>Inc</td>
-            <td>Desc</td> 
-            <td>Tot. Monto</td>            
-            <td>A cuenta</td>	
-            <td>Saldo</td>
-            <td>Gastos</td>					
-			<td>Estado Actual</td>
-            <td>Estado de Pago</td>	
-            <td>Pagos</td>
-            <td>Facturas</td>
-    	    <td>&nbsp;</td> 
-            <td>&nbsp;</td> 
-            <td>&nbsp;</td> 
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+       <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+            <th>Nro O.T.</th>          
+			<th>Fecha O.T.</th>            
+            <th>Cliente</th>
+			<th>Tipo de Pago</th>
+            <th>Monto</th>
+            <th>Inc</th>
+            <th>Desc</th> 
+            <th>Tot. Monto</th>            
+            <th>A cuenta</th>	
+            <th>Saldo</th>
+            <th>Gastos</th>					
+			<th>Estado Actual</th>
+            <th>Estado de Pago</th>	
+            <th>Pagos</th>
+            <th>Facturas</th>
+    	    <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
          
                      	            																	
 		</tr>
-
+		</thead>
+        <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){
@@ -432,27 +393,10 @@ require("conexion.inc");
 		 } 
 ?>			
 
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="18">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+	   </tbody>
 		</table>
 		
-<?php
-	}
-?>
+
 
 </body>
 </html>

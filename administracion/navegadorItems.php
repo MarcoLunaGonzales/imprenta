@@ -110,19 +110,7 @@ function eliminar(f)
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-	if($nro_filas_sql==0){
-?>
-	<table width="50%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Item</td>
-    		<td>Estado de Registro</td>
-			<td>Componente Item</td>											
-		</tr>
-		<tr><th colspan="11" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -140,18 +128,20 @@ function eliminar(f)
 		$sql=" select cod_item, desc_item, cod_estado_registro  ";
 		$sql.=" from items ";
 		$sql.=" order by desc_item asc  ";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="50%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>&nbsp;</td>
-    		<td>Item</td>
-    		<td>Estado de Registro</td>
-			<td>Componente Item</td>																			
+	<table width="50%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>&nbsp;</th>
+    		<th>Item</th>
+    		<th>Estado de Registro</th>
+			<th>Componente Item</th>																			
 		</tr>
-
+		</thead>
+       <tbody>
 <?php   
 		while($dat=mysql_fetch_array($resp)){	
 		
@@ -179,28 +169,10 @@ function eliminar(f)
     	 </tr>
 <?php
 		 } 
-?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="13">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">													
-				</td>
-			</tr>
-		</TABLE>
+?>			</tbody>
+		</table>
 		</div>			
-<?php
-	}
-?>
+
 		
 <?php require("cerrar_conexion.inc");
 ?>

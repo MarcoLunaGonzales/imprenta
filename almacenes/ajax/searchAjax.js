@@ -25,7 +25,9 @@ function resultados_ajax(datos){
 	ajax.open("GET",datos);
 	ajax.onreadystatechange=function() {
 		if (ajax.readyState==4) {
-			divResultado.innerHTML = ajax.responseText
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
 		}
 	}
 	ajax.send(null)

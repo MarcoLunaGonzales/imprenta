@@ -18,14 +18,14 @@ function paginar1(f,pagina)
 
 		f.pagina.value=pagina*1;
 var param="?descBancoB="+f.descBancoB.value;
-	param+="&pagina="+f.pagina.value;
+	param+="&pagina=1";
 		location.href='navegadorBancos.php'+param;	
 }
 
 function buscar(f){
 
 var param="?descBancoB="+f.descBancoB.value;
-	param+="&pagina="+f.pagina.value;
+	param+="&pagina=1";
 		location.href='navegadorBancos.php'+param;
 
 }
@@ -93,7 +93,11 @@ function eliminar(f)
 <!---Autor:Gabriela Quelali Siñani
 02 de Julio de 2008
 -->
-<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">BANCOS </h3>
+<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">BANCOS 
+  <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" method="post" action="registrarBanco.php">
 <?php 
 	require("conexion.inc");
@@ -102,13 +106,7 @@ function eliminar(f)
 
 ?>
 
-<table border="0" align="center">
-<tr>
-<td><strong>Banco</strong></td>
-<td colspan="3"><input type="text" name="descBancoB" id="descBancoB" size="30" class="textoform" value="<?php echo $descBancoB;?>" ></td>
-<td rowspan="2"><a  onClick="buscar(form1)"><img src="images/buscar_header.jpg" border="0" alt="Buscar"></a></td>
-</tr>
-</table>
+
 
 
 
@@ -136,20 +134,7 @@ function eliminar(f)
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Banco</td>		
-    		<td>Estado</td>			
-    		<td>Registro</td>
-			<td>Ultima Edici&oacute;n</td>											
-		</tr>
-		<tr><th colspan="4" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -172,19 +157,21 @@ function eliminar(f)
 		$sql_aux.=" where desc_banco like '%".$descBancoB."%'";
 	}		
 		$sql.=" order by desc_banco asc ";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>&nbsp;</td>
-    		<td>Banco</td>			
-    		<td>Estado</td>			
-    		<td>Registro</td>
-			<td>Ultima Edici&oacute;n</td>																		
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>&nbsp;</th>
+    		<th>Banco</th>			
+    		<th>Estado</th>			
+    		<th>Registro</th>
+			<th>Ultima Edici&oacute;n</th>																		
 		</tr>
-
+		</thead>
+      <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){	
@@ -251,28 +238,34 @@ function eliminar(f)
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="13">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina"  id="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">												
-				</td>
-			</tr>
-  </TABLE>
+  		</tbody>
+  </table>
 		</div>			
-<?php
-	}
-?>
-		
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table border="0" align="center">
+<tr>
+<td><strong>Banco</strong></td>
+<td colspan="3"><input type="text" name="descBancoB" id="descBancoB" size="30" class="textoform" value="<?php echo $descBancoB;?>" ></td>
+<td rowspan="2"><a  onClick="buscar(form1)" class="btn btn-warning"><i class="fa fa-search"></i></a></td>
+</tr>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>		
 <?php require("cerrar_conexion.inc");
 ?>
 <br>

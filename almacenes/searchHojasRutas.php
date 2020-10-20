@@ -76,36 +76,7 @@ $cod_estado_pago_docB=$_GET['cod_estado_pago_docB'];
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-<h3 align="center" style="background:#FFF;font-size: 10px;color:#E78611;font-weight:bold;">Nro de Registros <?php echo $nro_filas_sql;?></h3>
-<?php		
-	if($nro_filas_sql==0){
-?>
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Hoja Ruta</td>            
-    		<td>Fecha</td>
-            <td>Cliente</td>	
-            <!--td>Monto Bs.</td>
-			<td>Desc. Bs.</td>
-            <td>Inc. Bs.</td>
-			<td>Total Monto Bs.</td>
-            <td>A cuenta Bs.</td>
-            <td>Saldo Bs.</td>
-			<td>Monto Gastos Bs.</td-->             														    		
-			<td>Estado HR</td>      
-            <td>Estado de Pago</td>                
-			<td>Ref. Cotizacion</td>
-            <td>Notas de Remision</td>
-            <td>Facturas</td>
-            <!--td>&nbsp;</td>
-            <td>Informe</td-->         
-		</tr>
-		<tr><th colspan="8" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -162,46 +133,34 @@ $cod_estado_pago_docB=$_GET['cod_estado_pago_docB'];
 	//Fin Busqueda/////////////////	
 	$sql.=" order by hr.cod_hoja_ruta desc";	
 	//echo $sql;
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 		//	echo $sql;
 		$resp = mysql_query($sql);
 		$cont=0;
 ?>	
-	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="8">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Hoja Ruta</td>            
-    		<td>Fecha</td>
-            <td>Cliente</td>	
-            <!--td>Monto Bs.</td>
-			<td>Desc. Bs.</td>
-            <td>Inc. Bs.</td>
-			<td>Total Monto Bs.</td>
-            <td>A cuenta Bs.</td>
-            <td>Saldo Bs.</td>
-			<td>Monto Gastos Bs.</td-->             														    		
-			<td>Estado HR</td>      
-            <td>Estado de Pago</td>                
-			<td>Ref. Cotizacion</td>
-            <td>Notas de Remision</td>
-            <td>Facturas</td>
-            <!--td>&nbsp;</td>
-            <td>Informe</td-->   
+	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+        <thead>    
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>Nro Hoja Ruta</th>            
+    		<th>Fecha</th>
+            <th>Cliente</th>	
+            <!--th>Monto Bs.</th>
+			<th>Desc. Bs.</th>
+            <th>Inc. Bs.</th>
+			<th>Total Monto Bs.</th>
+            <th>A cuenta Bs.</th>
+            <th>Saldo Bs.</th>
+			<th>Monto Gastos Bs.</th-->             														    		
+			<th>Estado HR</th>      
+            <th>Estado de Pago</th>                
+			<th>Ref. Cotizacion</th>
+            <th>Notas de Remision</th>
+            <th>Facturas</th>
+            <!--th>&nbsp;</th>
+            <th>Informe</th-->   
 		</tr>
+		</thead>
+		<tbody>
 <?php   
 		while($dat=mysql_fetch_array($resp)){
 				
@@ -519,26 +478,8 @@ $cod_estado_pago_docB=$_GET['cod_estado_pago_docB'];
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="8">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+          </tbody>
 		</table>
 		
-<?php
-	}
-?>
 </body>
 </html>

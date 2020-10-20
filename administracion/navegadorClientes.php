@@ -26,14 +26,16 @@ function buscar()
 {	
 		var param="?";
 		param+='clienteContactoB='+document.form1.clienteContactoB.value;
-		param+='&nro_filas_show='+document.form1.nro_filas_show.value;	
+		param+='&nro_filas_show=1';	
 		
 		divResultado = document.getElementById('resultados');
 		ajax=objetoAjax();
 			ajax.open("GET",'searchClientes.php'+param);
 			ajax.onreadystatechange=function() {
 				if (ajax.readyState==4) {
-					divResultado.innerHTML = ajax.responseText
+					divResultado.innerHTML = ajax.responseText;
+					cargarClasesFrame();	
+			        agregarTablaReporteClase();
 				}
 			}
 				ajax.send(null)	
@@ -119,7 +121,11 @@ function editar(cliente){
 <!---Autor:Gabriela Quelali Siñani
 02 de Julio de 2008
 -->
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE CLIENTES</h3>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE CLIENTES
+   <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" id="form1" method="post" >
 <?php 
 	require("conexion.inc");
@@ -127,30 +133,7 @@ function editar(cliente){
 
 ?>
 
-<table border="0" align="center">
-<tr>
-<td><strong>Buscar por Cliente o Contacto</strong></td>
-<td ><input type="text" name="clienteContactoB" id="clienteContactoB" size="60" class="textoform" value="<?php echo $clienteContactoB;?>" onkeyup="buscar()" ></td>
-</tr>
-</table>
 
-<table border="0" align="center" width="89%">
-<tr><td align="right">
-<div align="right"><a href="registrarCliente.php"><img src="img/clientes_nuevo.gif" border="0" width="25" height="25">[Click Nuevo Cliente]</a></div>
-</td>
-</tr>
-</table>
-
-<div align="center" class="text">Nro de Registros Mostrados por Pagina
-	<select name="nro_filas_show" id="nro_filas_show" class="text" onchange="paginar1(this.form,1)" >
-		<option value="20" <?php if($_GET['nro_filas_show']==20){ ?> selected="true"<?php }?> >20</option>
-	    <option value="50" <?php if($_GET['nro_filas_show']==50){ ?> selected="true"<?php }?> >50</option>
-    	<option value="100" <?php if($_GET['nro_filas_show']==100){ ?> selected="true"<?php }?> >100</option>
-	    <option value="200" <?php if($_GET['nro_filas_show']==200){ ?> selected="true"<?php }?> >200</option>
-    	<option value="300"<?php if($_GET['nro_filas_show']==300){ ?> selected="true"<?php }?> >300</option>
-        <option value="400"<?php if($_GET['nro_filas_show']==400){ ?> selected="true"<?php }?> >400</option>
-    </select>
-</div>
 
 <div id="resultados">
 
@@ -182,27 +165,7 @@ function editar(cliente){
 		while($dat_aux=mysql_fetch_array($resp_aux)){
 			$nro_filas_sql=$dat_aux[0];
 		}
-		if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Cliente</td>
-    		<td>Nit</td>
-    		<td>Categoria</td>
-    		<td>Ciudad</td>
-    		<td>Direcci&oacute;n</td>
-    		<td>Telefonos</td>
-    		<td>Fax</td>
-            <td>Celular</td>			
-    		<td>Email</td>					
-    		<td>Observaciones</td>			
-    		<td>Estado</td>											
-		</tr>
-		<tr><th colspan="11" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -227,49 +190,24 @@ function editar(cliente){
 			$sql.=" or cod_cliente in( select cod_cliente from clientes_contactos where CONCAT(nombre_contacto,ap_paterno_contacto,ap_materno_contacto)like '%".$_GET['clienteContactoB']."%')";
 		}
 		$sql.=" order by nombre_cliente asc  ";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";
 
 		$resp = mysql_query($sql);
 
 ?>	
-<h3 align="center" style="background:#FFF;font-size: 10px;color: #000;font-weight:bold;">Nro de Registros:<?php echo $nro_filas_sql;?></h3>
-<table border="0" align="center" >
-<tr>
-
-<td bgcolor="#FFFF66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td ><strong>Clientes con Comision</strong></td>
-</tr>
-</table>
-	<table width="89%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="11">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)" >Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-                      <p align="center">				
-						Ir a Pagina<input type="text" name="pagina1" class="texto" id="pagina1" size="5" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar(this.form)"  >	
-				  </p>
-						<?php }?>
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>ID</td>
-            <td>Cliente</td>
-            <td>Nit</td>
-            <td>Direccion</td>
-            <td>Telf/Celular/fax</td>
-            <td colspan="3">Contactos</td>
-            <td colspan="3">&nbsp;</td>            															
+<table width="89%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" class="tablaReporte" style="width:100% !important;"> 
+	<thead>		
+	    <tr height="20px" align="center"  class="bg-success text-white">
+    		<th>ID</th>
+            <th>Cliente</th>
+            <th>Nit</th>
+            <th>Direccion</th>
+            <th>Telf/Celular/fax</th>
+            <th colspan="3">Contactos</th>
+            <th colspan="3">&nbsp;</th>            															
 		</tr>
-
+	</thead>	
+     <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){	
@@ -351,9 +289,9 @@ function editar(cliente){
 [Administrar Contactos (<?php echo $nroContactos;?>)]</a></td>            
 <td align="center"><a href="listUnidadesClientes.php?cod_cliente=<?php echo $cod_cliente;?>"><img src="img/organigrama.jpg" border="0" ><br/>
 [Administar Unidades (<?php echo $nroUnidades;?>)]</a></td>
-            <td><a href="editarCliente.php?cod_cliente=<?php echo $cod_cliente;?>" class="link_color1" title="EDICION DE CLIENTE"><img src="img/edit.png"  border="0"></a></td>
-            <td><a href="listaEliminarClientes.php?cod_cliente=<?php echo $cod_cliente;?>" class="link_color1">
-            <img src="img/delete.gif" border="0" width="16" height="16"></a></td> 
+            <td><a href="editarCliente.php?cod_cliente=<?php echo $cod_cliente;?>" class="link_color1 btn btn-success text-white" title="EDICION DE CLIENTE"><i class="fa fa-edit"></i></a></td>
+            <td><a href="listaEliminarClientes.php?cod_cliente=<?php echo $cod_cliente;?>" class="link_color1 btn btn-danger text-white">
+            <i class="fa fa-trash"></i></a></td> 
 
          </tr>
 
@@ -428,31 +366,45 @@ function editar(cliente){
 <?php
 		 } 
 ?>			
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="11">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina2" size="5"  class="texto" id="pagina2" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar2(this.form)">	</p>
-                         <?php } ?>		
-</td>
-			</tr>
+	      </tbody>
 		</table>
 
-<?php
-	}
-?>
+
 	
-</div> 	
+</div> 
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+<table border="0" align="center">
+<tr>
+<td><strong>Buscar por Cliente o Contacto</strong></td>
+<td ><input type="text" name="clienteContactoB" id="clienteContactoB" size="60" class="textoform" value="<?php echo $clienteContactoB;?>" onkeyup="buscar()" ></td>
+</tr>
+</table>
+
+<table border="0" align="center" width="89%">
+<tr><td align="right">
+<div align="right"><a href="registrarCliente.php" class="btn btn-warning text-white"><i class="fa fa-plus"></i> Nuevo Cliente</a></div>
+</td>
+</tr>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>	
 <?php require("cerrar_conexion.inc");
 ?>
 

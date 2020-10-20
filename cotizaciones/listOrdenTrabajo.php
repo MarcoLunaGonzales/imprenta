@@ -36,7 +36,9 @@ function resultados_ajax(datos){
 	ajax.open("GET", datos);
 	ajax.onreadystatechange=function() {
 		if (ajax.readyState==4) {
-			divResultado.innerHTML = ajax.responseText
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
 		}
 	}
 	ajax.send(null)
@@ -96,7 +98,11 @@ function openPopup(url){
 02 de Julio de 2008
 -->
 
-<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE ORDENES DE TRABAJO</h3>
+<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE ORDENES DE TRABAJO
+   <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" id="form1"  method="post" >
 <?php
 
@@ -112,84 +118,7 @@ function openPopup(url){
 
 
 ?>
-<table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr >
-          <td width="122" align="right" >TODOS</td>
-          <td width="20"><label>
-            <input name="codestotB" type="radio" id="codestotB" value="0" <?php if($codestotB==0){?>checked="checked"<?php }?> onclick="buscar()"/>
-          </label></td>
-          <?php 
-		  	$queryEstado=" select cod_est_ot, desc_est_ot  from estado_ordentrabajo ";
-			$queryEstado.=" order by  cod_est_ot ";
-			$resp= mysql_query($queryEstado);
-			while($dat=mysql_fetch_array($resp)){
-				$cod_est_ot=$dat['cod_est_ot'];
-				$desc_est_ot=$dat['desc_est_ot'];
-		 ?>
-         	    <td width="126" align="right" ><?php echo $desc_est_ot;?></td>
-        		<td width="20">
-		    	 <label>
-	               <input name="codestotB" type="radio" id="codestotB" value="<?php echo $cod_est_ot;?>"<?php if($codestotB==$cod_est_ot){?>checked="checked"<?php }?>  onclick="buscar()"/>
-        		  </label>
-          		</td>
-		 <?php
-			}
-		  
-		  ?>
-        </tr>
-      </table>
-      <br/>
 
-    <table width="500" border="0" align="center" cellpadding="2" cellspacing="0">
-     
-      <tr class="texto">
-        <td width="90" align="right" class="al_derecha"><strong>Cliente:</strong></td>
-          <td width="256" align="left">
-            <input type="text" name="nombreClienteB" id="nombreClienteB"  class="textoform" size="30" value="<?php echo $nombreClienteB;?>" onkeyup="buscar()"/></td>
-      </tr>                   
-   <tr class="texto">
-         <td width="90" align="right" class="al_derecha"><strong>Nro de Orden de Trabajo:</strong></td>
-          <td width="256" align="left">
-            <input type="text" name="nroOrdenTrabajoB" id="nroOrdenTrabajoB"  class="textoform" size="30" value="<?php echo $nroOrdenTrabajoB; ?>" onkeyup="buscar()" /></td>
-       </tr> 
-   <tr class="texto">
-      <td width="90" align="right" class="al_derecha"><strong>Numero:</strong></td>
-          <td width="256" align="left">
-            <input type="text" name="numeroOrdenTrabajoB" id="numeroOrdenTrabajoB" class="textoform" value="<?php echo $numeroOrdenTrabajoB;?>"  onkeyup="buscar()"/></td>
-      </tr>     
-      <tr class="texto">
-         <td width="90" align="right"><strong>Estado de Pago:</strong></td>
-         <td width="256" align="left"><select name="cod_estado_pago_docB" id="cod_estado_pago_docB" onchange="buscar();" class="textoform">
-				<option value="0">Elija un Opci&oacute;n</option>
-				<?php
-					$sql2=" select cod_estado_pago_doc, desc_estado_pago_doc";
-					$sql2.=" from   estado_pago_documento ";
-					$sql2.=" order by cod_estado_pago_doc asc ";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_estado_pago_doc=$dat2['cod_estado_pago_doc'];	
-			  		 		$desc_estado_pago_doc=$dat2['desc_estado_pago_doc'];	
-				 ?>
-                 <option value="<?php echo $cod_estado_pago_doc;?>" <?php if($cod_estado_pago_docB==$cod_estado_pago_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago_doc);?></option>				
-				<?php		
-					}
-				?>						
-			</select></td>
-       </tr>       
-   
-   <tr class="texto">
-         <td width="90" align="right" class="al_derecha"><strong>Rango de Fecha<br/>(dd/mm/aaaa):</strong></td>
-          <td width="256" align="left"><strong>De&nbsp;</strong>
-          <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" size="10" value="<?php echo $fechaInicioB;?>" />
-         <strong>&nbsp;Hasta&nbsp;</strong>
-          <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" size="10" value="<?php echo $fechaFinalB;?>" />
-         <input type="checkbox" name="codActivoFecha" id="codActivoFecha" onClick="buscar()" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?> ><strong>Chekear la casilla para buscar por fechas.</strong></td>
-       </tr>     
-                               
-  </table>
-
-<br/>
 <div id="resultados">
 <?php 
 
@@ -248,33 +177,7 @@ function openPopup(url){
 	while($dat_aux=mysql_fetch_array($resp)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-	<div id="nroRows" align="center" class="textoform"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Nro Orden Trabajo</td>
-		  <td>Fecha de Orden Trabajo</td>
-            <td>Numero</td>
-            <td>Cliente</td>
-            <td>Monto</td>
-            <td>Tipo de Pago</td>					
-			<td>Detalle</td>
-            <td>Observacion</td>
-			<td>Estado Actual</td>
-            <td>Estado de Pago</td>	
-			<td>Fecha de Registro</td>
-			<td>Fecha de Ultima Edicion</td>
-            <td>&nbsp;</td>   																													            
-		</tr>
-		<tr><th colspan="13" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -327,49 +230,36 @@ function openPopup(url){
 		}
 	}
 	$sql.=" order by  ot.fecha_orden_trabajo desc,g.gestion desc,ot.nro_orden_trabajo desc ";
-	$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+	$sql.=" limit 50";
 	$resp = mysql_query($sql);
 
 ?>	
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="18">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-</td>
-			</tr>
-
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Nro O.T.</td>          
-			<td>Fecha O.T.</td>            
-            <td>Cliente</td>
-			<td>Tipo de Pago</td>
-            <td>Monto</td>
-            <td>Inc</td>
-            <td>Desc</td> 
-            <td>Tot. Monto</td>            
-            <td>A cuenta</td>	
-            <td>Saldo</td>
-            <td>Gastos</td>					
-			<td>Estado Actual</td>
-            <td>Estado de Pago</td>	
-            <td>Pagos</td>
-            <td>Facturas</td>
-    	    <td>&nbsp;</td> 
-            <td>&nbsp;</td> 
-            <td>&nbsp;</td> 
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+       <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+            <th>Nro O.T.</th>          
+			<th>Fecha O.T.</th>            
+            <th>Cliente</th>
+			<th>Tipo de Pago</th>
+            <th>Monto</th>
+            <th>Inc</th>
+            <th>Desc</th> 
+            <th>Tot. Monto</th>            
+            <th>A cuenta</th>	
+            <th>Saldo</th>
+            <th>Gastos</th>					
+			<th>Estado Actual</th>
+            <th>Estado de Pago</th>	
+            <th>Pagos</th>
+            <th>Facturas</th>
+    	    <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
          
                      	            																	
 		</tr>
-
+        </thead>
+        <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){
@@ -603,32 +493,107 @@ function openPopup(url){
 		 } 
 ?>			
 
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="18">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+			</tbody>
 		</table>
-		
-<?php
-	}
-?>
+	
 </div>	
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr >
+          <td width="122" align="right" >TODOS</td>
+          <td width="20"><label>
+            <input name="codestotB" type="radio" id="codestotB" value="0" <?php if($codestotB==0){?>checked="checked"<?php }?> onclick="buscar()"/>
+          </label></td>
+          <?php 
+		  	$queryEstado=" select cod_est_ot, desc_est_ot  from estado_ordentrabajo ";
+			$queryEstado.=" order by  cod_est_ot ";
+			$resp= mysql_query($queryEstado);
+			while($dat=mysql_fetch_array($resp)){
+				$cod_est_ot=$dat['cod_est_ot'];
+				$desc_est_ot=$dat['desc_est_ot'];
+		 ?>
+         	    <td width="126" align="right" ><?php echo $desc_est_ot;?></td>
+        		<td width="20">
+		    	 <label>
+	               <input name="codestotB" type="radio" id="codestotB" value="<?php echo $cod_est_ot;?>"<?php if($codestotB==$cod_est_ot){?>checked="checked"<?php }?>  onclick="buscar()"/>
+        		  </label>
+          		</td>
+		 <?php
+			}
+		  
+		  ?>
+        </tr>
+      </table>
+      <br/>
+
+    <table width="500" border="0" align="center" cellpadding="2" cellspacing="0">
+     
+      <tr class="texto">
+        <td width="90" align="right" class="al_derecha"><strong>Cliente:</strong></td>
+          <td width="256" align="left">
+            <input type="text" name="nombreClienteB" id="nombreClienteB"  class="textoform" size="30" value="<?php echo $nombreClienteB;?>" onkeyup="buscar()"/></td>
+      </tr>                   
+   <tr class="texto">
+         <td width="90" align="right" class="al_derecha"><strong>Nro de Orden de Trabajo:</strong></td>
+          <td width="256" align="left">
+            <input type="text" name="nroOrdenTrabajoB" id="nroOrdenTrabajoB"  class="textoform" size="30" value="<?php echo $nroOrdenTrabajoB; ?>" onkeyup="buscar()" /></td>
+       </tr> 
+   <tr class="texto">
+      <td width="90" align="right" class="al_derecha"><strong>Numero:</strong></td>
+          <td width="256" align="left">
+            <input type="text" name="numeroOrdenTrabajoB" id="numeroOrdenTrabajoB" class="textoform" value="<?php echo $numeroOrdenTrabajoB;?>"  onkeyup="buscar()"/></td>
+      </tr>     
+      <tr class="texto">
+         <td width="90" align="right"><strong>Estado de Pago:</strong></td>
+         <td width="256" align="left"><select name="cod_estado_pago_docB" id="cod_estado_pago_docB" onchange="buscar();" class="textoform">
+				<option value="0">Elija un Opci&oacute;n</option>
+				<?php
+					$sql2=" select cod_estado_pago_doc, desc_estado_pago_doc";
+					$sql2.=" from   estado_pago_documento ";
+					$sql2.=" order by cod_estado_pago_doc asc ";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_estado_pago_doc=$dat2['cod_estado_pago_doc'];	
+			  		 		$desc_estado_pago_doc=$dat2['desc_estado_pago_doc'];	
+				 ?>
+                 <option value="<?php echo $cod_estado_pago_doc;?>" <?php if($cod_estado_pago_docB==$cod_estado_pago_doc){?> selected="selected" <?php } ?>><?php echo utf8_decode($desc_estado_pago_doc);?></option>				
+				<?php		
+					}
+				?>						
+			</select></td>
+       </tr>       
+   
+   <tr class="texto">
+         <td width="90" align="right" class="al_derecha"><strong>Rango de Fecha<br/>(dd/mm/aaaa):</strong></td>
+          <td width="256" align="left"><strong>De&nbsp;</strong>
+          <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" size="10" value="<?php echo $fechaInicioB;?>" />
+         <strong>&nbsp;Hasta&nbsp;</strong>
+          <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" size="10" value="<?php echo $fechaFinalB;?>" />
+         <input type="checkbox" name="codActivoFecha" id="codActivoFecha" onClick="buscar()" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?> ><strong>Chekear la casilla para buscar por fechas.</strong></td>
+       </tr>     
+                               
+  </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php require("cerrar_conexion.inc");
 ?>
-
-
 </form>
 
 </body>

@@ -107,27 +107,7 @@ include("funciones.php");
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-<h3 align="center" style="background:#FFF;font-size: 10px;color:#E78611;font-weight:bold;">Nro de Registros <?php echo $nro_filas_sql;?></h3>
-<?php		
-	if($nro_filas_sql==0){
-?>
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Ingreso</td>
-    		<td>Fecha</td>	
-            <td>Tipo de Ingreso</td>
-			<td>Proveedor</td>														
-    		<td>Almacen de Traspaso</td>
-            <td>Factura</td>	
-    		<td>Observaciones</td>	            
-			<td>Estado</td>         
-		</tr>
-		<tr><th colspan="8" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -189,39 +169,27 @@ include("funciones.php");
 
 
 	$sql.=" order by i.cod_ingreso desc";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 		$resp = mysql_query($sql);
 		$cont=0;
 ?>	
-	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="9">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Ingreso</td>
-    		<td>Fecha</td>	
-            <td>Tipo de Ingreso</td>
-			<td>Proveedor</td>														
-    		<td>Almacen de Traspaso</td>
-            <td>Factura</td>
-    		<td>Observaciones</td>	            
-			<td>Estado</td> 
-            <td>&nbsp;</td> 
+	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>Nro Ingreso</th>
+    		<th>Fecha</th>	
+            <th>Tipo de Ingreso</th>
+			<th>Proveedor</th>														
+    		<th>Almacen de Traspaso</th>
+            <th>Factura</th>
+    		<th>Observaciones</th>	            
+			<th>Estado</th> 
+            <th>&nbsp;</th> 
 
             
 		</tr>
+		</thead>  
+		<tbody>
 <?php   
 		while($dat=mysql_fetch_array($resp)){
 				
@@ -322,25 +290,7 @@ include("funciones.php");
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="9">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+  			</tbody>
 		</table>
-		
-<?php
-	}
-?></body>
+		</body>
 </html>

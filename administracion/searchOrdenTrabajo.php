@@ -21,8 +21,9 @@ require("conexion.inc");
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body bgcolor="#FFFFFF">
 <?php 
+
 
 	//Paginador
 	
@@ -78,33 +79,7 @@ require("conexion.inc");
 	while($dat_aux=mysql_fetch_array($resp)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-	<div id="nroRows" align="center" class="textoform"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Nro Orden Trabajo</td>
-		  <td>Fecha de Orden Trabajo</td>
-            <td>Numero</td>
-            <td>Cliente</td>
-            <td>Monto</td>
-            <td>Tipo de Pago</td>					
-			<td>Detalle</td>
-            <td>Observacion</td>
-			<td>Estado Actual</td>
-            <td>Estado de Pago</td>	
-			<td>Fecha de Registro</td>
-			<td>Fecha de Ultima Edicion</td>
-            <td>&nbsp;</td>   																													            
-		</tr>
-		<tr><th colspan="13" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -119,7 +94,7 @@ require("conexion.inc");
 				}
 			}					
 		//Fin de calculo de paginas
-	$sql=" select ot.cod_orden_trabajo, ot.nro_orden_trabajo, ot.cod_gestion, g.gestion, ot.cod_est_ot, ";
+	$sql=" select ot.cod_orden_trabajo, ot.nro_orden_trabajo, ot.cod_gestion, g.gestion_nombre, ot.cod_est_ot, ";
 	$sql.=" eo.desc_est_ot, ot.numero_orden_trabajo, ot.fecha_orden_trabajo, ot.cod_cliente, cli.nombre_cliente, ";
 	$sql.=" cli.direccion_cliente, cli.telefono_cliente, cli.celular_cliente, ";
 	$sql.=" ot.cod_contacto, ot.detalle_orden_trabajo, ot.obs_orden_trabajo, ";
@@ -157,49 +132,36 @@ require("conexion.inc");
 		}
 	}
 	$sql.=" order by  ot.cod_orden_trabajo desc ";
-	$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+	//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 	$resp = mysql_query($sql);
 
 ?>	
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="21">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-</td>
-			</tr>
-
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Nro O.T.</td>          
-			<td>Fecha O.T.</td>            
-            <td>Cliente</td>
-            <td>Monto</td>
-            <td>Inc</td>
-            <td>Desc</td> 
-            <td>Tot. Monto</td>            
-            <td>A cuenta</td>	
-            <td>Saldo</td>
-            <td>Gastos</td>					
-			<td>Estado Actual</td>
-            <td>Estado de Pago</td>	
-            <td>Pagos</td>
-            <td>Facturas</td>
-    	    <td>&nbsp;</td> 
-             <td>&nbsp;</td> 
-            <td>&nbsp;</td>     	     
-    	    <td>&nbsp;</td> 
-           
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+       <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+            <th>Nro O.T.</th>          
+			<th>Fecha O.T.</th>            
+            <th>Cliente</th>
+			<th>Tipo de Pago</th>
+            <th>Monto</th>
+            <th>Inc</th>
+            <th>Desc</th> 
+            <th>Tot. Monto</th>            
+            <th>A cuenta</th>	
+            <th>Saldo</th>
+            <th>Gastos</th>					
+			<th>Estado Actual</th>
+            <th>Estado de Pago</th>	
+            <th>Pagos</th>
+            <th>Facturas</th>
+    	    <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
+         
                      	            																	
 		</tr>
-
+		</thead>
+        <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){
@@ -207,13 +169,12 @@ require("conexion.inc");
 				$cod_orden_trabajo=$dat['cod_orden_trabajo'];
 				$nro_orden_trabajo=$dat['nro_orden_trabajo'];
 				$cod_gestion=$dat['cod_gestion'];
-				$gestion=$dat['gestion'];
+				$gestion=$dat['gestion_nombre'];
 				$cod_est_ot=$dat['cod_est_ot'];
 				$desc_est_ot=$dat['desc_est_ot'];
 				$numero_orden_trabajo=$dat['numero_orden_trabajo'];
 				$fecha_orden_trabajo=$dat['fecha_orden_trabajo'];
 				$cod_cliente=$dat['cod_cliente'];
-				
 				$cod_contacto=$dat['cod_contacto'];
 				$nombre_cliente=$dat['nombre_cliente'];
 				$direccion_cliente=$dat['direccion_cliente'];
@@ -264,10 +225,25 @@ require("conexion.inc");
 				if($acuenta_ordentrabajo==""){
 					$acuenta_ordentrabajo=0;
 				}
-
+			$contacto="";
+					if($cod_contacto<>"" and $cod_contacto<>0 and $cod_contacto<>NULL){
+					  $sql5="  select nombre_contacto, ap_paterno_contacto, ap_materno_contacto, telefono_contacto, celular_contacto, ";
+					  $sql5.=" email_contacto, cargo_contacto ";
+					  $sql5.="  from clientes_contactos ";
+					  $sql5.=" where cod_contacto=".$cod_contacto;
+					  $resp5= mysql_query($sql5);
+					  while($dat5=mysql_fetch_array($resp5)){
+							$contacto=$dat5['nombre_contacto']." ".$dat5['ap_paterno_contacto']." ".$dat5['ap_materno_contacto'];
+							$telefono_contacto=$dat5['telefono_contacto'];
+							$celular_contacto=$dat5['celular_contacto'];
+					  		$email_contacto=$dat5['email_contacto']; 
+							$cargo_contacto=$dat5['cargo_contacto'];
+					  }
+					}		
 ?> 
 		<tr bgcolor="#FFFFFF">	
-            <td align="right"><a href="../reportes/impresionOrdenTrabajo.php?cod_orden_trabajo=<?php echo $cod_orden_trabajo; ?>" target="_blank"><?php echo $nro_orden_trabajo."/".$gestion."(Int.".$numero_orden_trabajo.")"; ?></a></td>
+            <td align="right"><a href="../reportes/impresionOrdenTrabajo.php?cod_orden_trabajo=<?php echo $cod_orden_trabajo; ?>" target="_blank"><?php echo $nro_orden_trabajo."/".$gestion."(Int.".$numero_orden_trabajo.")"; ?></a><br/>
+<a href="../reportes/impresionOrdenTrabajoSinPrecio.php?cod_orden_trabajo=<?php echo $cod_orden_trabajo; ?>" target="_blank"><?php echo $nro_orden_trabajo."/".$gestion; ?></a></td>
             <td align="right"><?php 
 			list($aOT,$mOT,$dOT)=explode("-",$fecha_orden_trabajo);
 			 echo $dOT.".".$mOT.".".$aOT;
@@ -284,7 +260,8 @@ require("conexion.inc");
 				}
 			
 			?></td>
-            <td align="right"><?php echo number_format($monto_orden_trabajo,2); ?></td>
+            <td align="right"><?php echo $nombre_tipo_pago; ?></td>
+			<td align="right"><?php echo number_format($monto_orden_trabajo,2); ?></td>
              <td align="right"><?php 
 			 	if($incremento_orden_trabajo==""){
 					$incremento_orden_trabajo=0;
@@ -323,7 +300,7 @@ require("conexion.inc");
 			  
 			  ?></td>		
 			<td><?php echo $desc_est_ot;?></td>	
-                        <td align="left" <?php if(number_format(((($monto_orden_trabajo+$incremento_orden_trabajo)-$descuento_orden_trabajo)-$acuenta_ordentrabajo),2)>0 and $cod_estado_pago_doc==3){?>  bgcolor="#FF3333"=""<?php }?>><?php echo $desc_estado_pago_doc;?></td>	
+            <td><?php echo $desc_estado_pago_doc;?></td>	
             <td>
             <table border="0" align="center">
             <?php
@@ -380,39 +357,46 @@ require("conexion.inc");
 			?>
             </table>
             </td>     
-              <td><a href="javascript:openPopup('incrementoOrdenTrabajo.php?cod_orden_trabajo=<?php echo $cod_orden_trabajo;?>');" title="Click Ver Incremento">Inc</a></td>
-              <td><a href="javascript:openPopup('descuentoOrdenTrabajo.php?cod_orden_trabajo=<?php echo $cod_orden_trabajo;?>');" title="Click Ver Descuento">Desc</a></td>
-              <td><a href="listGastoOrdenTrabajo.php?cod_orden_trabajo=<?php echo $cod_orden_trabajo;?>">Gastos</a></td>    
+              <td>
+			  <?php
+              	if($cod_est_ot<>2){
+			  ?>
+              <a href="editOrdenTrabajo.php?cod_orden_trabajo=<?php echo $cod_orden_trabajo;?>" >Editar</a></td>    
+             <?php
+				}else{
+				echo "Editar";
+				}
+			  ?>                 
 			<td>
-<a href="../reportes/infOrdenTrabajo.php?cod_orden_trabajo=<?php echo $cod_orden_trabajo; ?>" target="_blank">Inf</a>
-              </td>   
+			<?php 
+				$sql3=" select count(*) ";
+				$sql3.=" from pagos_detalle pd, pagos p";
+				$sql3.=" where pd.cod_pago=p.cod_pago";
+				$sql3.=" and p.cod_estado_pago<>2";
+				$sql3.=" and pd.codigo_doc=".$cod_orden_trabajo;
+				$sql3.=" and pd.cod_tipo_doc=2";
+				$resp3= mysql_query($sql3);	
+				$nroPagosOT=0;
+				while($dat3=mysql_fetch_array($resp3)){
+					$nroPagosOT=$dat3[0];
+				}				
+
+				if($cod_est_ot==2 or $nroPagosOT>0 ){
+					 echo "Anular";}else{?>
+	            <a href="anularOrdenTrabajo.php?cod_orden_trabajo=<?php echo $cod_orden_trabajo; ?>">Anular</a>
+              <?php }?>
+              </td>     
+ 			<td><a href="duplicarOrdenTrabajo.php?cod_orden_trabajo=<?php echo $cod_orden_trabajo; ?>" target="_blank">Duplicar O.T.</a></td>
           					                 					
    	  </tr>
 <?php
 		 } 
 ?>			
 
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="21">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+	   </tbody>
 		</table>
 		
-<?php
-	}
-?>
+
 
 </body>
 </html>

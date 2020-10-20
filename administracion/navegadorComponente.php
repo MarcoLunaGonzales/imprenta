@@ -103,33 +103,21 @@ function cancelar(){
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-	<div align="center"><b>Nombre Item&nbsp;::&nbsp;</b><?php echo $nombreItem;?></div><br>
-<?php	
-	if($nro_filas_sql==0){
-?>	
-	<table width="50%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>&nbsp;</td>
-			<td>Componente Item</td>
-			<td>Detalle Cacteristica</td>
-		</tr>
-		<tr><th colspan="11" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		$sql="select cod_compitem,nombre_componenteitem from componente_items  where cod_item=".$codItem;
 		$sql.=" order by nombre_componenteitem asc";
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="50%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>&nbsp;</td>
-			<td>Componente Item</td>
-			<td>Detalle Cacteristica</td>
+	<table width="50%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>&nbsp;</th>
+			<th>Componente Item</th>
+			<th>Detalle Cacteristica</th>
 		</tr>
+	  </thead>
+	  <tbody>
 
 <?php   
 		while($dat=mysql_fetch_array($resp)){	
@@ -161,12 +149,9 @@ function cancelar(){
 <?php
 		 } 
 ?>			
-
-		</TABLE>
+          </tbody>	
+		</table>
 		</div>			
-<?php
-	}
-?>
 		
 <?php require("cerrar_conexion.inc");
 ?>

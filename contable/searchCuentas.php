@@ -45,23 +45,7 @@ include("funciones.php");
 			$nro_filas_sql=$dat_aux[0];
 		}		
 
-		
-		if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Nro Cuenta</td>
-            <td>Descripcion</td>
-    		<td>Moneda</td>
-    		<td>Estado</td>
-    		<td>Registro</td>
-    		<td>Ultima Edici&oacute;n</td>									
-		</tr>
-		<tr><th colspan="9" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
 	
-<?php	
-	}else{
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -84,48 +68,31 @@ include("funciones.php");
 			$sql.=" or desc_cuenta like'%".$_GET['numero_cuentaB']."%')";			
 		}
 		$sql.=" order by nro_cuenta asc";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 
 		
 		$resp = mysql_query($sql);
 
 ?>	
-<h3 align="center" style="background:#FFF;font-size: 10px;color: #000;font-weight:bold;">Total Registro:<?php echo $nro_filas_sql;?></h3>
-	<table width="95%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)" >Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-                      <p align="center">				
-						Ir a Pagina<input type="text" name="pagina1" class="texto" id="pagina1" size="5" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar(this.form)"  >	
-				  </p>
-						<?php }?>
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Nro Cuenta</td>
-            <td>Cuenta</td> 
-			<td>Cliente</td> 
-			<td>Proveedor</td>            
-            <td>Detalle</td>
-            <td>Vinculacion</td>
-    		<td>Moneda</td>
-    		<td>Estado</td>
-    		<td>Registro</td>
-    		<td>Ultima Edici&oacute;n</td>	
-            <td>Editar</td>	
-			<td>Eliminar</td>		                   																                   															
-		</tr>
 
+	<table width="95%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" class="tablaReporte" style="width:100% !important;">
+   <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+    		<th>Nro Cuenta</th>
+            <th>Cuenta</th> 
+			<th>Cliente</th> 
+			<th>Proveedor</th>            
+            <th>Detalle</th>
+            <th>Vinculacion</th>
+    		<th>Moneda</th>
+    		<th>Estado</th>
+    		<th>Registro</th>
+    		<th>Ultima Edici&oacute;n</th>	
+            <th>Editar</th>	
+			<th>Eliminar</th>		                   																                   															
+		</tr>
+   </thead>  
+   <tbody>  
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){	
@@ -292,28 +259,8 @@ include("funciones.php");
 <?php
 		 } 
 ?>			
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina2" size="5"  class="texto" id="pagina2" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar2(this.form)">	</p>
-                         <?php } ?>		
-</td>
-			</tr>
+	</tbody>
 		</table>
 
-<?php
-	}
-?>
 </body>
 </html>

@@ -34,7 +34,9 @@ function resultados_ajax(datos){
 	ajax.open("GET", datos);
 	ajax.onreadystatechange=function() {
 		if (ajax.readyState==4) {
-			divResultado.innerHTML = ajax.responseText
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
 		}
 	}
 	ajax.send(null)
@@ -112,10 +114,96 @@ function eliminar(f)
 02 de Julio de 2008
 -->
 
-<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE AREAS</h3>
+<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE AREAS
+  <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" method="post" action="newArea.php">
 
- <table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
+ <div id="resultados" align="center">   
+<?php	
+	
+	$sql_aux=" select count(*) from areas a , estados_referenciales e ";
+	$sql_aux.=" where a.cod_estado_registro=e.cod_estado_registro";		
+	$resp_aux = mysql_query($sql_aux);
+	while($dat_aux=mysql_fetch_array($resp_aux)){
+		$nro_filas_sql=$dat_aux[0];
+	}
+
+		//Calculo de Nro de Paginas
+				
+		//Fin de calculo de paginas
+		$sql=" select a.cod_area, a.nombre_area, a.obs_area, a.cod_estado_registro, e.nombre_estado_registro, a.fecha_registro, ";
+		$sql.=" a.cod_usuario_registro, a.fecha_modifica, a.cod_usuario_modifica ";
+		$sql.=" from areas a , estados_referenciales e ";
+		$sql.=" where a.cod_estado_registro=e.cod_estado_registro ";
+		$sql.=" order by a.nombre_area asc ";
+		$resp = mysql_query($sql);
+
+?>	
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+    		<th>&nbsp;</th>
+            <th>Area</th>
+			<th>Observaciones</th>				
+    		<th>Estado</th>
+			<th>Fecha de Registro</th>	
+			<th>Ultima Edicion</th>																		
+		</tr>
+		</thead>
+		<tbody>
+
+<?php   
+	$cont=0;
+		while($dat=mysql_fetch_array($resp)){
+		
+				$cod_area=$dat['cod_area'];
+				$nombre_area=$dat['nombre_area'];
+				$obs_area=$dat['obs_area'];
+				$cod_estado_registro=$dat['cod_estado_registro'];
+				$nombre_estado_registro=$dat['nombre_estado_registro'];
+				$fecha_registro=$dat['fecha_registro'];
+				$cod_usuario_registro=$dat['cod_usuario_registro'];
+				$fecha_modifica=$dat['fecha_modifica'];
+				$cod_usuario_modifica=$dat['cod_usuario_modifica'];
+		
+
+
+				
+?> 
+		<tr bgcolor="#FFFFFF">	
+			<td><input type="checkbox"name="cod_area"value="<?php echo $cod_area;?>"></td>	
+    		<td><?php echo $nombre_area;?></td>
+    		<td><?php echo $obs_area;?></td>
+    		<td><?php echo $nombre_estado_registro; ?></td>
+			<td>&nbsp;</td>
+   			<td>&nbsp;</td>
+
+					
+   	  </tr>
+<?php
+		 } 
+?>			
+   </tbody>
+  </table>
+		</div>			
+
+</div>
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr >
           <td width="122" align="right" >TODOS</td>
           <td width="20"><label>
@@ -152,95 +240,13 @@ function eliminar(f)
 </span></td>
           </tr>
     </table>
-
-<br/>
- <div id="resultados" align="center">   
-<?php	
-	
-	$sql_aux=" select count(*) from areas a , estados_referenciales e ";
-	$sql_aux.=" where a.cod_estado_registro=e.cod_estado_registro";		
-	$resp_aux = mysql_query($sql_aux);
-	while($dat_aux=mysql_fetch_array($resp_aux)){
-		$nro_filas_sql=$dat_aux[0];
-	}
-?>
-	<div id="nroRows" align="center" class="textoform"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>&nbsp;</td>
-            <td>Area</td>
-			<td>Observaciones</td>				
-    		<td>Estado</td>
-			<td>Fecha de Registro</td>	
-			<td>Ultima Edicion</td>																
-		</tr>
-		<tr><th colspan="6" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
-		//Calculo de Nro de Paginas
-				
-		//Fin de calculo de paginas
-		$sql=" select a.cod_area, a.nombre_area, a.obs_area, a.cod_estado_registro, e.nombre_estado_registro, a.fecha_registro, ";
-		$sql.=" a.cod_usuario_registro, a.fecha_modifica, a.cod_usuario_modifica ";
-		$sql.=" from areas a , estados_referenciales e ";
-		$sql.=" where a.cod_estado_registro=e.cod_estado_registro ";
-		$sql.=" order by a.nombre_area asc ";
-		$resp = mysql_query($sql);
-
-?>	
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>&nbsp;</td>
-            <td>Area</td>
-			<td>Observaciones</td>				
-    		<td>Estado</td>
-			<td>Fecha de Registro</td>	
-			<td>Ultima Edicion</td>																		
-		</tr>
-
-<?php   
-	$cont=0;
-		while($dat=mysql_fetch_array($resp)){
-		
-				$cod_area=$dat['cod_area'];
-				$nombre_area=$dat['nombre_area'];
-				$obs_area=$dat['obs_area'];
-				$cod_estado_registro=$dat['cod_estado_registro'];
-				$nombre_estado_registro=$dat['nombre_estado_registro'];
-				$fecha_registro=$dat['fecha_registro'];
-				$cod_usuario_registro=$dat['cod_usuario_registro'];
-				$fecha_modifica=$dat['fecha_modifica'];
-				$cod_usuario_modifica=$dat['cod_usuario_modifica'];
-		
-
-
-				
-?> 
-		<tr bgcolor="#FFFFFF">	
-			<td><input type="checkbox"name="cod_area"value="<?php echo $cod_area;?>"></td>	
-    		<td><?php echo $nombre_area;?></td>
-    		<td><?php echo $obs_area;?></td>
-    		<td><?php echo $nombre_estado_registro; ?></td>
-			<td>&nbsp;</td>
-   			<td>&nbsp;</td>
-
-					
-   	  </tr>
-<?php
-		 } 
-?>			
-  </TABLE>
-		</div>			
-<?php
-	}
-?>
-</div>	
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>	
 <?php require("cerrar_conexion.inc");
 ?>
 <br>

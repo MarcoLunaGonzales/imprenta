@@ -106,20 +106,7 @@ function cancelar(){
 <input type="hidden" name="cod_grupo" id="cod_grupo"  value="<?php echo $cod_grupo;?>" >
 	<div align="center"><b>Grupo&nbsp;::&nbsp;</b><?php echo $nombre_grupo;?></div><br>
 <?php	
-	if($nro_filas_sql==0){
-?>	
-	<table width="50%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>&nbsp;</td>
-			<td>Caracteristica</td>
-			<td>Orden</td>
-			<td>Estado</td>
-		</tr>
-		<tr><th colspan="11" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
 	
-<?php	
-	}else{
 		$sql=" select cod_grupo_carac, nombre_grupo_carac, orden, cod_estado_registro,";
 		$sql.=" cod_usuario_registro, fecha_registro, cod_usuario_modifica, fecha_modifica";
 		$sql.=" from grupos_caracteristicas";
@@ -128,14 +115,16 @@ function cancelar(){
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="50%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>&nbsp;</td>
-			<td>Caracteristica</td>
-			<td>Orden</td>			
-			<td>Estado</td>
+	<table width="50%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+	  <thead>	
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>&nbsp;</th>
+			<th>Caracteristica</th>
+			<th>Orden</th>			
+			<th>Estado</th>
 		</tr>
-
+    </thead>
+    <tbody>
 <?php   
 		while($dat=mysql_fetch_array($resp)){	
 		
@@ -167,12 +156,10 @@ function cancelar(){
 <?php
 		 } 
 ?>			
-
-  </TABLE>
+    </tbody>
+  </table>
 		</div>			
-<?php
-	}
-?>
+
 		
 <?php require("cerrar_conexion.inc");
 ?>

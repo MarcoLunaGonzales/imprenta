@@ -104,18 +104,7 @@ function eliminar(f)
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-	if($nro_filas_sql==0){
-?>
-	<table width="70%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Caracteristica </td>
-    		<td>Estado de Registro</td>											
-		</tr>
-		<tr><th colspan="11" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -133,17 +122,20 @@ function eliminar(f)
 		$sql=" select cod_item, desc_item, cod_estado_registro  ";
 		$sql.=" from items ";
 		$sql.=" order by desc_item asc  ";
-		$sql.=" limit ".$fila_inicio." , ".$fila_final;
+		//$sql.=" limit ".$fila_inicio." , ".$fila_final;
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="70%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>&nbsp;</td>
-    		<td>Item</td>
-    		<td>Estado de Registro</td>
-			<td>Caracteristicas</td>																			
+	<table width="70%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>&nbsp;</th>
+    		<th>Item</th>
+    		<th>Estado de Registro</th>
+			<th>Caracteristicas</th>																			
 		</tr>
+		</thead>
+		<tbody>
 
 <?php   
 		while($dat=mysql_fetch_array($resp)){	
@@ -189,26 +181,10 @@ function eliminar(f)
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="13">
-					Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?>&nbsp;&nbsp;&nbsp;	
-					<select onchange="paginar(this.form);" name="pagina" >
-				    <?php for($i=1;$i<=$nropaginas;$i++){	
-							if($pagina==$i){
-					?>
-								<option value="<?php echo $i; ?>"  selected><?php echo $i; ?></option>";
-				    	<?php }else{?>	
-								<option value="<?php echo $i; ?>"  ><?php echo $i; ?></option>";
-						<?php }?>						
-					<?php }?>
-					</select>													
-				</td>
-			</tr>
-		</TABLE>
+
+			</tbody>
+		</table>
 		</div>			
-<?php
-	}
-?>
 		
 <?php require("cerrar_conexion.inc");
 ?>

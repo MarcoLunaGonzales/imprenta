@@ -6,8 +6,38 @@
 <title>Cotizaciones</title>
 <link rel="STYLESHEET" type="text/css" href="pagina.css" />
 <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<script type="text/javascript" src="ajax/searchAjax.js"></script>
-<script type="text/javascript">
+<script language='Javascript'>
+function objetoAjax(){
+	var xmlhttp=false;
+	try {
+		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+		try {
+		   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch (E) {
+			xmlhttp = false;
+  		}
+	}
+
+	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+		xmlhttp = new XMLHttpRequest();
+	}
+	return xmlhttp;
+}
+
+function resultados_ajax(datos){
+	divResultado = document.getElementById('resultados');
+	ajax=objetoAjax();
+	ajax.open("GET", datos);
+	ajax.onreadystatechange=function() {
+		if (ajax.readyState==4) {
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
+		}
+	}
+	ajax.send(null)
+}
 
 function buscar()
 {	
@@ -18,7 +48,6 @@ if(document.form1.codActivoFecha.checked){
 }
 
 resultados_ajax('searchCotizaciones.php?nrocotizacionB='+document.form1.nrocotizacionB.value+'&codEstadoCotizacionB='+document.form1.codEstadoCotizacionB.value+'&codTipoCotizacionB='+document.form1.codTipoCotizacionB.value+'&nombreClienteB='+document.form1.nombreClienteB.value+'&descItemB='+document.form1.descItemB.value+'&codActivoFecha='+valorchecked+'&fechaInicioB='+document.form1.fechaInicioB.value+'&fechaFinalB='+document.form1.fechaFinalB.value);
-		/*location.href='listCotizaciones.php?nrocotizacionB='+document.form1.nrocotizacionB.value+'&codEstadoCotizacionB='+document.form1.codEstadoCotizacionB.value+'&codTipoCotizacionB='+document.form1.codTipoCotizacionB.value+'&nombreClienteB='+document.form1.nombreClienteB.value+'&descItemB='+document.form1.descItemB.value+'&codActivoFecha='+valorchecked+'&fechaInicioB='+document.form1.fechaInicioB.value+'&fechaFinalB='+document.form1.fechaFinalB.value;*/
 
 }
 function paginar(f)
@@ -43,7 +72,7 @@ if(document.form1.codActivoFecha.checked){
 }
 
 function openPopup(url){
-	window.open(url,'','top=50,left=200,width=600,height=400,scrollbars=1,resizable=1');
+	window.open(url,'COPIAR','top=50,left=200,width=800,height=600,scrollbars=1,resizable=1');
 }
 
 function anular(cod_registro)
@@ -76,69 +105,11 @@ function anular(cod_registro)
 	$fechaFinalB=$_GET['fechaFinalB'];
 
 ?>
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE COTIZACIONES </h3>
-
-<table border="0" align="center">
-<tr>
-<td><strong>Nro de Cotizacion</strong></td>
-<td colspan="3"><input type="text" name="nrocotizacionB" id="nrocotizacionB" size="10" class="textoform" onkeyup="buscar()" value="<?php echo $nrocotizacionB;?>" ></td>
-</tr>
-<tr>
-  <td><strong>Estado de Cotizacion</strong></td>
-<td colspan="3">
-<select name="codEstadoCotizacionB" id="codEstadoCotizacionB" class="textoform" onChange="buscar()" >
-				<option value="0">Seleccione una Opcion</option>
-				<?php
-					$sql2="select cod_estado_cotizacion, nombre_estado_cotizacion from estados_cotizacion";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_estado_cotizacion=$dat2['cod_estado_cotizacion'];	
-			  		 		$nombre_estado_cotizacion=$dat2['nombre_estado_cotizacion'];	
-				 ?>
-				  <option value="<?php echo $cod_estado_cotizacion;?>" <?php if($cod_estado_cotizacion==$codEstadoCotizacionB){?> selected="selected" <?php }?>><?php echo $nombre_estado_cotizacion;?></option>				
-				<?php		
-					}
-				?>						
-</select></td>
-</tr>
-<tr>
-  <td><strong>Tipo de Cotizacion</strong></td>
-<td colspan="3">
-<select name="codTipoCotizacionB" id="codTipoCotizacionB" class="textoform" onChange="buscar()">
-				<option value="0">Seleccione una Opcion</option>
-				<?php
-					$sql2="select cod_tipo_cotizacion, nombre_tipo_cotizacion from tipos_cotizacion";
-					$resp2=mysql_query($sql2);
-						while($dat2=mysql_fetch_array($resp2))
-						{
-							$cod_tipo_cotizacion=$dat2['cod_tipo_cotizacion'];	
-			  		 		$nombre_tipo_cotizacion=$dat2['nombre_tipo_cotizacion'];	
-				 ?>
-				  <option value="<?php echo $cod_tipo_cotizacion;?>" <?php if($cod_tipo_cotizacion==$codTipoCotizacionB){?> selected="selected" <?php }?>><?php echo $nombre_tipo_cotizacion;?></option>				
-				<?php		
-					}
-				?>						
-</select></td>
-</tr>
-<tr><td><strong>Clientes</strong></td>
-<td colspan="3">
- <input name="nombreClienteB" id="nombreClienteB" size="40" class="textoform" value="<?php echo $nombreClienteB; ?>" onkeyup="buscar()">
-	</td>
-	<td rowspan="2">&nbsp;</td>
-</tr>
-
-<tr>
-<td><strong>Item</strong></td>
-<td colspan="3"><input type="text" name="descItemB" id="descItemB" size="40" value="<?php echo $descItemB;?>" class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr >
-     		<td>&nbsp;<b>Rango de Fecha<br/>(Fomato dd/mm/aaaa)</b></td>			
-     		<td><strong>De</strong>&nbsp;
-                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $fechaInicioB; ?>"><strong>Hasta</strong><input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $fechaFinalB; ?>" >
-<input type="checkbox" name="codActivoFecha" id="codActivoFecha" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?> onClick="buscar()" ><strong>Chekear la casilla para buscar por fechas.</strong></td>
-    	</tr>
-</table>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE COTIZACIONES 
+   <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 
 <div id="resultados">
 <?php 
@@ -204,36 +175,7 @@ function anular(cod_registro)
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-<h3 align="center" style="background:#FFF;font-size: 10px;color:#E78611;font-weight:bold;">Nro de Registros <?php echo $nro_filas_sql;?></h3>
-<table border="0" align="center" >
-<tr>
-
-<td bgcolor="#FFFF66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td ><strong>Comision</strong></td>
-</tr>
-</table>
-<?php		
-	if($nro_filas_sql==0){
-?>
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro de Cotizacion</td>
-    		<td>Fecha</td>	
-            <td>Usuario</td>	
-			<td>Cliente</td>														
-    		<td>Tipo de Pago</td>
-			<td>Tipo de Cotizacion</td>	            
-			<td>Observaciones</td>
-            <td>Estado</td>
-            <td>&nbsp;</td> 
-            <td>&nbsp;</td>            
-		</tr>
-		<tr><th colspan="10" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+		
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -249,13 +191,11 @@ function anular(cod_registro)
 			}					
 		//Fin de calculo de paginas
 		$sql=" select c.cod_cotizacion, c.cod_tipo_cotizacion, tc.nombre_tipo_cotizacion, c.cod_estado_cotizacion, ";
-		$sql.=" ec.nombre_estado_cotizacion, c.nro_cotizacion,c.cod_cliente, c.cod_unidad, c.cod_contacto, ";
-		$sql.=" cli.nombre_cliente,  c.fecha_cotizacion,"; 
-		$sql.=" c.obs_cotizacion, c.cod_tipo_pago, tp.nombre_tipo_pago,  c.cod_gestion, g.gestion, c.cod_sumar,";
-		$sql.=" c.considerar_precio_unitario, c.fecha_registro, c.cod_usuario_registro, c.fecha_modifica, c.cod_usuario_modifica, ";
-		$sql.=" c.cod_usuario_aprobacion, c.fecha_aprobacion, c.obs_cotizacion_impresion, c.cod_usuario_firma, c.cod_usuario_comision,";
-		$sql.=" c.descuento_cotizacion,  c.descuento_fecha, c.descuento_obs, c.cod_usuario_descuento, c.obs_pago, ";
-		$sql.=" c.incremento_cotizacion, c.incremento_fecha, c.incremento_obs ";
+		$sql.=" ec.nombre_estado_cotizacion, c.nro_cotizacion,c.cod_cliente,c.cod_unidad, c.cod_contacto, ";
+		$sql.=" cli.nombre_cliente, cli.direccion_cliente, cli.telefono_cliente, cli.celular_cliente,  c.fecha_cotizacion,"; 
+		$sql.=" c.obs_cotizacion, c.cod_tipo_pago, tp.nombre_tipo_pago,  c.cod_gestion, g.gestion, g.gestion_nombre,c.cod_sumar,";
+		$sql.=" c.considerar_precio_unitario, c.fecha_registro, c.cod_usuario_registro, c.fecha_modifica, c.cod_usuario_modifica,  ";
+		$sql.=" c.cod_usuario_aprobacion, c.fecha_aprobacion, c.obs_cotizacion_impresion, c.cod_usuario_firma, c.cod_usuario_comision ";
 		$sql.=" from cotizaciones c, gestiones g, estados_cotizacion ec, tipos_cotizacion tc, tipos_pago tp, clientes cli ";
 		$sql.=" where c.cod_gestion=g.cod_gestion ";
 		$sql.=" and c.cod_estado_cotizacion=ec.cod_estado_cotizacion ";
@@ -295,45 +235,33 @@ function anular(cod_registro)
 
 	//Fin Busqueda/////////////////	
 			$sql.=" order by  c.cod_cotizacion desc ";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";	//CORREGIDO
 		//	echo $sql;
 		$resp = mysql_query($sql);
 		$cont=0;
 ?>	
-	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="16">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>&nbsp;</td> 
-            <td>&nbsp;</td> 
-			<td>Nro de Cotizacion</td>
-    		<td>Fecha</td>	
-            <td>Usuario</td>	
-			<td>Cliente</td>
-			<td>Monto</td>
-			<td>Desc</td>
-            <td>Inc</td>
-			<td>Total Monto</td>														
-    		<td>Tipo de Pago</td>
-			<td>Tipo de Cotizacion</td>	            
-			<td>Observaciones</td>
-            <td>Estado</td>
-			<td>&nbsp;</td>
-            <td>&nbsp;</td>
+	<table align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" id="cotizacion" class="tablaReporte" style="width:100% !important;">   
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
+			<th>Nro de Cotizacion</th>
+    		<th>Fecha</th>	
+            <th>Usuario</th>	
+			<th>Cliente</th>														
+    		<th>Tipo de Pago</th>
+			<th>Tipo de Cotizacion</th>	            
+			<th>Observaciones</th>
+            <th>Estado</th>
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th>
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
 		</tr>
+	</thead>
+	<tbody>
 <?php   
 		while($dat=mysql_fetch_array($resp)){
 				
@@ -344,15 +272,19 @@ function anular(cod_registro)
 			 $nombre_estado_cotizacion=$dat['nombre_estado_cotizacion'];
 			 $nro_cotizacion=$dat['nro_cotizacion'];
 			 $cod_cliente=$dat['cod_cliente'];
-			 $cod_contacto=$dat['cod_contacto'];
 			 $cod_unidad=$dat['cod_unidad'];
+			 $cod_contacto=$dat['cod_contacto'];
 			 $nombre_cliente=$dat['nombre_cliente'];
+			 $direccion_cliente=$dat['direccion_cliente'];
+			 $telefono_cliente=$dat['telefono_cliente'];
+			 $celular_cliente=$dat['celular_cliente'];
 			 $fecha_cotizacion=$dat['fecha_cotizacion'];
 			 $obs_cotizacion=$dat['obs_cotizacion'];
 			 $cod_tipo_pago=$dat['cod_tipo_pago'];
 			 $nombre_tipo_pago=$dat['nombre_tipo_pago'];
 			 $cod_gestion=$dat['cod_gestion'];
 			 $gestion=$dat['gestion'];
+			 $gestion_nombre=$dat['gestion_nombre'];
 			 $cod_sumar=$dat['cod_sumar'];
 			 $considerar_precio_unitario=$dat['considerar_precio_unitario'];
 			 $fecha_registro=$dat['fecha_registro'];
@@ -363,25 +295,16 @@ function anular(cod_registro)
 			 $fecha_aprobacion=$dat['fecha_aprobacion'];
 			 $obs_cotizacion_impresion=$dat['obs_cotizacion_impresion'];
 			 $cod_usuario_firma=$dat['cod_usuario_firma'];
- 			 $cod_usuario_comision=$dat['cod_usuario_comision'];
-			 $descuento_cotizacion=$dat['descuento_cotizacion'];
-			 $descuento_fecha=$dat['descuento_fecha'];
-			 $descuento_obs=$dat['descuento_obs'];
-			 $cod_usuario_descuento=$dat['cod_usuario_descuento'];
-			 $obs_pago=$dat['obs_pago'];
-			 $incremento_cotizacion=$dat['incremento_cotizacion'];
-			 $incremento_fecha=$dat['incremento_fecha'];
-			 $incremento_obs=$dat['incremento_obs'];
-			 
+			 $cod_usuario_comision=$dat['cod_usuario_comision'];
 
-			    $sql2="  select count(*) swHojasRuta from hojas_rutas ";
+            	$sql2="  select count(*) swHojasRuta from hojas_rutas ";
 				$sql2.=" where cod_cotizacion='".$cod_cotizacion."' and (cod_estado_hoja_ruta=1 or cod_estado_hoja_ruta=3)";
 				$resp2= mysql_query($sql2);
 				$swHojasRuta=0;
 				while($dat2=mysql_fetch_array($resp2)){
 					$swHojasRuta=$dat2[0];
 				}
-				$contacto="";
+					$contacto="";
 					if($cod_contacto<>"" and $cod_contacto<>0 and $cod_contacto<>NULL){
 					  $sql5="  select nombre_contacto, ap_paterno_contacto, ap_materno_contacto, telefono_contacto, celular_contacto, ";
 					  $sql5.=" email_contacto, cargo_contacto ";
@@ -415,13 +338,12 @@ function anular(cod_registro)
 						$nombre_usuario_comision=$dat2['nombres_usuario']." ".$dat2['ap_paterno_usuario']." ".$dat2['ap_materno_usuario'];
 					}							
 				
-	 
-				
 		?> 
-				<tr bgcolor="<?php if($cod_usuario_comision==2){ echo '#FFFFFF';}else{echo '#FFFF66';}?>" class="text"  title="<?php echo "De: ".$nombre_usuario_comision;?>" valign="middle">
-            <td><a href="../reportes/impresionCotizacion.php?cod_cotizacion=<?php echo $cod_cotizacion;?>" target="_blank">CF</a></td>
-            <td><a href="../reportes/impresionCotizacionFormato.php?cod_cotizacion=<?php echo $cod_cotizacion; ?>"target="_blank">SF</a></td>
-    		<td align="right"><?php echo $nro_cotizacion."/".$gestion; ?></td>	
+<tr bgcolor="<?php if($cod_usuario_comision==2){ echo '#FFFFFF';}else{echo '#FFFF66';}?>" class="text"  title="<?php echo "De: ".$nombre_usuario_comision;?>" valign="middle">
+             <td><a href="../reportes/impresionCotizacionFormato.php?cod_cotizacion=<?php echo $cod_cotizacion; ?>" target="_blank">FP</a></td>
+             <td><a href="../reportes/impresionCotizacion.php?cod_cotizacion=<?php echo $cod_cotizacion; ?>" target="_blank">CF</a></td>
+            <td></td>
+    		<td align="right"><?php echo $nro_cotizacion."/".$gestion_nombre; ?></td>	
 			<td><?php echo strftime("%d/%m/%Y",strtotime($fecha_cotizacion));?></td>	
 			<td>&nbsp;</td>											    		
 	        <td><?php echo "<strong>".$nombre_cliente."</strong>";
@@ -439,104 +361,165 @@ function anular(cod_registro)
 
 				}			
 			?></td>
-			<td bgcolor="#FFFFCC">
-			<?php
-					    $sql2="  select cod_hoja_ruta from hojas_rutas ";
-						$sql2.=" where cod_cotizacion='".$cod_cotizacion."' and (cod_estado_hoja_ruta=1 or cod_estado_hoja_ruta=3)";
-						$resp2= mysql_query($sql2);
-						$cod_hoja_ruta=0;
-						while($dat2=mysql_fetch_array($resp2)){
-							$cod_hoja_ruta=$dat2[0];
-						}
-				
-					$monto_factura=0;	
-						if($cod_hoja_ruta<>0){			
-							$sqlAux=" select sum(cd.IMPORTE_TOTAL) ";
-							$sqlAux.=" from hojas_rutas_detalle hrd, cotizaciones_detalle cd ";
-							$sqlAux.=" where hrd.cod_hoja_ruta=".$cod_hoja_ruta;
-							$sqlAux.=" and hrd.cod_cotizacion=cd.cod_cotizacion ";
-							$sqlAux.=" and hrd.cod_cotizaciondetalle=cd.cod_cotizaciondetalle ";
-							$respAux = mysql_query($sqlAux);
-							while($datAux=mysql_fetch_array($respAux)){
-								$monto_factura=$datAux[0];
-							}
-							echo $monto_factura." Bs.";
-					 }else{
-						 	$sqlAux=" select sum(cd.IMPORTE_TOTAL) ";
-							$sqlAux.=" from cotizaciones_detalle cd ";
-							$sqlAux.=" where  cd.cod_cotizacion=".$cod_cotizacion;
-							$respAux = mysql_query($sqlAux);
-							while($datAux=mysql_fetch_array($respAux)){
-								$monto_factura=$datAux[0];
-							}
-							echo $monto_factura." Bs.";
-					
-					 }
-					
-				 ?>
-				</td>
-			<td bgcolor="#FFFFCC"><?php
-				if($descuento_cotizacion<>''){ 
-					echo $descuento_cotizacion." Bs.";
-				}
-			?>
-			</td>
-			<td bgcolor="#FFFFCC"><?php
-				if($incremento_cotizacion<>''){ 
-					echo $incremento_cotizacion." Bs.";
-				}
-			?>
-			</td>            
-			<td bgcolor="#FFFFCC"><?php
-				if($swHojasRuta>0){ 
-					echo (($monto_factura+$incremento_cotizacion)-$descuento_cotizacion)." Bs.";
-				}
-			?>
-			</td>
-			
 		    <td><?php echo $nombre_tipo_pago;?></td>
             <td><?php echo $nombre_tipo_cotizacion;?></td>
             <td><?php echo $obs_cotizacion;?></td>
-            <td><?php echo $nombre_estado_cotizacion;?></td>
-			<td><?php if($swHojasRuta>0){?>
-			<a onclick="openPopup('descuentoCotizacion.php?cod_cotizacion=<?php echo $cod_cotizacion;?>');" title="Click Ver Descuento"> Desc.</a>
-			<?php }?>
-			</td>	
-			<td><?php if($swHojasRuta>0){?>
-			<a onclick="openPopup('incrementoCotizacion.php?cod_cotizacion=<?php echo $cod_cotizacion;?>');" title="Click Ver Descuento"> Inc.</a>
-			<?php }?>
-			</td>	            	
-				            
+            <td><?php echo $nombre_estado_cotizacion;?></td>		
+            <td>
+			<?php if($cod_estado_cotizacion==2){?>
+            	Editar
+            <?php }else{?>
+				<?php if($swHojasRuta==0){?>
+					<a href="modificarCotizacion.php?codCotizacion=<?php echo $cod_cotizacion;?>">Editar</a>
+				<?php }else{?>
+					Editar
+				<?php }?>
+            <?php }?>
+            </td>            
+            <td>
+			<?php if($cod_estado_cotizacion==2){?>
+            Anular
+            <?php }else{?>            
+           		<?php if($swHojasRuta==0){?>
+					<a onclick="anular(<?php echo $cod_cotizacion;?>)">Anular</a>
+				<?php }else{?>
+					Anular
+				<?php }?>
+            <?php }?>            
+              </td>	
+            <td>
+            <a onclick="openPopup('replicarCotizacion.php?codigo=<?php echo $cod_cotizacion;?>');" title="Click para Copiar">Copiar</a></td>
+            <td>
+          			<?php if($cod_estado_cotizacion==2){?>
+           			 Genera Hoja Ruta
+            <?php }else{?>  
+            
+				<?php if($swHojasRuta==0){?>
+					<a href="generarHojaRuta.php?cod_cotizacion=<?php echo $cod_cotizacion;?>">Genera Hoja Ruta</a>
+				<?php }else{?>
+					Genera Hoja Ruta
+				<?php }?>
+            <?php }?>
+            </td>	      							
+							            
    	  </tr>
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="16">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+        </tbody>
+        <!--<tfoot>
+	    <tr height="20px" align="center"  class="bg-success">
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
+			<th>Nro de Cotizacion</th>
+    		<th>Fecha</th>	
+            <th>Usuario</th>	
+			<th>Cliente</th>														
+    		<th>Tipo de Pago</th>
+			<th>Tipo de Cotizacion</th>	            
+			<th>Observaciones</th>
+            <th>Estado</th>
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th>
+            <th>&nbsp;</th> 
+            <th>&nbsp;</th> 
+		</tr>
+	   </tfoot>-->
 		</table>
 		
-<?php
-	}
-?>
-</div>	
-<?php require("cerrar_conexion.inc");
-?>
-<br>
 
+</div>
+
+
+<br>
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        	<table border="0" align="center">
+<tr>
+<td><strong>Nro de Cotizacion</strong></td>
+<td colspan="3"><input type="text" name="nrocotizacionB" id="nrocotizacionB" size="10" class="textoform" onkeyup="buscar()" value="<?php echo $nrocotizacionB;?>" ></td>
+</tr>
+<tr>
+  <td><strong>Estado de Cotizacion</strong></td>
+<td colspan="3">
+<select name="codEstadoCotizacionB" id="codEstadoCotizacionB" class="textoform" onChange="buscar()" >
+				<option value="0">Seleccione una Opcion</option>
+				<?php
+					$sql2="select cod_estado_cotizacion, nombre_estado_cotizacion from estados_cotizacion";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_estado_cotizacion=$dat2['cod_estado_cotizacion'];	
+			  		 		$nombre_estado_cotizacion=$dat2['nombre_estado_cotizacion'];	
+				 ?>
+				  <option value="<?php echo $cod_estado_cotizacion;?>" <?php if($cod_estado_cotizacion==$codEstadoCotizacionB){?> selected="selected" <?php }?>><?php echo $nombre_estado_cotizacion;?></option>				
+				<?php		
+					}
+				?>						
+</select></td>
+</tr>
+<tr>
+  <td><strong>Tipo de Cotizacion</strong></td>
+<td colspan="3">
+<select name="codTipoCotizacionB" id="codTipoCotizacionB" class="textoform" onChange="buscar()">
+				<option value="0">Seleccione una Opcion</option>
+				<?php
+					$sql2="select cod_tipo_cotizacion, nombre_tipo_cotizacion from tipos_cotizacion";
+					$resp2=mysql_query($sql2);
+						while($dat2=mysql_fetch_array($resp2))
+						{
+							$cod_tipo_cotizacion=$dat2['cod_tipo_cotizacion'];	
+			  		 		$nombre_tipo_cotizacion=$dat2['nombre_tipo_cotizacion'];	
+				 ?>
+				  <option value="<?php echo $cod_tipo_cotizacion;?>" <?php if($cod_tipo_cotizacion==$codTipoCotizacionB){?> selected="selected" <?php }?>><?php echo $nombre_tipo_cotizacion;?></option>				
+				<?php		
+					}
+				?>						
+</select></td>
+</tr>
+<tr><td><strong>Clientes</strong></td>
+<td colspan="3">
+ <input name="nombreClienteB" id="nombreClienteB" size="40" class="textoform" value="<?php echo $nombreClienteB; ?>" onkeyup="buscar()">
+	</td>
+	<td rowspan="2">&nbsp;</td>
+</tr>
+
+<tr>
+<td><strong>Item</strong></td>
+<td colspan="3"><input type="text" name="descItemB" id="descItemB" size="40" value="<?php echo $descItemB;?>" class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr >
+     		<td>&nbsp;<b>Rango de Fecha<br>
+   		    (dd/mm/aaaa)</b>&nbsp;</td>			
+     		<td><strong>De&nbsp;</strong>
+                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $fechaInicioB; ?>">
+
+        <strong>&nbsp;Hasta&nbsp;</strong>
+        <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $fechaFinalB; ?>" >
+
+<input type="checkbox" name="codActivoFecha" id="codActivoFecha" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?> onClick="buscar()" ><strong>Chekear la casilla para buscar por fechas.</strong>
+			</td>
+    	</tr>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php require("cerrar_conexion.inc");
+?>
 </form>
 
 </body>

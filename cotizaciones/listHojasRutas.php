@@ -31,7 +31,9 @@ function resultados_ajax(datos){
 	ajax.open("GET", datos);
 	ajax.onreadystatechange=function() {
 		if (ajax.readyState==4) {
-			divResultado.innerHTML = ajax.responseText
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
 		}
 	}
 	ajax.send(null)
@@ -89,36 +91,11 @@ if(document.form1.codActivoFecha.checked){
 	$fechaFinalB=$_GET['fechaFinalB'];
 
 ?>
-<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE HOJAS DE RUTA</h3>
-
-<table border="0" align="center">
-<tr>
-<td><strong>Nro de Hoja de Ruta</strong></td>
-<td colspan="3"><input type="text" name="nroHojaRutaB" id="nroHojaRutaB" size="10" value="<?php echo $nroHojaRutaB;?>" class="textoform" onkeyup="buscar()" ></td>
-</tr>
-<tr>
-<td><strong>Nro de Cotizacion</strong></td>
-<td colspan="3"><input type="text" name="nrocotizacionB" id="nrocotizacionB" size="10" class="textoform" onkeyup="buscar()" value="<?php echo $nrocotizacionB;?>" ></td>
-</tr>
-<tr><td><strong>Clientes</strong></td>
-<td colspan="3">
- <input name="nombreClienteB" id="nombreClienteB" size="30" class="textoform" value="<?php echo $nombreClienteB; ?>" onkeyup="buscar()">
-	</td>
-	<td rowspan="2">&nbsp;</td>
-</tr>
-
-
-<tr >
-     		<td>&nbsp;<b>Rango de Fecha<br/>(dd/mm/aaaa)</b>&nbsp;</td>			
-     		<td><strong>De&nbsp;</strong>
-                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $fechaInicioB; ?>">
-
-        <strong>&nbsp;Hasta&nbsp;</strong>
-        <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $fechaFinalB; ?>" >
-<input type="checkbox" name="codActivoFecha" id="codActivoFecha" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?> onClick="buscar()" ><strong>Chekear la casilla para buscar por fechas.</strong>
-			</td>
-    	</tr>
-</table>
+<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE HOJAS DE RUTA
+  <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 
 <div id="resultados">
 <?php 
@@ -175,34 +152,7 @@ if(document.form1.codActivoFecha.checked){
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-<h3 align="center" style="background:#FFFFFF;font-size: 10px;color:#E78611;font-weight:bold;">Nro de Registros <?php echo $nro_filas_sql;?></h3>
-<table border="0" align="center" >
-<tr>
-
-<td bgcolor="#FFFF66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td ><strong>Comision</strong></td>
-</tr>
-</table>
-<?php		
-	if($nro_filas_sql==0){
-?>
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Hoja Ruta</td>
-    		<td>Fecha</td>	
-			<td>Usuario</td>														
-    		<td>Estado</td>
-			<td>Observaciones</td>	            
-			<td>Ref. Cotizacion</td>
-            <td>Notas de Remision</td>
-            <td>Facturas</td>            
-		</tr>
-		<tr><th colspan="8" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+		
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -252,39 +202,28 @@ if(document.form1.codActivoFecha.checked){
 	}
 	//Fin Busqueda/////////////////	
 	$sql.=" order by  hr.cod_hoja_ruta desc";	
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+	$sql.=" limit 50";
 		//	echo $sql;
 		$resp = mysql_query($sql);
 		$cont=0;
 ?>	
-	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="10">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Hoja Ruta</td>
-    		<td>Fecha</td>	
-			<td>Usuario</td>														
-    		<td>Estado</td>
-			<td>Observaciones</td>	            
-			<td>Ref. Cotizacion</td>
-            <td>Notas de Remision</td>
-            <td>Facturas</td> 
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>   
+	<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" class="tablaReporte" bgColor="#cccccc" style="width:100% !important;">  
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>Nro Hoja Ruta</th>
+    		<th>Fecha</th>	
+			<th>Usuario</th>														
+    		<th>Estado</th>
+			<th>Observaciones</th>	            
+			<th>Ref. Cotizacion</th>
+            <th>Notas de Remision</th>
+            <th>Facturas</th> 
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>   
 		</tr>
+	 </thead>
+	 <tbody>
 <?php   
 		while($dat=mysql_fetch_array($resp)){
 				
@@ -536,32 +475,60 @@ if(document.form1.codActivoFecha.checked){
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="10">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>
+          </tbody>	
 		</table>
-		
-<?php
-	}
-?>
 </div>	
-<?php require("cerrar_conexion.inc");
-?>
+
 <br>
 
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        	 <table border="0" align="center">
+<tr>
+<td><strong>Nro de Hoja de Ruta</strong></td>
+<td colspan="3"><input type="text" name="nroHojaRutaB" id="nroHojaRutaB" size="10" value="<?php echo $nroHojaRutaB;?>" class="textoform" onkeyup="buscar()" ></td>
+</tr>
+<tr>
+<td><strong>Nro de Cotizacion</strong></td>
+<td colspan="3"><input type="text" name="nrocotizacionB" id="nrocotizacionB" size="10" class="textoform" onkeyup="buscar()" value="<?php echo $nrocotizacionB;?>" ></td>
+</tr>
+<tr><td><strong>Clientes</strong></td>
+<td colspan="3">
+ <input name="nombreClienteB" id="nombreClienteB" size="30" class="textoform" value="<?php echo $nombreClienteB; ?>" onkeyup="buscar()">
+	</td>
+	<td rowspan="2">&nbsp;</td>
+</tr>
+
+
+<tr >
+     		<td>&nbsp;<b>Rango de Fecha<br/>(dd/mm/aaaa)</b>&nbsp;</td>			
+     		<td><strong>De&nbsp;</strong>
+                <input type="text" name="fechaInicioB" id="fechaInicioB" class="textoform" value="<?php echo $fechaInicioB; ?>">
+
+        <strong>&nbsp;Hasta&nbsp;</strong>
+        <input type="text" name="fechaFinalB" id="fechaFinalB" class="textoform" value="<?php echo $fechaFinalB; ?>" >
+<input type="checkbox" name="codActivoFecha" id="codActivoFecha" <?php if($codActivoFecha=="on"){?>checked="checked"<?php }?> onClick="buscar()" ><strong>Chekear la casilla para buscar por fechas.</strong>
+			</td>
+    	</tr>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php require("cerrar_conexion.inc");
+?>
 </form>
 
 </body>

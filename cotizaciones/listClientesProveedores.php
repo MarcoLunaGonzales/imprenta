@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta meta name="tipo_contenido"  content="text/html;" http-equiv="content-type" charset="utf-8"/>
 <title>Clientes - Proveedores</title>
 <link rel="STYLESHEET" type="text/css" href="pagina.css" />
 <script language='Javascript'>
@@ -24,16 +24,20 @@ function objetoAjax(){
 }
 function buscar()
 {	
+	    tablaReporte.destroy();
 		var param="?";
 		param+='clienteProveedorB='+document.form1.clienteProveedorB.value;
-		param+='&nro_filas_show='+document.form1.nro_filas_show.value;	
+		param+='&nro_filas_show=0';	
 		
 		divResultado = document.getElementById('resultados');
 		ajax=objetoAjax();
 			ajax.open("GET",'searchClientesProveedores.php'+param);
 			ajax.onreadystatechange=function() {
 				if (ajax.readyState==4) {
-					divResultado.innerHTML = ajax.responseText
+					divResultado.innerHTML = ajax.responseText;	
+
+					cargarClasesFrame();	
+			        agregarTablaReporteClase();
 				}
 			}
 				ajax.send(null)	
@@ -104,33 +108,17 @@ function registrar(f){
 
 </head>
 <body  bgcolor="#FFFFFF">
-<!---Autor:Gabriela Quelali Siñani
-02 de Julio de 2008
--->
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE CLIENTES Y PROVEEDORES</h3>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE CLIENTES Y PROVEEDORES 
+	<a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" id="form1" method="post" >
 <?php 
 	require("conexion.inc");
 	include("funciones.php");
 
 ?>
-
-<table border="0" align="center">
-<tr>
-<td><strong>Buscar por Cliente o Proveedor</strong></td>
-<td colspan="3"><input type="text" name="clienteProveedorB" id="clienteProveedorB" size="60" class="textoform" value="<?php echo $clienteContactoB;?>" onkeyup="buscar()" ></td>
-</tr>
-</table>
-<div align="center" class="text">Nro de Registros Mostrados por Pagina
-  <select name="nro_filas_show" id="nro_filas_show" class="text" onchange="paginar1(this.form,1)" >
-		<option value="20" <?php if($_GET['nro_filas_show']==20){ ?> selected="true"<?php }?> >20</option>
-	    <option value="50" <?php if($_GET['nro_filas_show']==50){ ?> selected="true"<?php }?> >50</option>
-    	<option value="100" <?php if($_GET['nro_filas_show']==100){ ?> selected="true"<?php }?> >100</option>
-	    <option value="200" <?php if($_GET['nro_filas_show']==200){ ?> selected="true"<?php }?> >200</option>
-    	<option value="300"<?php if($_GET['nro_filas_show']==300){ ?> selected="true"<?php }?> >300</option>
-        <option value="400"<?php if($_GET['nro_filas_show']==400){ ?> selected="true"<?php }?> >400</option>
-    </select>
-</div>
 
 <div id="resultados">
 
@@ -175,25 +163,6 @@ function registrar(f){
 		}
 		$nro_filas_sql=$nro_filas_sql_clientes+$nro_filas_sql_proveedores;
 		
-		if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Tipo</td>
-            <td>Nombre</td>
-    		<td>Ciudad</td>
-    		<td>Direccion</td>
-    		<td>Telefono</td>
-    		<td>Celular</td>
-            <td>Email</td>							
-    		<td>Contacto</td>			
-    		<td>Estado</td>											
-		</tr>
-		<tr><th colspan="9" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -231,47 +200,39 @@ function registrar(f){
 		}
 		$sql.=" )";
 		$sql.=" order BY nom  asc";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
-		
+		/*$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;*/
+		$sql.=" limit 50";	//CORREGIDO
 		$resp = mysql_query($sql);
 
 ?>	
-<h3 align="center" style="background:#FFF;font-size: 10px;color: #000;font-weight:bold;">Total Registro:<?php echo $nro_filas_sql;?></h3>
-	<table width="100%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)" >Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-                      <p align="center">				
-						Ir a Pagina<input type="text" name="pagina1" class="texto" id="pagina1" size="5" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar(this.form)"  >	
-				  </p>
-						<?php }?>
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Tipo</td>
-            <td>Nombre</td>
-    		<td>Ciudad</td>
-    		<td>Direccion</td>
-    		<td>Telefono</td>
-    		<td>Celular</td>
-            <td>Fax</td>
-            <td>Email</td>							
-    		<td>Contactos</td>			
-    		<td>Estado</td>	
-    		<td>Registro</td>			
-    		<td>Edicion</td>	                   															
+<style>
+  #tablaReporteFiltros_filter{
+         display: none !important;
+       } 
+  tfoot input {
+    width: 100% !important;
+    padding: 3px;
+  }   
+  
+</style>
+	<table align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" id="tablaReporte" style="width:100% !important;">
+	  <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+    		<th>Tipo</th>
+            <th>Nombre</th>
+    		<th>Ciudad</th>
+    		<th>Direccion</th>
+    		<th>Telefono</th>
+    		<th>Celular</th>
+            <th>Fax</th>
+            <th>Email</th>							
+    		<th>Contactos</th>			
+    		<th>Estado</th>	
+    		<th>Registro</th>			
+    		<th>Edicion</th>	                   															
 		</tr>
-
+	 </thead>	
+     <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){	
@@ -443,35 +404,54 @@ function registrar(f){
 <?php
 		 } 
 ?>			
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina2" size="5"  class="texto" id="pagina2" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar2(this.form)">	</p>
-                         <?php } ?>		
-</td>
-			</tr>
+        </tbody>
+	    <!--<tfoot>
+	    <tr height="20px" align="center"  class="bg-success">
+    		<th>Tipo</th>
+            <th>Nombre</th>
+    		<th>Ciudad</th>
+    		<th>Direccion</th>
+    		<th>Telefono</th>
+    		<th>Celular</th>
+            <th>Fax</th>
+            <th>Email</th>							
+    		<th>Contactos</th>			
+    		<th>Estado</th>	
+    		<th>Registro</th>			
+    		<th>Edicion</th>	                   															
+		</tr>
+	 </tfoot>--> 
 		</table>
-
-<?php
-	}
-?>
 	
 </div> 	
-<?php require("cerrar_conexion.inc");
+
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        	<table border="0" align="center">
+            <tr>
+            <td><strong>Buscar por Cliente o Proveedor</strong></td>
+            <td colspan="3"><input type="text" name="clienteProveedorB" id="clienteProveedorB" size="60" class="form-control" value="<?php echo $clienteContactoB;?>" onkeyup="buscar()" ></td>
+            </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <?php require("cerrar_conexion.inc");
 ?>
-
-
 </form>
 </body>
 </html>

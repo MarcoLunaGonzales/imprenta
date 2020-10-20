@@ -47,23 +47,7 @@ require("conexion.inc");
 		while($dat_aux=mysql_fetch_array($resp_aux)){
 			$nro_filas_sql=$dat_aux[0];
 		}
-		if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>ID</td>
-            <td>Proveedor</td>
-            <td>Nit</td>
-            <td>Ciudad</td>
-            <td>Direccion</td>
-            <td>Telf/Celular/Fax</td>
-            <td colspan="3">Contactos</td>										
-		</tr>
-		<tr><th colspan="9" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -94,54 +78,30 @@ require("conexion.inc");
 		}	
 	
 		$sql.=" order by nombre_proveedor asc";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		//$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
 
 		$resp = mysql_query($sql);
 
 ?>	
-<h3 align="center" style="background:#FFF;font-size: 10px;color: #000;font-weight:bold;">Total Registro:<?php echo $nro_filas_sql;?></h3>
-	<table border="0" align="center" >
-<tr>
 
-<td bgcolor="#FFFF66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td ><strong>Alerta: Proveedores no Vinculados con una Cuenta</strong></td>
-</tr>
-</table>
-	<table width="89%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC">
-    <tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)" >Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-                      <p align="center">				
-						Ir a Pagina<input type="text" name="pagina1" class="texto" id="pagina1" size="5" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar(this.form)"  >	
-				  </p>
-						<?php }?>
-</td>
-			</tr>    
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>ID</td>
-            <td>Nro Cuenta</td>
-            <td>Nombre Cuenta</td>
-            <td>Proveedor</td>
-            <td>Nit</td>
-            <td>Ciudad</td>            
-            <td>Direccion</td>
-            <td>Telf/Celular/Fax</td>
-            <td>**Contactos**</td>
-            <td>Contactos</td>
-            <td>ING</td>
-            <td>&nbsp;</td>            															
+	<table width="89%" align="center" cellpadding="1" cellspacing="1" bgColor="#CCCCCC" class="tablaReporte" style="width:100% !important;">
+    <thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+    		<th>ID</th>
+            <th>Nro Cuenta</th>
+            <th>Nombre Cuenta</th>
+            <th>Proveedor</th>
+            <th>Nit</th>
+            <th>Ciudad</th>            
+            <th>Direccion</th>
+            <th>Telf/Celular/Fax</th>
+            <th>**Contactos**</th>
+            <th>Contactos</th>
+            <th>ING</th>
+            <th>&nbsp;</th>            															
 		</tr>
-
+    </thead> 
+    <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){	
@@ -256,31 +216,9 @@ require("conexion.inc");
 <?php
 		 } 
 ?>			
-	<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="12">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina2" size="5"  class="texto" id="pagina2" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar2(this.form)">	</p>
-                         <?php } ?>		
-</td>
-
-
-			</tr>
+	</tbody>   
 		</table>
 
-<?php
-	}
-?>
 	
 </body>
 </html>

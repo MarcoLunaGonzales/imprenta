@@ -34,7 +34,7 @@ $(" #nav li").hover(function(){
 <!--img src="images/cabecera.jpg" />
 <!--cabecera inicio -->
 <?php
-	require("conexion.inc");
+	require("../conexion.inc");
 	$sql=" select  nombres_usuario, ap_paterno_usuario, ap_materno_usuario,cod_perfil  from usuarios ";
 	$sql.=" where cod_usuario='".$_COOKIE['usuario_global']."'";
 	$resp=mysql_query($sql);

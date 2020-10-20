@@ -9,9 +9,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>INVENTA</title>
 <link rel="STYLESHEET" type="text/css" href="pagina.css" />
-<script type="text/javascript" src="ajax/searchAjax.js"></script>
 <script type="text/javascript">
 
+function objetoAjax(){
+	var xmlhttp=false;
+	try {
+		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+		try {
+		   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch (E) {
+			xmlhttp = false;
+  		}
+	}
+
+	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+		xmlhttp = new XMLHttpRequest();
+	}
+	return xmlhttp;
+}
+
+function resultados_ajax(datos){
+	divResultado = document.getElementById('resultados');
+	ajax=objetoAjax();
+	ajax.open("GET",datos);
+	ajax.onreadystatechange=function() {
+		if (ajax.readyState==4) {
+			divResultado.innerHTML = ajax.responseText;
+			cargarClasesFrame();	
+			agregarTablaReporteClase();
+		}
+	}
+	ajax.send(null)
+}
 function buscar()
 {	
 	for (i=0;i<document.form1.cod_estado_registro.length;i++){ 
@@ -51,50 +81,16 @@ function paginar1(f,pagina)
 02 de Julio de 2008
 -->
 
-<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE GASTOS</h3>
+<h3 align="center" style="background:#FFFFFF;font-size: 14px;color: #E78611;font-weight:bold;">LISTADO DE GASTOS
+   <a class="btn btn-warning btn-lg float-right text-white boton-filtro-iframe" href="#" data-toggle="modal" data-target="#filtroModal">
+       <i class="fa fa-search"></i> BUSCAR REGISTROS
+    </a>
+</h3>
 <form name="form1" id="form1" method="post" >
 <?php
 
 ?>
 
- <table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr >
-          <td width="122" align="right" >TODOS</td>
-          <td width="20"><label>
-            <input name="cod_estado_registro" type="radio" id="cod_estado_registro" value="0"  <?php if($_GET['cod_estado_registro']==0){?> checked="checked" <?php }?> onclick="buscar()"/>
-          </label></td>
-          <?php 
-		  	$queryEstado=" select cod_estado_registro, nombre_estado_registro  from estados_referenciales ";
-			$queryEstado.=" order by  cod_estado_registro ";
-			$resp= mysql_query($queryEstado);
-			while($dat=mysql_fetch_array($resp)){
-				$cod_estado_registro=$dat['cod_estado_registro'];
-				$nombre_estado_registro=$dat['nombre_estado_registro'];
-		 ?>
-         	    <td width="126" align="right" ><?php echo $nombre_estado_registro;?></td>
-        		<td width="20">
-		    	 <label>
-	               <input name="cod_estado_registro" type="radio" id="cod_estado_registro" value="<?php echo $cod_estado_registro;?>"  onclick="buscar()" <?php if($cod_estado_registro==$_GET['cod_estado_registro']){?> checked="checked" <?php }?> />
-        		  </label>
-          		</td>
-		 <?php
-			}
-		  
-		  ?>
-        </tr>
-      </table>
-      <br/>
-
-    <table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr class="texto">
-          <td width="67" align="right" class="al_derecha">Buscar</td>
-          <td width="256" align="left"><span id="sprytextfield1">
-            <label for="elemento"></label>
-            <input name="descGastoB" type="text" class="textoform" id="descGastoB" value="<?php echo $_GET['descGastoB']; ?>" onkeyup="buscar()" size="50" />
-</span></td>
-          </tr>
-    </table>
-    <div align="right"><a href="newGasto.php"><img src="img/adicionar.jpg" border="0" >[CLICK NUEVO GASTO]</a></div>
 
 <br/>
  <div id="resultados" align="center">   
@@ -124,26 +120,7 @@ function paginar1(f,pagina)
 	while($dat=mysql_fetch_array($resp)){
 		$nro_filas_sql=$dat[0];
 	}
-?>
-	<div id="nroRows" align="center" class="textoform"><?php echo "Nro. de Registros: ".$nro_filas_sql; ?></div>
-    <br/>
-<?php
-	if($nro_filas_sql==0){
-?>
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>&nbsp;</td>
-            <td>Gasto</td>
-			<td>Observaciones</td>				
-    		<td>Estado</td>
-			<td>Fecha de Registro</td>	
-			<td>Ultima Edici&oacute;n</td>																
-		</tr>
-		<tr><th colspan="6" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -170,37 +147,25 @@ function paginar1(f,pagina)
 			$sql.=" and g.desc_gasto like '%".$_GET['descGastoB']."%'";
 		}			
 		$sql.=" order by g.desc_gasto";
-		$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+		$sql.=" limit 50";
 		$resp = mysql_query($sql);
 
 ?>	
 
-	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="7">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						
-</td>
-			</tr>     
-	    <tr height="20px" align="center"  class="titulo_tabla">
-            <td>Gasto</td>
-			<td>Observaciones</td>				
-    		<td>Estado</td>
-			<td>Fecha de Registro</td>	
-			<td>Ultima Edici&oacute;n</td>	
-            <td>&nbsp;</td>	
-            <td>&nbsp;</td>																		
-		</tr>
+	<table width="80%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
 
+	<thead>		    
+	    <tr height="20px" align="center"  class="bg-success text-white">
+            <th>Gasto</th>
+			<th>Observaciones</th>				
+    		<th>Estado</th>
+			<th>Fecha de Registro</th>	
+			<th>Ultima Edici&oacute;n</th>	
+            <th>&nbsp;</th>	
+            <th>&nbsp;</th>																		
+		</tr>
+		</thead>
+    <tbody>
 <?php   
 	$cont=0;
 		while($dat=mysql_fetch_array($resp)){
@@ -266,36 +231,77 @@ function paginar1(f,pagina)
 				echo strftime("%d/%m/%Y",strtotime($fecha_modifica))." ". $nombres_usuario_modifica[0].$ap_paterno_usuario_modifica[0].$ap_materno_usuario_modifica[0];
 				}
 				 ?></td>
-            <td><a href="editGasto.php?cod_gasto=<?php echo $cod_gasto;?>"><img src="img/edit.png"  border="0"></a></td>
-            <td><a href="deleteGasto.php?cod_gasto=<?php echo $cod_gasto;?>"><img src="img/delete.gif" border="0" width="16" height="16"></a></td>
+            <td><a href="editGasto.php?cod_gasto=<?php echo $cod_gasto;?>" class="btn btn-success text-white"><i class="fa fa-edit"></i></a></td>
+            <td><a href="deleteGasto.php?cod_gasto=<?php echo $cod_gasto;?>" class="btn btn-danger text-white"><i class="fa fa-trash"></i></a></td>
 
 					
    	  </tr>
 <?php
 		 } 
 ?>		
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="7">
-						<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)"><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina" size="5"><input  type="button" size="8"  value="Go" onClick="paginar(this.form)">	
-</td>
-			</tr>	
+  	</tbody>
   </table>
 		</div>			
-<?php
-	}
-?>
+
 </div>	
+
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+ <table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr >
+          <td width="122" align="right" >TODOS</td>
+          <td width="20"><label>
+            <input name="cod_estado_registro" type="radio" id="cod_estado_registro" value="0"  <?php if($_GET['cod_estado_registro']==0){?> checked="checked" <?php }?> onclick="buscar()"/>
+          </label></td>
+          <?php 
+		  	$queryEstado=" select cod_estado_registro, nombre_estado_registro  from estados_referenciales ";
+			$queryEstado.=" order by  cod_estado_registro ";
+			$resp= mysql_query($queryEstado);
+			while($dat=mysql_fetch_array($resp)){
+				$cod_estado_registro=$dat['cod_estado_registro'];
+				$nombre_estado_registro=$dat['nombre_estado_registro'];
+		 ?>
+         	    <td width="126" align="right" ><?php echo $nombre_estado_registro;?></td>
+        		<td width="20">
+		    	 <label>
+	               <input name="cod_estado_registro" type="radio" id="cod_estado_registro" value="<?php echo $cod_estado_registro;?>"  onclick="buscar()" <?php if($cod_estado_registro==$_GET['cod_estado_registro']){?> checked="checked" <?php }?> />
+        		  </label>
+          		</td>
+		 <?php
+			}
+		  
+		  ?>
+        </tr>
+      </table>
+      <br/>
+
+    <table width="323" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr class="texto">
+          <td width="67" align="right" class="al_derecha">Buscar</td>
+          <td width="256" align="left"><span id="sprytextfield1">
+            <label for="elemento"></label>
+            <input name="descGastoB" type="text" class="textoform" id="descGastoB" value="<?php echo $_GET['descGastoB']; ?>" onkeyup="buscar()" size="50" />
+</span></td>
+          </tr>
+    </table>
+    <div align="right"><a href="newGasto.php" class="btn btn-warning"><i class="fa fa-plus"></i> NUEVO GASTO</a></div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php require("cerrar_conexion.inc");
 ?>
 

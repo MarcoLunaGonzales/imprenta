@@ -86,40 +86,7 @@ $sql.=" left join proveedores p on(gg.cod_proveedor=p.cod_proveedor)";
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-?>
-<h3 align="center" style="background:#FFF;font-size: 10px;color:#E78611;font-weight:bold;">Nro de Registros <?php echo $nro_filas_sql;?></h3>
 
-<table border="0" align="center" width="89%">
-<tr><td align="right">
-<div align="right"><a href="newGastoGral.php"><img src="img/adicionar.jpg" border="0">[Nuevo Gasto]</a></div>
-</td>
-</tr>
-</table>
-<?php		
-	if($nro_filas_sql==0){
-?>
-	<table width="90%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>Nro Gasto</td>            
-    		<td>Fecha Gasto</td>
-            <td>Nro Rec</td>	
-            <td>Proveedor</td>
-			<td>Gasto</td>
-            <td>Cantidad</td>
-			<td>Monto</td>
-            <td>Ref</td>
-			<td>Tipo de Pago</td>
-            <td>Estado de Pago</td>
-			<td>Estado de Gasto</td>             														    		
-			<td>Fecha Registro</td>      
-            <td>Fecha Edicion</td>                
-        
-		</tr>
-		<tr><th colspan="13" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -187,47 +154,33 @@ $sql.=" left join proveedores p on(gg.cod_proveedor=p.cod_proveedor)";
 		}
 	}
 	$sql.=" order by gg.fecha_gasto_gral desc ,gg.nro_gasto_gral desc";
-	$sql.=" limit ".$fila_inicio." , ".$nro_filas_show;
+	$sql.=" limit 50";
 
 	$resp = mysql_query($sql);
 	$cont=0;
 ?>
-<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgcolor="#cccccc">
-  <tr bgcolor="#FFFFFF" align="center">
-    <td colspan="16"><p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)" >Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-                      <p align="center">				
-						Ir a Pagina<input type="text" name="pagina1" class="texto" id="pagina1" size="5" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar(this.form)"  >	
-				  </p>
-						<?php }?></td>
+<table width="95%" align="center" cellpadding="1" id="cotizacion" cellspacing="1" bgcolor="#cccccc" class="tablaReporte" style="width:100% !important;">
+  <thead>
+  <tr height="20px" align="center"  class="bg-success text-white">
+    <th>Nro Gasto</th>
+    <th>Fecha Gasto</th>
+    <th>Nro Rec</th>
+    <th>Proveedor</th>
+    <th>Gasto</th>
+    <th>Cantidad</th>
+    <th>Monto</th>
+    <th>Ref</th>
+	<th>Forma de Pago</th>
+    <th>Estado de Pago</th>
+    <th>Fecha Registro</th>
+    <th>Fecha Edicion</th>
+    <th>Estado de Doc</th>
+	<th>Editar</th>
+	<th>Anular</th>
+	<th>Copiar</th>	
   </tr>
-  <tr height="20px" align="center"  class="titulo_tabla">
-    <td>Nro Gasto</td>
-    <td>Fecha Gasto</td>
-    <td>Nro Rec</td>
-    <td>Proveedor</td>
-    <td>Gasto</td>
-    <td>Cantidad</td>
-    <td>Monto</td>
-    <td>Ref</td>
-	<td>Forma de Pago</td>
-    <td>Estado de Pago</td>
-    <td>Fecha Registro</td>
-    <td>Fecha Edicion</td>
-    <td>Estado de Doc</td>
-	<td>Editar</td>
-	<td>Anular</td>
-	<td>Copiar</td>	
-  </tr>
+  </thead>
+  <tbody>
   <?php   
 		while($dat=mysql_fetch_array($resp)){
 			$cod_gasto_gral=$dat['cod_gasto_gral']; 
@@ -405,28 +358,9 @@ $sql.=" left join proveedores p on(gg.cod_proveedor=p.cod_proveedor)";
   <?php
 		 } 
 ?>
-  <tr bgcolor="#FFFFFF" align="center">
-    <td colspan="16">
-		<p align="center">						
-						<b><?php if($pagina>1){ ?>
-							<a href="#" onclick="paginar(form1,<?php echo $pagina-1; ?>)" ><--Anterior</a>
-							<?php }?>
-						</b>
-						<b> Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?> </b>
-						<b><?php if($nropaginas>$pagina){ ?> 
-							<a href="#" onclick="paginar1(form1,<?php echo $pagina+1; ?>)">Siguiente--></a>
-						<?php }?></b>
-						</p>
-                        <?php if($nropaginas>1){ ?>
-						<p align="center">				
-						Ir a Pagina<input type="text" name="pagina2" size="5"  class="texto" id="pagina2" value="<?php echo $pagina;?>" onkeypress="return validar(event)"><input  type="button" size="8"  value="Ir" onClick="paginar2(this.form)">	</p>
-                         <?php } ?>	
-	</td>
-  </tr>
+  </tbody>
 </table>
-<?php
-	}
-?>
+
 
 </body>
 </html>

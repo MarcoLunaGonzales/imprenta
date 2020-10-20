@@ -78,7 +78,8 @@ function eliminar(f)
 02 de Julio de 2008
 -->
 
-<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">GESTIONES</h3>
+<h3 align="center" style="background:#FFF;font-size: 14px;color: #E78611;font-weight:bold;">GESTIONES
+</h3>
 <form name="form1" method="post" action="registrarGestion.php" >
 <?php 
 	require("conexion.inc");
@@ -106,20 +107,7 @@ function eliminar(f)
 	while($dat_aux=mysql_fetch_array($resp_aux)){
 		$nro_filas_sql=$dat_aux[0];
 	}
-	if($nro_filas_sql==0){
-?>
-	<table width="40%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-    		<td>Gesti&oacute;n</td>
-			<td>Gesti&oacute;n Formato Largo</td>
-    		<td>Estado</td>
-							
-		</tr>
-		<tr><th colspan="2" class="fila_par" align="center">&iexcl;No existen Registros!</th></tr>
-	</table>
-	
-<?php	
-	}else{
+
 		//Calculo de Nro de Paginas
 			$nropaginas=1;
 			if($nro_filas_sql<$nro_filas_show){
@@ -137,17 +125,20 @@ function eliminar(f)
 		$sql=" select cod_gestion, gestion, gestion_nombre,gestion_activa ";
 		$sql.=" from gestiones ";
 		$sql.=" order by gestion desc  ";
-		$sql.=" limit ".$fila_inicio." , ".$fila_final;
+		//$sql.=" limit ".$fila_inicio." , ".$fila_final;
 		$resp = mysql_query($sql);
 
 ?>	
-	<table width="40%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc">
-	    <tr height="20px" align="center"  class="titulo_tabla">
-			<td>&nbsp;</td>
-    		<td>Gesti&oacute;n</td>
-			<td>Gesti&oacute;n Formato Largo</td>
-    		<td>Estado</td>																			
+	<table width="40%" align="center" cellpadding="1" cellspacing="1" bgColor="#cccccc" class="tablaReporte" style="width:100% !important;">
+		<thead>
+	    <tr height="20px" align="center"  class="bg-success text-white">
+			<th>&nbsp;</th>
+    		<th>Gesti&oacute;n</th>
+			<th>Gesti&oacute;n Formato Largo</th>
+    		<th>Estado</th>																			
 		</tr>
+		</thead>
+		<tbody>
 
 <?php   
 		while($dat=mysql_fetch_array($resp)){	
@@ -176,27 +167,39 @@ function eliminar(f)
 <?php
 		 } 
 ?>			
-  			<tr bgcolor="#FFFFFF" align="center">
-    			<td colSpan="4">
-					Pagina <?php echo $pagina; ?> de <?php echo $nropaginas; ?>&nbsp;&nbsp;&nbsp;	
-					<select onchange="paginar(this.form);" name="pagina" >
-				    <?php for($i=1;$i<=$nropaginas;$i++){	
-							if($pagina==$i){
-					?>
-								<option value="<?php echo $i; ?>"  selected><?php echo $i; ?></option>";
-				    	<?php }else{?>	
-								<option value="<?php echo $i; ?>"  ><?php echo $i; ?></option>";
-						<?php }?>						
-					<?php }?>
-					</select>													
-				</td>
-			</tr>
-		</TABLE>
+  		  </tbody>
+		</table>
 		</div>			
-<?php
-	}
-?>
-		
+<!-- MODAL FILTRO-->
+  <div class="modal fade modal-arriba" id="filtroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Buscar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<table border="0" align="center">
+<tr>
+<td><strong>Buscar por Usuario</strong></td>
+<td colspan="3"><input type="text" name="usuarioB" id="usuarioB" size="60" class="textoform" value="<?php echo $usuarioB;?>" onkeyup="buscar()" ></td>
+</tr>
+</table>
+<table border="0" align="center" width="89%">
+<tr><td align="right">
+<div align="right"><a href="registrarUsuario.php" class="btn btn-warning text-white"><i class="fa fa-plus"></i> Nuevo Usuario</a></div>
+</td>
+</tr>
+</table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>		
 <?php require("cerrar_conexion.inc");
 ?>
 <br>
