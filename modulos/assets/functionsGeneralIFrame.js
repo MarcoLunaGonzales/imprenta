@@ -117,6 +117,22 @@ function cargarClasesFrame(){
          break;
       }
   });
+
+   //buscar titulos o etiquetas th
+   if($("#div_resultado").length>0){
+   $("table tr td a").each( function () {
+    //var urlBuscar=$(this).attr("href")+"".toLowerCase();
+    var urlOnclick=$(this).attr("href")+"";
+      if(urlOnclick.search(/javascript:/g) !=-1){
+        //alert(urlBuscar);
+        urlOnclick=urlOnclick.replace('javascript:','');
+        $(this).removeAttr("href");
+        $(this).removeAttr("class");
+        $(this).attr("style","font-family: verdana, arial, sans-serif;font-size: 11px;padding: 4px;color: #1EA3DC;text-decoration: none;");
+        $(this).attr("onclick",urlOnclick);
+      }
+  }); 
+}
    
   /* $("#cotizacion tr td").each( function () {
     var cantidad =  $(this).attr("colspan");
