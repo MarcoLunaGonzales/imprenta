@@ -995,6 +995,7 @@ function Output($name='', $dest='')
 	if($this->state<3)
 		$this->Close();
 	$dest=strtoupper($dest);
+    ob_clean();
 	if($dest=='')
 	{
 		if($name=='')

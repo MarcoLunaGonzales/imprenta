@@ -1,5 +1,6 @@
 <?php
 require("conexion1.inc");
+ob_start();
 require("fpdf.php");
 
 include("funcionesNumerosALetras.php");
